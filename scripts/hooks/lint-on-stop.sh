@@ -1,0 +1,14 @@
+#!/bin/sh
+# Stop: run lint; if it fails, hand the output back to Claude once (stop_hook_active prevents loops).
+[ "$(jq -r '.stop_hook_active // false')" = "true" ] && exit 0
+out=""
+if command -v ruff >/dev/null && [ -f pyproject.toml ]; then
+  out="$out$(ruff check -q . 2>&1)"
+fi
+if [ -f web/package.json ] && [ -x web/node_modules/.bin/tsc ]; then
+  out="$out$(cd web && node_modules/.bin/tsc --noEmit 2>&1)"
+fi
+if [ -n "$out" ]; then
+  printf 'Lint failed, fix before finishing:\n%s\n' "$out" >&2; exit 2
+fi
+exit 0

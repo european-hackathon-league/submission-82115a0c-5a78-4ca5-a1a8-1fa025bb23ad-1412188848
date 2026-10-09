@@ -1,0 +1,12 @@
+#!/bin/sh
+# Block pushes to main; everything goes through a PR.
+# Chained by Entire's pre-push, which may consume stdin, so also check the current branch.
+if [ "$(git rev-parse --abbrev-ref HEAD 2>/dev/null)" = "main" ]; then
+  echo "Blocked: push from main. Open a PR from a <firstname>/<topic> branch." >&2; exit 1
+fi
+while read -r _local_ref _local_sha remote_ref _remote_sha; do
+  if [ "$remote_ref" = "refs/heads/main" ]; then
+    echo "Blocked: push to main. Open a PR from a <firstname>/<topic> branch." >&2; exit 1
+  fi
+done
+exit 0
