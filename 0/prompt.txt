@@ -5,3 +5,11 @@
 <status>completed</status>
 <summary>Background command "Run D01 risky-probe A/B on sandbox" completed (exit code 0)</summary>
 </task-notification>
+
+---
+
+.env should have the correct settings, i allow you to check. and can you just give me one command where me and my teammates can look at all the runs? Or build a small frontend?
+
+---
+
+openai key, add it: REDACTED
