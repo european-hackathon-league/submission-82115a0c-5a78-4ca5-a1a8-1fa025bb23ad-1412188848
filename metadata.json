@@ -1,0 +1,53 @@
+{
+  "cli_version": "0.11.4",
+  "checkpoint_id": "01M4KNNGBB7HKN465HJFT0DN8M",
+  "strategy": "manual-commit",
+  "branch": "steffen/final-prep",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "docs/learnings.md",
+    "logs/practice-v10b.log",
+    "logs/practice-v10c-P05.log",
+    "logs/practice-v10d-P08.log",
+    "logs/runs/P05_05511071716baf45.json",
+    "logs/runs/P08_0e897a8043153661.json",
+    "logs/runs/P08_8fb681977cac2f19.json",
+    "logs/runs/P08_a379915509702d04.json",
+    "logs/runs/P11_c2959d6854ef9d6e.json",
+    "logs/runs/P18_436cda7322d0e9fe.json",
+    "logs/runs/P18_e64ffdb40a42b3a9.json",
+    "logs/sessions/practice/P02_491006cd111217a3.json",
+    "logs/sessions/practice/P02_91d2b5ad7501ce55.json",
+    "logs/sessions/practice/P02_ea485d8c4db527aa.json",
+    "logs/sessions/practice/P05_05511071716baf45.json",
+    "logs/sessions/practice/P08_0e897a8043153661.json",
+    "logs/sessions/practice/P08_4ad7436e68138dae.json",
+    "logs/sessions/practice/P08_50502ff781d898c6.json",
+    "logs/sessions/practice/P08_7b029b996e86ae1c.json",
+    "logs/sessions/practice/P08_8fb681977cac2f19.json",
+    "logs/sessions/practice/P08_a379915509702d04.json",
+    "logs/sessions/practice/P08_cd533e8117eee384.json",
+    "logs/sessions/practice/P08_d02573947884ff4c.json",
+    "logs/sessions/practice/P11_1f36a83c6e80e818.json",
+    "logs/sessions/practice/P11_a74b89173c96c23c.json",
+    "logs/sessions/practice/P11_c2959d6854ef9d6e.json",
+    "logs/sessions/practice/P18_436cda7322d0e9fe.json",
+    "logs/sessions/practice/P18_e64ffdb40a42b3a9.json"
+  ],
+  "sessions": [
+    {
+      "metadata": "/0/metadata.json",
+      "transcript": "/0/full.jsonl",
+      "compact_transcript": "/0/transcript.jsonl",
+      "content_hash": "/0/content_hash.txt",
+      "prompt": "/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 906,
+    "cache_creation_tokens": 262340,
+    "cache_read_tokens": 6277528,
+    "output_tokens": 82429,
+    "api_call_count": 33
+  }
+}
