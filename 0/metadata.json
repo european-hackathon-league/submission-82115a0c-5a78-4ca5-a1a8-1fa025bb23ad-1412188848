@@ -1,0 +1,89 @@
+{
+  "cli_version": "0.11.4",
+  "checkpoint_id": "01M4KQXHSY5W0WJSYCV5FS7V73",
+  "session_id": "2ed42424-8d7c-4174-aed2-f5da737b12ae",
+  "strategy": "manual-commit",
+  "created_at": "2026-10-10T20:26:24.231115Z",
+  "branch": "julian/pacing-briefing",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "docs/learnings.md"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-fable-5-1",
+  "turn_id": "81c8351fbda7",
+  "checkpoint_transcript_start": 608,
+  "transcript_lines_at_start": 608,
+  "compact_transcript_start": 52,
+  "token_usage": {
+    "input_tokens": 206,
+    "cache_creation_tokens": 56385,
+    "cache_read_tokens": 4577845,
+    "output_tokens": 32844,
+    "api_call_count": 13
+  },
+  "skill_events_version": 1,
+  "skill_events": [
+    {
+      "id": "prompt-skill-claude-code-goal-2026-10-10T20:04:20.373477Z",
+      "event_type": "prompt_invocation",
+      "skill": {
+        "name": "goal"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "prompt_slash_command",
+        "confidence": "explicit"
+      },
+      "turn_id": "6a316e04ea64",
+      "timestamp": "2026-10-10T20:04:20.373477Z",
+      "native": {
+        "command": "/goal"
+      },
+      "collapse": {
+        "target": "user_message",
+        "label": "/goal",
+        "default_collapsed": true
+      }
+    }
+  ],
+  "session_metrics": {
+    "turn_count": 1
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-10-10T20:26:24.181717Z",
+    "agent_lines": 0,
+    "agent_removed": 0,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 17,
+    "total_committed": 0,
+    "total_lines_changed": 31,
+    "agent_percentage": 0,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 58,
+      "user_lines_removed": 17,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".env.example": 3,
+        "buyer/economics.py": 5,
+        "buyer/policy.py": 8,
+        "buyer/prep.py": 3,
+        "docs/learnings.md": 32,
+        "tests/test_pacing.py": 7
+      },
+      "user_removed_per_file": {
+        ".env.example": 2,
+        "buyer/policy.py": 5,
+        "buyer/prep.py": 3,
+        "docs/learnings.md": 2,
+        "tests/test_pacing.py": 5
+      }
+    }
+  ]
+}

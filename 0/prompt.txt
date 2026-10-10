@@ -1,0 +1,53 @@
+dont push the brancjh lleave it local
+
+---
+
+<pasted_content id="e0e8">
+```
+
+
+uv sync --all-extras            # install
+uv run arena me                 # your team and its practice quota
+uv run arena play case:P01      # the naive example agent negotiates one practice case
+uv run arena board              # your team on the practice leaderboard
+```
+</pasted_content id="e0e8">
+
+there are 18 practice cases https://arena.tacto.ai/live
+
+---
+
+Use the api key for openAI
+
+---
+
+Run 5 practice cases in the real arena  if you are confident enough and tell me their results
+
+---
+
+run with LLM_MODEL=gpt-6.1-sol
+I changed it in .env.example
+
+---
+
+Did you already run practice cases in tactos arena
+
+---
+
+Tell me if you did and report the results
+
+---
+
+We can run more then 10 sessions per key
+
+---
+
+play 5 cases in the arena if we are ready and dont timeout
+
+---
+
+The pipeline should not run too long
+
+---
+
+DId you run here? I do not see anything?
