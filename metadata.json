@@ -3,7 +3,7 @@
   "checkpoint_id": "01M4KNZADZXS17GWPDM259H7XV",
   "strategy": "manual-commit",
   "branch": "steffen/elicit",
-  "checkpoints_count": 3,
+  "checkpoints_count": 4,
   "files_touched": [
     "buyer/economics.py",
     "buyer/llm.py",
@@ -24,13 +24,20 @@
       "compact_transcript": "/1/transcript.jsonl",
       "content_hash": "/1/content_hash.txt",
       "prompt": ""
+    },
+    {
+      "metadata": "/2/metadata.json",
+      "transcript": "/2/full.jsonl",
+      "compact_transcript": "/2/transcript.jsonl",
+      "content_hash": "/2/content_hash.txt",
+      "prompt": ""
     }
   ],
   "token_usage": {
-    "input_tokens": 384,
-    "cache_creation_tokens": 46375,
-    "cache_read_tokens": 4574163,
-    "output_tokens": 38651,
-    "api_call_count": 12
+    "input_tokens": 706,
+    "cache_creation_tokens": 182997,
+    "cache_read_tokens": 5179369,
+    "output_tokens": 50114,
+    "api_call_count": 23
   }
 }
