@@ -1,0 +1,59 @@
+{
+  "cli_version": "0.11.4",
+  "checkpoint_id": "01M4KP5X088T9HR6R56JVZW97Y",
+  "session_id": "20563ebc-ad12-45ce-ac65-b87f4cde6d7d",
+  "strategy": "manual-commit",
+  "created_at": "2026-10-10T19:56:02.229174Z",
+  "branch": "steffen/elicit",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "buyer/policy.py",
+    "docs/learnings.md"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-fable-5-1",
+  "turn_id": "aa84c82bc78e",
+  "checkpoint_transcript_start": 605,
+  "transcript_lines_at_start": 605,
+  "compact_transcript_start": 48,
+  "token_usage": {
+    "input_tokens": 194,
+    "cache_creation_tokens": 28972,
+    "cache_read_tokens": 2240747,
+    "output_tokens": 15863,
+    "api_call_count": 7
+  },
+  "session_metrics": {
+    "turn_count": 1
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-10-10T19:56:02.186748Z",
+    "agent_lines": 106,
+    "agent_removed": 89,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 106,
+    "total_lines_changed": 195,
+    "agent_percentage": 100,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 115,
+      "user_lines_removed": 1,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 22,
+        "buyer/claims.py": 11,
+        "buyer/economics.py": 45,
+        "buyer/policy.py": 37
+      },
+      "user_removed_per_file": {
+        "buyer/economics.py": 1
+      }
+    }
+  ]
+}

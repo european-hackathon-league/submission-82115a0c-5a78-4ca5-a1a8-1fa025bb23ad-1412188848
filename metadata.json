@@ -1,0 +1,27 @@
+{
+  "cli_version": "0.11.4",
+  "checkpoint_id": "01M4KP5X088T9HR6R56JVZW97Y",
+  "strategy": "manual-commit",
+  "branch": "steffen/elicit",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "buyer/policy.py",
+    "docs/learnings.md"
+  ],
+  "sessions": [
+    {
+      "metadata": "/0/metadata.json",
+      "transcript": "/0/full.jsonl",
+      "compact_transcript": "/0/transcript.jsonl",
+      "content_hash": "/0/content_hash.txt",
+      "prompt": ""
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 194,
+    "cache_creation_tokens": 28972,
+    "cache_read_tokens": 2240747,
+    "output_tokens": 15863,
+    "api_call_count": 7
+  }
+}
