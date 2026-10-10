@@ -235,3 +235,39 @@ Let's clean up the repo; So we have a good starting point for further iterations
   
   Count per file (byte-level grep for E2 80 94): AGENTS.md 0, CLAUDE.md 0, README.md 0, docs/README.md 0, docs/design.md 0, docs/learnings.md 0, docs/generalisation.md 0, docs/negotiation-research.md 0, docs/submission.md 0, exports/README.md 0, .github/PULL_REQUEST_TEMPLATE.md 0. Also buyer/*.py 0, analysis/explore.py 0, and docs/how-it-works.pdf text 0 (en-dash also 0). No user-facing copy has em-dashes. Note: docs/submission.md:49 has a `⟦` placeholder, and learnings.md and generalisation.md use `→` heavily, which the rule does not cover. | high
 </agent-message>
+
+---
+
+<task-notification>
+<task-id>a7e02036559f991df</task-id>
+<tool-use-id>toolu_01AMJsJByuC98b4yw5PoMxEz</tool-use-id>
+<output-file>/private/tmp/claude-501/-Users-stef-Projects-ehlcodacabana-final/9eadd1f2-ac50-430d-abdf-5a892eebbacb/tasks/a7e02036559f991df.output</output-file>
+<status>completed</status>
+<summary>Agent "Docs cleanup in cleanup worktree" finished</summary>
+<note>This agent stopped with background work of its own still running. It may resume on its own when that work completes or reports, and the same task-id notifies again if it does; the result below may be interim.</note>
+<result>Docs cleanup is done in `/Users/stef/Projects/ehlcodacabana-cleanup`, uncommitted (no git add, commit or rm).
+
+Files changed:
+- `docs/design.md`: Status now says `main` at 0.776, with no branch name and no PDF link. The stance call is marked as not built. Rollback is described as on 409. The Modules table maps each module to a real file. The Policy section now lists the real `policy.py` constants with their evidence, taken from `generalisation.md`.
+- `docs/learnings.md`:
+  - Contradictions resolved: determinism is scoped to the sandbox, the patience budget matches `BUDGET`, and the 1% floor is replaced by `MIN_MOVE` 0.2%.
+  - Headline numbers fixed: 0.32 to 0.66 to 0.776, and the record mean is 0.84.
+  - "Newest first" removed, the coverage pointer fixed, and the reader and `SIGNALS` paths now point to `policy.asks` and `personas.py`.
+  - New Agent versions changelog section (v1-v6, v8, v10-v12). Two settled hypotheses deleted, three reworded.
+  - From `generalisation.md`: the release-vs-SQL, no-text-suppliers, 4+ bidders and unplayed-structures findings moved in.
+- `docs/negotiation-research.md`: numbers labelled as a snapshot and given current values, the session count dated, and `BUYER_PUSH_FINAL` marked as not built in all three places.
+- `AGENTS.md`: pre-PR line now includes `ruff format --check`. Buyer rows updated after your folds. The Sunday 08:00 checklist from `generalisation.md` moved in.
+- `docs/README.md`: removed `generalisation.md` and `how-it-works.pdf`.
+- `exports/README.md`: `should_cost.csv` (which `explore.py` doesn't write) now points to the package's `should_cost` table. The autoprobe and export paths already said closed PR #5.
+- `.env.example`: dropped `LLM_PROVIDER`, added `LLM_EFFORT=low`.
+- Deleted `docs/generalisation.md` and `docs/how-it-works.pdf`.
+
+The final grep for generalisation, how-it-works, `reader.py`, `agent.py` and `BUYER_PUSH_FINAL` returns no hits. No em-dashes.
+
+Not changed:
+- `docs/submission.md` and its "upstream copy" labels in AGENTS and `docs/README.md`. The audit was wrong here: `challenge.md:58` lists `submission.md` as part of Tacto's upstream `brief/`. So line 23 (the kit command) and the Q2 placeholder are upstream text, and our command already sits in AGENTS Sunday and the README.
+- Learnings tags (sim and sandbox entries tagged `arena`) and the rank 3 vs rank 4 mismatch, which is from different times. Judged not worth the churn.
+
+Outside my scope: zsh here aliases `rm` to interactive, so a plain `rm` hangs; use `command rm`.</result>
+<usage><subagent_tokens>144933</subagent_tokens><tool_uses>44</tool_uses><duration_ms>323248</duration_ms></usage>
+</task-notification>
