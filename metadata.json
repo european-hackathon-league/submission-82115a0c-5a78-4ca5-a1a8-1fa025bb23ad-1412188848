@@ -3,7 +3,7 @@
   "checkpoint_id": "01M4KYP0BZABQEQSB4AQRMMSWG",
   "strategy": "manual-commit",
   "branch": "steffen/llm-primary",
-  "checkpoints_count": 3,
+  "checkpoints_count": 7,
   "files_touched": [
     "buyer/policy.py"
   ],
@@ -21,13 +21,20 @@
       "compact_transcript": "/1/transcript.jsonl",
       "content_hash": "/1/content_hash.txt",
       "prompt": "/1/prompt.txt"
+    },
+    {
+      "metadata": "/2/metadata.json",
+      "transcript": "/2/full.jsonl",
+      "compact_transcript": "/2/transcript.jsonl",
+      "content_hash": "/2/content_hash.txt",
+      "prompt": "/2/prompt.txt"
     }
   ],
   "token_usage": {
-    "input_tokens": 198,
-    "cache_creation_tokens": 60960,
-    "cache_read_tokens": 513103,
-    "output_tokens": 15617,
-    "api_call_count": 9
+    "input_tokens": 262,
+    "cache_creation_tokens": 107949,
+    "cache_read_tokens": 8571577,
+    "output_tokens": 44792,
+    "api_call_count": 41
   }
 }
