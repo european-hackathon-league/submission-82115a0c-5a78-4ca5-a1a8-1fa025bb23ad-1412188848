@@ -1,0 +1,1 @@
+/goal get our system confident enough to perform at 0.85 in the arena, if fundamental changes are needed or you think we should only have 1 agent with really good processed input do it. Play 5 cases in the live arena of tacto look at the performance and write it to the logs remove any test logs, test logs should only be written locally
