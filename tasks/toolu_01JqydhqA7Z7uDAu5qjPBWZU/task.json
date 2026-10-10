@@ -1,0 +1,14 @@
+{
+  "tool_use_id": "toolu_01JqydhqA7Z7uDAu5qjPBWZU",
+  "agent_id": "abaf2ddaae1da47fd",
+  "task_description": "Simulator run on unseen cases",
+  "token_usage": {
+    "input_tokens": 22,
+    "cache_creation_tokens": 34185,
+    "cache_read_tokens": 336736,
+    "output_tokens": 84,
+    "api_call_count": 11
+  },
+  "started_at": "2026-10-10T20:25:43.18975+02:00",
+  "completed_at": "2026-10-10T20:27:10.944851+02:00"
+}

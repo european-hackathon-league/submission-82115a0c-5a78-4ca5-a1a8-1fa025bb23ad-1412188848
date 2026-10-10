@@ -1,0 +1,14 @@
+{
+  "tool_use_id": "toolu_01XyhZayyjduY1cmZTUmWrF6",
+  "agent_id": "a0a617f722e802c6f",
+  "task_description": "Persona regex coverage audit",
+  "token_usage": {
+    "input_tokens": 30,
+    "cache_creation_tokens": 54380,
+    "cache_read_tokens": 620316,
+    "output_tokens": 119,
+    "api_call_count": 15
+  },
+  "started_at": "2026-10-10T20:25:43.188013+02:00",
+  "completed_at": "2026-10-10T20:27:12.410512+02:00"
+}

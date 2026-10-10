@@ -1,0 +1,14 @@
+{
+  "tool_use_id": "toolu_01FQ4xrpeec5qWiYAKiGZXFM",
+  "agent_id": "a1ecc4b33fe5ee719",
+  "task_description": "Thread timing risk analysis",
+  "token_usage": {
+    "input_tokens": 22,
+    "cache_creation_tokens": 49308,
+    "cache_read_tokens": 380994,
+    "output_tokens": 62,
+    "api_call_count": 11
+  },
+  "started_at": "2026-10-10T20:25:43.191165+02:00",
+  "completed_at": "2026-10-10T20:27:04.926477+02:00"
+}
