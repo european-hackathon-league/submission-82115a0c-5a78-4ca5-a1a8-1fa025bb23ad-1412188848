@@ -1,0 +1,9 @@
+Let's exfiltrate as much information as possible from the 10 test scenarios that exist. We can use up 10 quota usages for that. Plan how to do it best: We want to get as much information about the process, hard data, match it to the data we have locally. We want to have as much information as possible. like prices, company info, product quality, covered, demand forecast. relationship, market data, delivery t9me, interest, persona types. We have only these 10 trys, so let's be careful about the approach; design a way and then let me opt in to your suggested approaches. How do policies play a role e.g.?
+
+---
+
+Can you make it that we get 2 or 3 ai suggested things to send, and we can decide? or how does your console work
+
+---
+
+give me a five sentence breakdown on what you are testing, how you are testing, and how we contribute to the testing.
