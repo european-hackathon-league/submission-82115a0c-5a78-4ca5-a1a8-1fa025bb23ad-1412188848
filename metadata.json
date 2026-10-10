@@ -3,7 +3,7 @@
   "checkpoint_id": "01M4JZYDDGC64087CVT7AAWMFW",
   "strategy": "manual-commit",
   "branch": "steffen/hook-paths",
-  "checkpoints_count": 1,
+  "checkpoints_count": 3,
   "files_touched": [
     "scripts/hooks/format.sh",
     "scripts/hooks/lint-on-stop.sh"
@@ -15,13 +15,20 @@
       "compact_transcript": "/0/transcript.jsonl",
       "content_hash": "/0/content_hash.txt",
       "prompt": ""
+    },
+    {
+      "metadata": "/1/metadata.json",
+      "transcript": "/1/full.jsonl",
+      "compact_transcript": "/1/transcript.jsonl",
+      "content_hash": "/1/content_hash.txt",
+      "prompt": ""
     }
   ],
   "token_usage": {
-    "input_tokens": 26,
-    "cache_creation_tokens": 76645,
-    "cache_read_tokens": 665323,
-    "output_tokens": 5674,
-    "api_call_count": 14
+    "input_tokens": 30,
+    "cache_creation_tokens": 77582,
+    "cache_read_tokens": 753349,
+    "output_tokens": 6034,
+    "api_call_count": 16
   }
 }
