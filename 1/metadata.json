@@ -1,0 +1,68 @@
+{
+  "cli_version": "0.11.4",
+  "checkpoint_id": "01M4KNZADZXS17GWPDM259H7XV",
+  "session_id": "31f64cbe-b95d-4649-8176-195af5b7326f",
+  "strategy": "manual-commit",
+  "created_at": "2026-10-10T19:52:28.513363Z",
+  "branch": "steffen/elicit",
+  "checkpoints_count": 2,
+  "files_touched": [
+    "buyer/economics.py",
+    "buyer/llm.py",
+    "buyer/policy.py",
+    "buyer/writer.py"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-fable-5-1",
+  "turn_id": "4440317c41d0",
+  "checkpoint_transcript_start": 1156,
+  "transcript_lines_at_start": 1156,
+  "compact_transcript_start": 97,
+  "token_usage": {
+    "input_tokens": 160,
+    "cache_creation_tokens": 24552,
+    "cache_read_tokens": 2516039,
+    "output_tokens": 21169,
+    "api_call_count": 5
+  },
+  "skill_events_version": 1,
+  "skill_events": [
+    {
+      "id": "prompt-skill-claude-code-goal-2026-10-10T18:37:21.681721Z",
+      "event_type": "prompt_invocation",
+      "skill": {
+        "name": "goal"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "prompt_slash_command",
+        "confidence": "explicit"
+      },
+      "turn_id": "f88a1ffe3acb",
+      "timestamp": "2026-10-10T18:37:21.681721Z",
+      "native": {
+        "command": "/goal"
+      },
+      "collapse": {
+        "target": "user_message",
+        "label": "/goal",
+        "default_collapsed": true
+      }
+    }
+  ],
+  "session_metrics": {
+    "turn_count": 2
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-10-10T19:52:28.458062Z",
+    "agent_lines": 211,
+    "agent_removed": 19,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 211,
+    "total_lines_changed": 230,
+    "agent_percentage": 100,
+    "metric_version": 2
+  }
+}
