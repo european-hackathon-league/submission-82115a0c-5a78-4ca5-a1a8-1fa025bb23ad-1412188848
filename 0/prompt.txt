@@ -1,0 +1,5 @@
+Should we maybe copy the original data folder and have it as our own version and maintain also the clean version from tacto
+
+---
+
+okay lets play another simulation to improve our agent, how can we train in general to not risk overfitting
