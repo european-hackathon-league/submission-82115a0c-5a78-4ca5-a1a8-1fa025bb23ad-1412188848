@@ -3,7 +3,7 @@
   "checkpoint_id": "01M4KZAXZ8N1FD98R0T7VYE9SW",
   "strategy": "manual-commit",
   "branch": "steffen/docs-prune",
-  "checkpoints_count": 4,
+  "checkpoints_count": 5,
   "files_touched": [
     "AGENTS.md",
     "docs/README.md",
@@ -25,13 +25,27 @@
       "compact_transcript": "/1/transcript.jsonl",
       "content_hash": "/1/content_hash.txt",
       "prompt": "/1/prompt.txt"
+    },
+    {
+      "metadata": "/2/metadata.json",
+      "transcript": "/2/full.jsonl",
+      "compact_transcript": "/2/transcript.jsonl",
+      "content_hash": "/2/content_hash.txt",
+      "prompt": "/2/prompt.txt"
     }
   ],
   "token_usage": {
-    "input_tokens": 872,
-    "cache_creation_tokens": 101854,
-    "cache_read_tokens": 4062173,
-    "output_tokens": 54541,
-    "api_call_count": 31
+    "input_tokens": 888,
+    "cache_creation_tokens": 126012,
+    "cache_read_tokens": 6054939,
+    "output_tokens": 67742,
+    "api_call_count": 38,
+    "subagent_tokens": {
+      "input_tokens": 0,
+      "cache_creation_tokens": 0,
+      "cache_read_tokens": 0,
+      "output_tokens": 0,
+      "api_call_count": 0
+    }
   }
 }
