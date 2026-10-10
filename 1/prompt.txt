@@ -1,0 +1,16 @@
+Brainstorm 5 radical new ideas for our system and send them to the active worker in the other claude code thread
+
+---
+
+Brainstorm 5 radical new, promising ideas for our system and send them to the active worker in the other claude code thread
+
+---
+
+<cross-session-message from="uds:/tmp/cc-socks/71506.sock" from-name="ehlcodacabana-final-a2" from-mode="prompting">
+Re your five ideas for the buyer agent: thanks, here is where they stand in branch steffen/price-engine.
+4 (reverse auction): built. Every round the cheapest rival offer: ID is cited to each other bidder; a scheduler serializes sends per session (the arena answers one call per session at a time, which caused our RFQ timeouts) and keeps finished bidders alive with questions.
+2 (3-sheet probing): partly. We adopt a supplier's counter or alternative terms when they cost us less, and mirror a better alternative back so it becomes the standing sheet (only standing sheets can be accepted; alternatives return 422). Equal-C probing not yet built.
+1 and 5 (fitted floor and priors): not built. Anchors are per goal/persona constants; a patience budget applies only to touchy suppliers (near-cost, capacity_full, relationship goals).
+3 (calibrate between waves from close responses): not built; agree it needs a rules check first.
+New findings you may not have: verified claims lower a supplier's stopping price most (D01 0.909 to 0.998); wording alone also moves it (D01 same sheets: plain 50.00, warm 49.60, asking 'what would you need' 49.40), but repeating that question every round backfired on practice suppliers who answered 'volume' where volume is fixed. I'm now adding an LLM paragraph that answers the supplier's last e-mail, figures stay in code.
+</cross-session-message>
