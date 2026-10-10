@@ -1,0 +1,57 @@
+what data do we have about the companies
+
+---
+
+are there eu market data anywhere?
+
+---
+
+we want to make a price estimate and take in company scoring, product quality, if coverered by insurance, demand forecast, relashionship with the supplier, eu marked data, time of delivery and persona of the seller. where to get this data out of this and what is something else relevant for price estimate
+
+---
+
+yes add these to the table
+
+---
+
+and do we need to know our demand of certain things? or do we just buy everything
+
+---
+
+is it better to buy less or more if exact is not possible?
+
+---
+
+do you have a proposal architecture to run in this hackathon?
+
+---
+
+build the table again but with what it is instead of where it lives
+
+---
+
+what strategies could we use to maximise win
+
+---
+
+and humanoid tactics for negotiation?
+
+---
+
+and what about manipulation tactics?
+
+---
+
+write a summary .md file with the outcomes of this chat
+
+---
+
+how to prevent overfitting
+
+---
+
+add to notes
+
+---
+
+is the learning with the demand and to much and less buy in there?

@@ -1,0 +1,85 @@
+{
+  "cli_version": "0.10.2",
+  "checkpoint_id": "01M4K7JB663KEZCD4RZVGREZN7",
+  "session_id": "93636b4a-7ca8-4d5a-b334-ca3d614ebff0",
+  "strategy": "manual-commit",
+  "created_at": "2026-10-10T15:40:39.39603Z",
+  "branch": "louis/strategy-notes",
+  "checkpoints_count": 20,
+  "save_step_count": 3,
+  "files_touched": [
+    "docs/strategy-notes.md"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-sonnet-5-5",
+  "turn_id": "3cacbd68834d",
+  "compact_transcript_start": 0,
+  "token_usage": {
+    "input_tokens": 86,
+    "cache_creation_tokens": 56628,
+    "cache_read_tokens": 2955840,
+    "output_tokens": 28931,
+    "api_call_count": 43
+  },
+  "session_metrics": {
+    "turn_count": 20
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-10-10T15:40:39.37378Z",
+    "agent_lines": 73,
+    "agent_removed": 0,
+    "human_added": 12,
+    "human_modified": 48,
+    "human_removed": 0,
+    "total_committed": 109,
+    "total_lines_changed": 133,
+    "agent_percentage": 54.88721804511278,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 5,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 5
+      }
+    },
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 5,
+      "user_lines_removed": 0,
+      "agent_lines_added": 103,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 5
+      }
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 5,
+      "user_lines_removed": 0,
+      "agent_lines_added": 121,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 5
+      }
+    },
+    {
+      "checkpoint_number": 4,
+      "user_lines_added": 35,
+      "user_lines_removed": 24,
+      "agent_lines_added": 127,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 5,
+        "docs/strategy-notes.md": 30
+      },
+      "user_removed_per_file": {
+        "docs/strategy-notes.md": 24
+      }
+    }
+  ]
+}
