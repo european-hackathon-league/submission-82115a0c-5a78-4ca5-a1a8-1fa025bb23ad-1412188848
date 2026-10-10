@@ -1,0 +1,9 @@
+/goal Over my different branches, I did a lot of research. Please go through all of our conversations, all of the data created, all of the artifacts, tests and synthesize what we learn for the challenge. Then, in one pruned new branch, only keep what is essential to share. minus all the bullshit, that came along the way. Is there anything unclear? Use ask_user, if unclear what i want.
+
+---
+
+Learnings are distributed over different branches
+
+---
+
+Only committed by me!
