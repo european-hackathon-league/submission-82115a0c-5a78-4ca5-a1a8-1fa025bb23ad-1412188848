@@ -1,0 +1,33 @@
+{
+  "cli_version": "0.10.2",
+  "checkpoint_id": "01M4KX1HG7PE3MDN82N61GXMEA",
+  "strategy": "manual-commit",
+  "branch": "louis/engine-improvements",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "AGENTS.md",
+    "buyer/cli.py",
+    "buyer/llm.py",
+    "buyer/policy.py",
+    "buyer/runner.py",
+    "buyer/writer.py",
+    "docs/design.md",
+    "docs/learnings.md"
+  ],
+  "sessions": [
+    {
+      "metadata": "/0/metadata.json",
+      "transcript": "/0/full.jsonl",
+      "compact_transcript": "/0/transcript.jsonl",
+      "content_hash": "/0/content_hash.txt",
+      "prompt": "/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 2,
+    "cache_creation_tokens": 15058,
+    "cache_read_tokens": 44273,
+    "output_tokens": 521,
+    "api_call_count": 1
+  }
+}
