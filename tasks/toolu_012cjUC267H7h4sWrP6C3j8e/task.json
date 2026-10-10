@@ -1,0 +1,15 @@
+{
+  "tool_use_id": "toolu_012cjUC267H7h4sWrP6C3j8e",
+  "agent_id": "a5b4c5c1efe73ffea",
+  "subagent_type": "Explore",
+  "task_description": "Writer usage in practice logs",
+  "token_usage": {
+    "input_tokens": 12,
+    "cache_creation_tokens": 36428,
+    "cache_read_tokens": 125406,
+    "output_tokens": 19,
+    "api_call_count": 6
+  },
+  "started_at": "2026-10-10T23:29:55.453753+02:00",
+  "completed_at": "2026-10-10T23:30:33.992258+02:00"
+}

@@ -3,7 +3,7 @@
   "checkpoint_id": "01M4KWJR0WXZ9GSRQ507ARBF0H",
   "strategy": "manual-commit",
   "branch": "steffen/model-fixes",
-  "checkpoints_count": 2,
+  "checkpoints_count": 6,
   "files_touched": [
     "buyer/policy.py"
   ],
@@ -21,13 +21,27 @@
       "compact_transcript": "/1/transcript.jsonl",
       "content_hash": "/1/content_hash.txt",
       "prompt": "/1/prompt.txt"
+    },
+    {
+      "metadata": "/2/metadata.json",
+      "transcript": "/2/full.jsonl",
+      "compact_transcript": "/2/transcript.jsonl",
+      "content_hash": "/2/content_hash.txt",
+      "prompt": "/2/prompt.txt"
     }
   ],
   "token_usage": {
-    "input_tokens": 902,
-    "cache_creation_tokens": 198344,
-    "cache_read_tokens": 4462120,
-    "output_tokens": 42889,
-    "api_call_count": 31
+    "input_tokens": 1006,
+    "cache_creation_tokens": 353657,
+    "cache_read_tokens": 9961576,
+    "output_tokens": 89545,
+    "api_call_count": 80,
+    "subagent_tokens": {
+      "input_tokens": 66,
+      "cache_creation_tokens": 169068,
+      "cache_read_tokens": 1271792,
+      "output_tokens": 2235,
+      "api_call_count": 33
+    }
   }
 }

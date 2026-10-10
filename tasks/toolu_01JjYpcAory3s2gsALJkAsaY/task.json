@@ -1,0 +1,15 @@
+{
+  "tool_use_id": "toolu_01JjYpcAory3s2gsALJkAsaY",
+  "agent_id": "a63e401476b9fc836",
+  "subagent_type": "Explore",
+  "task_description": "Multi-supplier cases and handling",
+  "token_usage": {
+    "input_tokens": 24,
+    "cache_creation_tokens": 62794,
+    "cache_read_tokens": 470913,
+    "output_tokens": 2091,
+    "api_call_count": 12
+  },
+  "started_at": "2026-10-10T23:29:55.454576+02:00",
+  "completed_at": "2026-10-10T23:31:02.031593+02:00"
+}
