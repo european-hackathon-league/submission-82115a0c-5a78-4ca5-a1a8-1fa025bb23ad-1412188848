@@ -1,0 +1,66 @@
+{
+  "cli_version": "0.11.4",
+  "checkpoint_id": "01M4KP5X088T9HR6R56JVZW97Y",
+  "session_id": "31f64cbe-b95d-4649-8176-195af5b7326f",
+  "strategy": "manual-commit",
+  "created_at": "2026-10-10T19:56:03.958062Z",
+  "branch": "steffen/elicit",
+  "checkpoints_count": 2,
+  "files_touched": [
+    "buyer/policy.py",
+    "docs/learnings.md"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-fable-5-1",
+  "turn_id": "7225babf6c22",
+  "checkpoint_transcript_start": 1271,
+  "transcript_lines_at_start": 1271,
+  "compact_transcript_start": 107,
+  "token_usage": {
+    "input_tokens": 32,
+    "cache_creation_tokens": 2897,
+    "cache_read_tokens": 528427,
+    "output_tokens": 212,
+    "api_call_count": 1
+  },
+  "skill_events_version": 1,
+  "skill_events": [
+    {
+      "id": "prompt-skill-claude-code-goal-2026-10-10T18:37:21.681721Z",
+      "event_type": "prompt_invocation",
+      "skill": {
+        "name": "goal"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "prompt_slash_command",
+        "confidence": "explicit"
+      },
+      "turn_id": "f88a1ffe3acb",
+      "timestamp": "2026-10-10T18:37:21.681721Z",
+      "native": {
+        "command": "/goal"
+      },
+      "collapse": {
+        "target": "user_message",
+        "label": "/goal",
+        "default_collapsed": true
+      }
+    }
+  ],
+  "session_metrics": {
+    "turn_count": 2
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-10-10T19:56:03.882245Z",
+    "agent_lines": 143,
+    "agent_removed": 89,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 143,
+    "total_lines_changed": 232,
+    "agent_percentage": 100,
+    "metric_version": 2
+  }
+}
