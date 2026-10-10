@@ -1,0 +1,31 @@
+Open a new branch on this repo and Move the negotiation agent folder to the repo
+
+---
+
+<bash-input>git commit -m "Add negotiation arena kit"</bash-input><bash-stdout>Entire: Active Claude Code session detected
+  Last prompt: Open a new branch on this repo and Move the negotiation agent folder to the repo
+
+Link this commit to session context?
+  [Y]es / [n]o / [a]lways (remember my choice):
+[This command was still running in the terminal pane (tab 0) when its output was captured; it keeps running there, where the user can see and interact with it. Use read_terminal with tab_id "0" to check on it.]</bash-stdout><bash-stderr></bash-stderr>
+
+---
+
+@"/Users/julian/Downloads/Negotiation Arena Agent Policies & Orchestration.md"
+Set up a first draft of our negotiation agents, lets also create a knowledge base for the user personas of different suppliers and update after each negotiation, also keep in mind that we dont want to harm business relationships with important suppliers too much
+
+---
+
+https://arena.tacto.ai/faq
+
+---
+
+where do we store the personas and knwoledge and prices of different products? Also do I just have to set up the .env in the negotiation-agent or in the whole repo?
+
+---
+
+okay how can I run then against the arena and submit with our team name?
+
+---
+
+How does the arena work? We have 200 practice runs? How many practice runs are triggered?
