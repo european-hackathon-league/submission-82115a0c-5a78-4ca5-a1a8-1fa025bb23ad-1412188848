@@ -3,7 +3,7 @@
   "checkpoint_id": "01M4KPNTVQ1SX7TA0PD181TRW0",
   "strategy": "manual-commit",
   "branch": "steffen/consolidate",
-  "checkpoints_count": 11,
+  "checkpoints_count": 12,
   "files_touched": [
     "docs/learnings.md"
   ],
@@ -28,13 +28,20 @@
       "compact_transcript": "/2/transcript.jsonl",
       "content_hash": "/2/content_hash.txt",
       "prompt": ""
+    },
+    {
+      "metadata": "/3/metadata.json",
+      "transcript": "/3/full.jsonl",
+      "compact_transcript": "/3/transcript.jsonl",
+      "content_hash": "/3/content_hash.txt",
+      "prompt": ""
     }
   ],
   "token_usage": {
-    "input_tokens": 100,
-    "cache_creation_tokens": 48751,
-    "cache_read_tokens": 2472873,
-    "output_tokens": 12540,
-    "api_call_count": 19
+    "input_tokens": 230,
+    "cache_creation_tokens": 126249,
+    "cache_read_tokens": 3729596,
+    "output_tokens": 36620,
+    "api_call_count": 24
   }
 }
