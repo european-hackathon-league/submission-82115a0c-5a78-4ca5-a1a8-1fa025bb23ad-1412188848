@@ -1,0 +1,1 @@
+/goal Merge and Organize the information that has come in in the last 5 pull requests. Verify ambiguous, easy to verify information. Structure it a good way. Clean up old, unused, and merged files. Build out clear agent instructions. Less is better, take inspiration from system claude.md.
