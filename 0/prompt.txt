@@ -1,0 +1,129 @@
+mas aqui mostra que estamos em 0.80
+
+---
+
+rode mais 10! guarde os 0,802 --> vamos ver se nosso modelo está melhorando os resultados ou não!
+
+---
+
+go to louis improvement in github!
+
+---
+
+rode 10 runs novamente (vamos ver onde estão os problemas!)
+
+---
+
+rode 10 runs novamente (vamos ver onde estão os problemas!)
+
+---
+
+esses testes são para o Louis, certo?
+
+---
+
+depois mande os resultados aqui! De cada uma das 10 runs! E também aponte todos os problemas e limitações que ele teve!
+
+---
+
+depois mande os resultados aqui! De cada uma das 10 runs! E também aponte todos os problemas e limitações que ele teve!
+
+---
+
+compare essses resultados com os antigos! Vamos ver o que aconteceu!
+
+---
+
+aponte limitações que tivemos, etc!
+
+---
+
+para de rodar!
+
+---
+
+para de rodar!
+
+---
+
+pegue apenas resultados que já tivemos ao rodar!!! E compare com os anteriores (ates da nova versão!
+
+---
+
+como resolver esses problemas?
+
+---
+
+como resolver esses problemas?
+
+---
+
+okok, faça essas mudancas mas ainda não faça nenhum push!
+
+---
+
+você rodou?
+
+---
+
+deu certo? Fez as mudanças?
+
+---
+
+entao pode testar para 10 runs! Somente 10 no Practical e depois mande os resultados aqui comparando com os anteriores!
+
+---
+
+entao pode testar para 10 runs! Somente 10 no Practical e depois mande os resultados aqui comparando com os anteriores!
+
+---
+
+mostre eles aqui para mim! Os 10 scores que rodamos!
+
+---
+
+mostre eles aqui para mim! Os 10 scores que rodamos!
+
+---
+
+What could have been the problems here? How can we improve everything?
+
+---
+
+could be a variety of things! How can we improve our current results?
+
+---
+
+our focus is to avoid loosing and keep always improving our skills (maybe aggressivnes, or maybe something else) - what we should also avoid is to be repetitive! Show what you would change! You can make the changes! We will later try a new one! From what I see, could be that our anchor is smaller than it should be and our gap is bigger!
+
+---
+
+we also cant be too overfitting!
+
+---
+
+we also cant be too overfitting!
+
+---
+
+you are dealing with louis approach, right?
+
+---
+
+okok, so with these changes, you can also reduce a bit the acceptance gap!
+
+---
+
+okok, so with these changes, you can also reduce a bit the acceptance gap!
+
+---
+
+you can run another 10 times only! Just 10 times and then show the results right away in the display please! Just 10 times!
+
+---
+
+you can run another 10 times only! Just 10 times and then show the results right away in the display please! Just 10 times!
+
+---
+
+now get the results please!
