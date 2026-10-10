@@ -1,0 +1,5 @@
+Research how good our system would generalize; consider that tomorrow at 8am we would get new data, and there will be five blind rounds tomorrow at 12. Read more on https://arena.tacto.ai/faq
+
+---
+
+You may use up to 10 haiku agents at once
