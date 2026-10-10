@@ -1,0 +1,73 @@
+{
+  "cli_version": "0.11.4",
+  "checkpoint_id": "01M4KPMAANTCK7330RY5CTW7RQ",
+  "session_id": "2ed42424-8d7c-4174-aed2-f5da737b12ae",
+  "strategy": "manual-commit",
+  "created_at": "2026-10-10T20:03:53.305246Z",
+  "branch": "julian/pacing-briefing",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "AGENTS.md",
+    "buyer/briefing.py",
+    "buyer/cli.py",
+    "buyer/policy.py",
+    "buyer/prep.py",
+    "buyer/runner.py",
+    "buyer/writer.py",
+    "docs/design.md",
+    "docs/learnings.md",
+    "tests/test_briefing.py",
+    "tests/test_pacing.py"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-fable-5-1",
+  "turn_id": "80982f2cec3b",
+  "compact_transcript_start": 0,
+  "token_usage": {
+    "input_tokens": 1032,
+    "cache_creation_tokens": 269107,
+    "cache_read_tokens": 7628414,
+    "output_tokens": 109143,
+    "api_call_count": 36
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-10-10T20:03:53.26685Z",
+    "agent_lines": 0,
+    "agent_removed": 1,
+    "human_added": 14875,
+    "human_modified": 62,
+    "human_removed": 0,
+    "total_committed": 14917,
+    "total_lines_changed": 14938,
+    "agent_percentage": 0.006694336591243807,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 1107,
+      "user_lines_removed": 62,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        "AGENTS.md": 2,
+        "buyer/briefing.py": 444,
+        "buyer/cli.py": 19,
+        "buyer/policy.py": 87,
+        "buyer/prep.py": 175,
+        "buyer/runner.py": 56,
+        "buyer/writer.py": 12,
+        "docs/design.md": 16,
+        "tests/test_briefing.py": 188,
+        "tests/test_pacing.py": 108
+      },
+      "user_removed_per_file": {
+        "buyer/cli.py": 3,
+        "buyer/policy.py": 33,
+        "buyer/runner.py": 10,
+        "buyer/writer.py": 2,
+        "docs/design.md": 14
+      }
+    }
+  ]
+}

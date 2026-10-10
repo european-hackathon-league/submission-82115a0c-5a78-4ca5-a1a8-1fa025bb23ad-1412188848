@@ -1,0 +1,36 @@
+Checkout to a new branch and lets try to implement some changes: Pace by remaining time. The policy concedes 30 % of the gap per round regardless of the clock. An RFQ with three threads, processed one at a time, can hit the 90 s cap margin after four or five rounds each and accept wherever the counters stand. Scale the fraction up when seconds left divided by rounds left gets tight. The agent should also factor in supplier/businessrelationship importance when negotiating. A preparation Agent should prepare a Briefing Starting constraints/variables and a general Case Evaluation, Market data competitor offers price indicies, cost breakdown. And give it as Input to the buyer agent. Test against the sandboxed test cases and previous cases
+
+---
+
+@"/Users/julian/Downloads/11.pdf"
+
+<pasted_content id="e0e8">
+Fallback constant
+Values
+What it means
+GOAL_CAPTURE
+leverage 0.75, routine 0.5, stabilise 0.6, secure_supply 0.55, quality_first 0.65
+Share of the possible saving (opening quote's C down to our best estimate) to reach before accepting; higher means pushing longer
+OPENING_GAP
+strategic 0.05, important 0.08, standard 0.12
+How far below the supplier's quote the first offer anchors; never below the floor; not used in price-increase cases
+TIER_MARGIN
+strategic 4 %, important 2 %, standard 0 %
+Margin left above the supplier's estimated full cost when setting the floor. In stabilise / secure_supply the case's sustainable_margin_pct replaces it; standard suppliers are capped at 3 %
+JUSTIFIED_SHARE
+strategic 0.5, important 0.25, standard 0.0
+In price-increase cases, share of the data-justified increase offered in round 1
+STEPS
+35 %, 25 %, 15 %, 10 % of the remaining gap; 60 % once the tier's price pushes are used
+Size of each concession, made only after the supplier moved; the 60 % step closes fast when we may not push further
+</pasted_content id="e0e8">
+
+these are the starting constant but instead of fixed constants it should be calcuated variables and calculated and assesed with each run and a C floor should be estimated as a reference for our negotiation
+
+---
+
+Make the system agentic
+
+---
+
+Test again against the sandboxed cases, if we are confident enough that we will perform over 0.8 test against 5 cases in the arena and write the logs
