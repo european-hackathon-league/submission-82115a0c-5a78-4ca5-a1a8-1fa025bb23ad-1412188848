@@ -3,7 +3,7 @@
   "checkpoint_id": "01M4KQ16B0AY965CTQR0H70QJT",
   "strategy": "manual-commit",
   "branch": "steffen/consolidate",
-  "checkpoints_count": 4,
+  "checkpoints_count": 5,
   "files_touched": [
     "buyer/policy.py"
   ],
@@ -28,13 +28,20 @@
       "compact_transcript": "/2/transcript.jsonl",
       "content_hash": "/2/content_hash.txt",
       "prompt": "/2/prompt.txt"
+    },
+    {
+      "metadata": "/3/metadata.json",
+      "transcript": "/3/full.jsonl",
+      "compact_transcript": "/3/transcript.jsonl",
+      "content_hash": "/3/content_hash.txt",
+      "prompt": "/3/prompt.txt"
     }
   ],
   "token_usage": {
-    "input_tokens": 170,
-    "cache_creation_tokens": 8282,
-    "cache_read_tokens": 2078388,
-    "output_tokens": 5440,
-    "api_call_count": 9
+    "input_tokens": 196,
+    "cache_creation_tokens": 17795,
+    "cache_read_tokens": 2707394,
+    "output_tokens": 10377,
+    "api_call_count": 22
   }
 }
