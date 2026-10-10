@@ -1,0 +1,30 @@
+{
+  "cli_version": "0.11.4",
+  "checkpoint_id": "01M4KFGX0B8KDMJB8MGA8MJATB",
+  "strategy": "manual-commit",
+  "branch": "steffen/price-engine",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "buyer/cli.py",
+    "buyer/llm.py",
+    "buyer/policy.py",
+    "buyer/runner.py",
+    "buyer/writer.py"
+  ],
+  "sessions": [
+    {
+      "metadata": "/0/metadata.json",
+      "transcript": "/0/full.jsonl",
+      "compact_transcript": "/0/transcript.jsonl",
+      "content_hash": "/0/content_hash.txt",
+      "prompt": "/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 36,
+    "cache_creation_tokens": 37942,
+    "cache_read_tokens": 10483739,
+    "output_tokens": 19880,
+    "api_call_count": 18
+  }
+}
