@@ -1,0 +1,37 @@
+https://github.com/stegra05/ehl-codacabana-final/pull/12 read this and summarize architecture visually
+
+---
+
+and what can we learn from the logs
+
+---
+
+these are repeated learnings from the md file. what are new learnings from the logs that are not already in the feedback
+
+---
+
+why were we not able to get c_best correctly
+
+---
+
+what changes have the highest pivot in out ranking?
+
+---
+
+what would that change at our leaderboard place?
+
+---
+
+you have the api key to download the leaderboard
+
+---
+
+can you implement them and test locally without using runs on the leaderboard
+
+---
+
+did the changes improve anything?
+
+---
+
+ok so every improvement we analysed in this chat has no measurable improvement?

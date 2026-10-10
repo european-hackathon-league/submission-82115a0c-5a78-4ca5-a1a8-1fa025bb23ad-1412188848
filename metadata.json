@@ -3,7 +3,7 @@
   "checkpoint_id": "01M4KX1HG7PE3MDN82N61GXMEA",
   "strategy": "manual-commit",
   "branch": "louis/engine-improvements",
-  "checkpoints_count": 13,
+  "checkpoints_count": 23,
   "files_touched": [
     "AGENTS.md",
     "buyer/analyst.py",
@@ -34,13 +34,20 @@
       "compact_transcript": "/1/transcript.jsonl",
       "content_hash": "/1/content_hash.txt",
       "prompt": "/1/prompt.txt"
+    },
+    {
+      "metadata": "/2/metadata.json",
+      "transcript": "/2/full.jsonl",
+      "compact_transcript": "/2/transcript.jsonl",
+      "content_hash": "/2/content_hash.txt",
+      "prompt": "/2/prompt.txt"
     }
   ],
   "token_usage": {
-    "input_tokens": 190,
-    "cache_creation_tokens": 303506,
-    "cache_read_tokens": 19165866,
-    "output_tokens": 115570,
-    "api_call_count": 83
+    "input_tokens": 294,
+    "cache_creation_tokens": 483206,
+    "cache_read_tokens": 25919076,
+    "output_tokens": 168986,
+    "api_call_count": 126
   }
 }
