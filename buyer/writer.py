@@ -1,6 +1,7 @@
 """E-mails from templates: every figure and ID comes from code, the wording stays polite and
 factual. Never mentions urgency, a budget, our alternative's absence or our target."""
 
+from arena_kit.cost import closing_terms
 from arena_kit.play import latest
 
 FIELDS = {
@@ -136,19 +137,19 @@ def facts(case, s, claims, moved, statements, attachments, traded):
         if payment_fixed:
             out.append(
                 "they asked for faster payment: payment terms are fixed in this agreement and cannot change, "
-                "say so plainly and kindly, and point to what we do give (we pay reliably on the due date, "
+                "say so plainly and kindly, and point to what we do give ("
                 "our full volume, the contract term)"
             )
         else:
             out.append("they asked for faster payment: our proposal below sets the payment term we can offer")
-    if "volume" in s.asks or statements:
+    if "volume" in s.asks or any("binding volume" in text for text in statements):
         out.append("they asked which volume we commit to: the binding volume figure stands right after this paragraph")
     if attachments:
         out.append("they asked for proof of our forecast: the forecast is attached to this e-mail as a file, say so")
     if "volume_per_year" not in case["negotiable"] or fixed.get("volume_per_year"):
         out.append("our order volume is fixed: it is our full demand for this part over the term, all with them")
     if payment_fixed and "payment" not in s.asks:
-        out.append("payment terms are fixed for this agreement; we pay reliably on the due date")
+        out.append("payment terms are fixed for this agreement")
     if "contract_months" in case["negotiable"]:
         out.append("we offer a long contract term, which gives them planning security")
     if s.terms.get("index_clause") and traded:
@@ -172,15 +173,19 @@ def statements(case, s, sheets):
     """Code sentences with figures that answer its asks: the binding volume, in round 1 and
     whenever it asks ("Which volume can you commit to?" came 152 times; a figure was "taken
     into account", a description was not)."""
-    if not ("volume" in s.asks or not s.ours):
-        return []
+    out = []
     fixed = case.get("fixed_terms") or {}
+    if "payment" in s.asks and ("payment_days" not in case["negotiable"] or "payment_days" in fixed):
+        days = closing_terms(case, sheets[0], s.std).get("payment_days")
+        out.append(f"Payment is fixed at {days} days under this agreement and cannot be shortened.")
+    if not ("volume" in s.asks or not s.ours):
+        return out
     sheet = sheets[0]
     volume = sheet.get("volume_per_year") or fixed.get("volume_per_year") or case["buyer"]["need_per_year"]
     months = sheet.get("contract_months") or fixed.get("contract_months")
     term = f"for the {months}-month term" if months else "for this agreement"
     full = " our full demand for this part," if volume >= case["buyer"]["need_per_year"] else ""
-    return [f"We confirm a binding volume of {volume} units a year {term},{full} all placed with you."]
+    return out + [f"We confirm a binding volume of {volume} units a year {term},{full} all placed with you."]
 
 
 def reply_subject(events, case):

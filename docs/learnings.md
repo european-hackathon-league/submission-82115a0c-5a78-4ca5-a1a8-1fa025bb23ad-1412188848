@@ -11,6 +11,59 @@ session or data ID) and what it means for the agent. Tags: `arena` seen in a ses
 the data package, `rules` from `docs/api.md` or the kit's code. Untested ideas go under
 Hypotheses; agent changes go under Agent versions. Correct or delete entries that turn out wrong.
 
+## Relationship-target correction after hosted validation
+
+- 2026-10-10 `arena` PR18 `a1b7afb` ran all ten practice cases with the configured
+  writer: ten deals, mean 0.726577. The preceding execution per case averaged
+  0.703846, but those versions were not controlled. P01 lost 0.031484, P02 lost
+  0.231285 and P03 lost 0.007134. Logs and decision records are committed under
+  `logs/sessions/practice`, `logs/runs` and `logs/pr18-hosted-20261010-224230.json`.
+- 2026-10-10 `rules` P02 session `b3daba378f139d09` exposed a target-refresh bug:
+  setup calculated 361.67, but the opening quote's equivalent price clipped the
+  optimization interval and triggered a 344.50 closing proposal before citing
+  any claims. Official relationship cost was EUR 115,657.38. Refresh only after
+  changed package, standard terms or supplier estimate; retain a search range
+  containing the previous target. Opening messages use the planned anchor and
+  claims. Pure price concessions do not alter the economic optimum.
+- 2026-10-10 `arena` P01 `4f234bc3a5fee132` closed at 131.40 rather than the
+  previous 130.98 on identical terms, adding EUR 1,793.46. The 0.2% proximity
+  rule triggered closing above the calculated target and before the delivery
+  claim was used. Remove that tolerance. P03 `d0dbeb2b5fb4acb8` closed at 432.15
+  versus 431.85, adding EUR 2,405.98. Claim order and supplier responses differed;
+  this alone does not establish a defect or justify case-specific claim tuning.
+- 2026-10-10 `rules` Three new arbitrary-ID regression tests fail before the
+  correction and pass after; full suite 45 passes. Across 576 synthetic pairs,
+  568 tie and eight P01 variants revert to the main baseline, below PR18's
+  previous synthetic results. Zero exceptions or invalid accepted deals; the
+  same 52 preexisting invalid-proposal stress runs remain. This correction fixes
+  demonstrated state-machine behavior, not a claimed simulator score gain.
+
+## Complete-package evaluation, 10 October evening
+
+- 2026-10-10 `arena` Practice session `9b63768bad5febe5` offered a higher-price
+  alternative (5.40 with a 5% deadband) whose total cost was EUR 259,116.84,
+  below the 5.30 / zero-deadband standing quote at EUR 259,970.83. This is a
+  quoted-package comparison, not proof of an achievable later negotiation score.
+  Consequence: evaluate index alternatives together with every other quoted term.
+- 2026-10-10 `rules` `complete_offer` snaps values and can replace an explicit
+  allowed `None` with the first option. Mirroring must validate the quoted domain
+  directly and preserve the effective package, including fixed terms and defaults.
+- 2026-10-10 `rules` Local simulator comparison against main `3c02621`: 24 case
+  definitions, 12 scenarios, with and without package data, 576 paired runs.
+  Eight scores improved, 568 stayed equal, none worsened; simulated mean
+  0.661334 to 0.662484. All improvements were variants of P01. Another 48 pairs
+  renamed case IDs and preserved decisions. Both variants had 409 matrix deals,
+  zero exceptions and zero invalid accepted deals. Both still emitted invalid
+  proposals in 52 stress runs (48 impossible constraints, four payment floors).
+  These preexisting proposal failures remain unresolved. No hosted sessions or
+  model calls were used. This is regression evidence, not hosted score evidence
+  or proof against overfitting.
+- 2026-10-10 `rules` A rejected local candidate adopted any cheaper successive
+  counter even when it surrendered valuable non-price conditions. It worsened
+  225 of 576 simulations. The retained change requires the complete quoted
+  package to beat the current plan at supplier-equivalent value. No new anchors,
+  patience thresholds, case/supplier branches or hidden score targets were added.
+
 ## Takeaways for the agent
 
 1. **Stay below the supplier's counter until the end; it agrees the moment our sheet reaches the
@@ -44,10 +97,12 @@ Hypotheses; agent changes go under Agent versions. Correct or delete entries tha
 7. **Only a supplier's standing sheet can be accepted** (an alternative returns 422). A better
    alternative is sent back as our sheet; it agrees and becomes standing (P10).
 8. **Raw-material distributors refuse a fixed price beyond 12 months and refuse any deadband**
-   (P08, P18): take their clause and negotiate the price; insisting on a deadband stalled them.
-   But only when their sheet with the clause costs us less than their last one: Nordmark's copper
-   clause came alone and cost 1.8 % of spend, score 0 (P02 `680eb11405186b42`,
-   `d52ccdd3d2e07b3f`). That rule separates all 24 P02, P08 and P18 sessions correctly.
+   (P08, P18), but keeping our fixed-price sheet while they counter with their clause gets more
+   than taking it: from the same opening and first counter, P18 closed at 5.00 with the clause
+   (0.688, `e86f454a59ff98f0`) against 5.10 in four sessions that took it (0.621, `436cda73`,
+   `d7ef7720`, `9b63768b`, `e64ffdb4`); P08 at 5.25 (0.659, `22f82a186bc4fb08`) against 5.30 to
+   5.38 (0.515 to 0.604). One session each. Adopt a quoted package only when it costs less than
+   our plan at the same value to the supplier; a price cut alone does not pay for the clause.
 9. **RFQ: the arena answers one call per session at a time** and each thread's 60 s clock runs
    from its reply, so sends are serialized by deadline; the cheapest rival offer is a new,
    verified claim to every other bidder every round (P05 0.83, D02 0.73).
@@ -123,7 +178,7 @@ first place 0.838). Record = best of all teams on `/v1/live` at about 20:30 (hou
   cost (5.45 at 0 % against 5.57 at 5 %); a 5 % clause sheet sent to the distributors got a first
   counter 1.5 to 2 % above the 0 % clause they add themselves (P08 5.60 to 5.64, P18 5.50 against
   5.40 and 5.30, six runs on `steffen/elicit`). → Trade a clause only where its value to the
-  supplier beats our cost (`economics.clause_trade`); let a distributor's own clause stand.
+  supplier beats our cost (`economics.clause_trade`); against a distributor's own clause keep our fixed price (takeaway 8).
 - 2026-10-10 `arena` **How many counters a supplier gives depends on our path; how much it moves
   per counter is its own.** 115 practice threads: Nordmark 1 to 6 counters, Donautal 2 to 6,
   Werdenfels 2 to 6, Kalwisz 4 to 6. Its move as a share of our previous move (median, rounds 3

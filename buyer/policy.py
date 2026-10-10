@@ -85,7 +85,6 @@ class Side:
         self.state = "open"  # open | mirror | closing | done | ended
         self.prev_state = "open"  # the state before the message in flight
         self.pending = None  # the message in flight: what to undo if it times out
-        self.tried = set()  # (field, value) we switched away from
         self.term_change = False  # its last counter changed our non-price terms
         self.last_reply = None
         self.asks = []  # what its last e-mail asked of us (asks)
@@ -286,44 +285,23 @@ class Negotiator:
         self.note(s.sid, "switch_terms", why=why, terms={k: v for k, v in new.items() if k != "unit_price"})
 
     def adopt(self, s, sheets):
-        """Its reply changed some of our non-price terms (in its counter or an alternative): it told
-        us what it values. Take a sheet's terms over when C at its price beats C of our plan at
-        our counterpart of that price; when it insists on an index clause, take the clause that
-        costs us least."""
+        """Compare complete quoted packages, then switch once to the cheapest useful one."""
         if not s.ours:
             return
         case = self.case
-        standing_terms = sheets[0]["terms"]
-        clause = standing_terms.get("index_clause")
-        if "index_clause" in s.terms and s.terms["index_clause"] != clause and clause:
-            # it will not sell this term at a fixed price (raw-material distributors) and refuses a
-            # deadband: take its clause when its sheet, clause included, costs us less than its
-            # last one (P08, P18: a longer contract came with it) and keeps every must-have; else
-            # keep asking for a fixed price (P02: the copper clause alone cost 1.8 % of spend)
-            new = {**s.terms, "index_clause": clause}
-            c_now = eco.cost(case, standing_terms, s.std, s.est)
-            c_before = eco.cost(case, s.last_sheet, s.std, s.est)
-            if eco.must_haves_ok(case, new, s.std) and c_now < c_before - 1.0:
-                self.switch(s, new, "its index clause")
-            else:
-                self.note(s.sid, "keep_terms", why="its index clause costs us more", c_now=c_now, c_before=c_before)
-        best_c = eco.cost(case, eco.at_price(s.terms, self.their_price(s, standing_terms)), s.std, s.est)
+        standing = sheets[0]["terms"]
+        planned_cost = eco.cost(case, eco.at_price(s.terms, self.their_price(s, standing)), s.std, s.est)
+        candidates = []
         for sheet in sheets:
-            terms = sheet["terms"]
-            changed = {k: v for k, v in terms.items() if k != "unit_price" and k in s.terms and s.terms[k] != v}
-            changed.pop("index_clause", None)
-            if not changed:
+            new = eco.quoted_offer(case, sheet["terms"], s.std)
+            if new is None or all(new.get(k) == v for k, v in s.terms.items() if k != "unit_price"):
                 continue
-            new = {**s.terms, **changed}
-            if not eco.must_haves_ok(case, new, s.std):
-                continue
-            if any((k, repr(v)) in s.tried for k, v in changed.items()):
-                continue  # we were there before: no flip-flop
-            c = eco.cost(case, eco.at_price(new, terms["unit_price"]), s.std, s.est)
-            if c < best_c - max(1.0, 0.001 * best_c):
-                best_c = c
-                s.tried |= {(k, repr(s.terms.get(k))) for k in changed}
-                self.switch(s, new, f"its sheet {changed} costs us less")
+            c = eco.deal_cost(case, new, s.std, s.est)
+            if c is not None and c < planned_cost - max(1.0, 0.001 * planned_cost):
+                candidates.append((c, new))
+        if candidates:
+            _, new = min(candidates, key=lambda row: (row[0], repr(sorted(row[1].items()))))
+            self.switch(s, new, "complete quoted package costs us less")
 
     # -- one move ----------------------------------------------------------------------------
     def move(self, sid, threads, writer_s=llm.TIMEOUT_S):
@@ -341,10 +319,12 @@ class Negotiator:
         if not sheets:
             s.state = "ended" if not standing(events)[0] else "done"
             return None
+        std_before = s.std
         s.std = standard_terms(events) or s.std
         fresh = s.last_reply is not last
         if fresh:
             terms_before = dict(s.terms)
+            estimate_before = dict(s.est)
             self.adopt(s, sheets)
             s.term_change = any(sheets[0]["terms"].get(k, v) != v for k, v in terms_before.items() if k != "unit_price")
             s.theirs.append(self.their_price(s, sheets[0]["terms"]))
@@ -352,6 +332,16 @@ class Negotiator:
             s.last_reply = last
             s.asks = asks(last.get("body"))
             self.read_signals(s, last.get("body"))
+            economics_changed = s.terms != terms_before or s.est != estimate_before or s.std != std_before
+            if s.target is not None and economics_changed:
+                s.target = eco.relationship_optimum(
+                    self.case,
+                    s.terms,
+                    s.std,
+                    s.est,
+                    s.est["full_cost"] * 0.85,
+                    max(s.est["full_cost"] * 0.85, s.quote, s.target, s.theirs[-1]),
+                )
         theirs = s.theirs[-1]
         if s.state in ("mirror", "closing"):  # we sent its own sheet or our target: done
             s.state = "done"
@@ -359,7 +349,7 @@ class Negotiator:
         left = self.moves_left(s, events)
         if status in DONE or left <= 0:
             return self.finish(s, sheets, events, theirs, left)
-        if s.target and theirs <= s.target * 1.002:
+        if s.ours and s.target and theirs <= s.target:
             # relationship goal: below the target a lower price costs more than it saves
             s.state = "closing"
             return self.send(s, [eco.at_price(s.terms, max(s.target, theirs))], [], events, theirs)
@@ -402,15 +392,18 @@ class Negotiator:
         less than its standing sheet, send that sheet back so it agrees to it; else done."""
         case = self.case
         std = s.std
-        c_stand = eco.cost(case, sheets[0]["terms"], std, s.est)
-        alts = [(eco.cost(case, sh["terms"], std, s.est), sh) for sh in sheets[1:]]
-        alts = [(c, sh) for c, sh in alts if eco.must_haves_ok(case, sh["terms"], std)]
+        c_stand = eco.deal_cost(case, sheets[0]["terms"], std, s.est)
+        alts = []
+        for sh in sheets[1:]:
+            terms = eco.quoted_offer(case, sh["terms"], std)
+            c = eco.deal_cost(case, terms, std, s.est) if terms is not None else None
+            if c is not None:
+                alts.append((c, terms))
         if alts and left > 0:
-            c, sh = min(alts, key=lambda r: r[0])
-            if c < c_stand - 1.0:
+            c, terms = min(alts, key=lambda row: row[0])
+            if c_stand is None or c < c_stand - 1.0:
                 s.state = "mirror"
-                terms = {k: v for k, v in sh["terms"].items() if k in case["negotiable"]}
-                return self.send(s, [eco.complete_offer(case, terms)], [], events, theirs)
+                return self.send(s, [terms], [], events, theirs)
         s.state = "done"
         return None
 
