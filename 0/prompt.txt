@@ -1,0 +1,110 @@
+Wir haben diese Challenge. Lass das Repo dafür aufbauen, vor allem agent instructions etc. 
+
+<pasted_content id="c625">
+EddEdw — Yesterday at 20:40
+Hey folks! 👋
+
+Tacto has arrived. 🚏 😊 :TactoLogo125px: 
+EddEdw — 11:10
+Hey everyone 👋 Adrian from Tacto here.
+
+Tacto Negotiation Arena: you build an AI buyer that negotiates by e-mail with our suppliers. They're agents too, and they don't give anything away for free. Sunday at 12:00 your agent goes up against suppliers it has never met. Whoever gets the best deals wins.
+
+Start here: https://arena.tacto.ai/
+Brief, starter kit and data: https://github.com/tacto-ai/negotiation-arena-kit
+
+Get your key
+Apply on https://arena.tacto.ai/apply
+Come to the Tacto table and show us your match code
+Copy the key. It's shown once
+
+No key yet? Run the Hello World from the README locally. Three commands.
+
+How you win
+Sunday's Live Final: five waves, eight minutes each, every team at once. We score total cost, not price. The top 10 pitch at 13:00, 5 min + 2 min questions.
+
+You don't need big credits. Our own reference agent runs on a small, cheap model. Reading the data beats a bigger model.
+
+Find us
+Deep dive today 12:00–13:00, ground floor. After that we're at the Tacto table, and here on Discord until 23:00.
+One thread per question, please. And never post your key.
+
+Have fun, and go get some good deals.
+Tacto
+Tacto Negotiation Arena
+Your agent. Our suppliers. Real money. The Tacto track at the EHL Grand Finale 2026.
+
+ALT
+GitHub
+GitHub - tacto-ai/negotiation-arena-kit: Tacto Negotiation Arena: b...
+Tacto Negotiation Arena: brief, API docs, starter kit and data package for the Tacto track at the EHL Grand Finale 2026 - tacto-ai/negotiation-arena-kit
+Tacto Negotiation Arena: brief, API docs, starter kit and data package for the Tacto track at the EHL Grand Finale 2026 - tacto-ai/negotiation-arena-kit
+ALT
+Tacto
+Tacto Negotiation Arena
+Your agent. Our suppliers. Real money. The Tacto track at the EHL Grand Finale 2026.
+Tacto Negotiation Arena
+ALT
+tarikc137 — 12:19
+We will start with our deep dive soon. Room: Jupiter
+Room is almost full, but looking forward for even more people
+Image
+EddEdw — 13:15
+Hey @everyone !
+
+Thank you for all the interest! 
+
+You find the live-scoreboard for all the training runs here: https://arena.tacto.ai/live
+
+The first teams are closing deals! 
+Image
+tarikc137 — 13:53
+The challange registriation deadline is soon! Come to our booth, if you still have questions about our challange
+@everyone
+EddEdw — 13:55
+Hey @here, 
+
+I am beginning to populate the FAQ section on https://arena.tacto.ai/faq. 
+
+We'll try to capture all questions and answers there!
+Image
+EddEdw — 14:40
+⚔️ NEGOTIATION ARENA: 2-HOUR CHECK-IN ⚔️ @here
+
+Our supplier bots have been under fire all early-afternoon. Here is where the battle stands:
+
+📊 The numbers
+• 22 teams in the arena, 13 active in the last hour
+• 84 negotiations played, 60 deals closed
+• 9 of 10 practice suppliers are still unbeaten by Tacto’s house agent
+
+🔥 The record race: y/agent vs Boo 👾
+y/agent holds 6 of 10 supplier records. On P01 they squeezed the family foundry to 0.93. The house agent sits at 0.97, so they are close.
+Boo 👾 went on a run of five records in five minutes. Then they did what nobody else has done yet: they beat the house agent, on P11 (Kalwisz), 0.41 vs 0.31. 🏆
+
+😬 So close: y/agent’s 0.386 on P18 is a hair short of the house agent’s 0.3861. One better e-mail beats it.
+
+🎯 Wide open: P02 (Nordmark, copper) has a best of 0.29 against a house score of 0.74. P08 (Donautal, alloy surcharge) has 0.23 against 0.75. Plenty of room left.
+
+⚠️ Reminder: practice is for learning, not the ranking. On Sunday at 12:00 your agent meets suppliers nobody has seen. The teams that learn how suppliers think will win, not the teams that memorise P01.
+
+🛠️ Speed up your loop: read your replays, score term sheets offline with total_cost, and use the sandbox for free (D01/D02 don’t count against your 200 a day). Everything is here: arena.tacto.ai/faq
+
+Still deciding which track to pick? Watch one live negotiation on arena.tacto.ai/faq and get your key at arena.tacto.ai/apply. 🚀
+</pasted_content id="c625">
+
+---
+
+Tacto api key: REDACTED
+
+---
+
+You may deviate from Julian
+
+---
+
+first repo structure und das pushen usw.
+
+---
+
+erst später accounts

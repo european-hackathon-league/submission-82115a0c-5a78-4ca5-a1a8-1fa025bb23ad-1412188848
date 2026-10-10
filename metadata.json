@@ -1,0 +1,33 @@
+{
+  "cli_version": "0.11.4",
+  "checkpoint_id": "01M4JZ0KX6AQ6G0MDTQ6Y633ZK",
+  "strategy": "manual-commit",
+  "branch": "steffen/arena-scaffold",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "AGENTS.md",
+    "README.md",
+    "buyer/__init__.py",
+    "buyer/agent.py",
+    "buyer/cli.py",
+    "docs/README.md",
+    "pyproject.toml",
+    "tests/test_buyer.py"
+  ],
+  "sessions": [
+    {
+      "metadata": "/0/metadata.json",
+      "transcript": "/0/full.jsonl",
+      "compact_transcript": "/0/transcript.jsonl",
+      "content_hash": "/0/content_hash.txt",
+      "prompt": "/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 56,
+    "cache_creation_tokens": 112120,
+    "cache_read_tokens": 2655898,
+    "output_tokens": 25993,
+    "api_call_count": 28
+  }
+}
