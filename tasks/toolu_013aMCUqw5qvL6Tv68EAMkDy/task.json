@@ -1,0 +1,15 @@
+{
+  "tool_use_id": "toolu_013aMCUqw5qvL6Tv68EAMkDy",
+  "agent_id": "aa78555e1f8e3d251",
+  "subagent_type": "general-purpose",
+  "task_description": "ANAC agent strategies research",
+  "token_usage": {
+    "input_tokens": 6,
+    "cache_creation_tokens": 31792,
+    "cache_read_tokens": 51597,
+    "output_tokens": 13,
+    "api_call_count": 3
+  },
+  "started_at": "2026-10-10T20:22:06.040065+02:00",
+  "completed_at": "2026-10-10T20:22:41.852578+02:00"
+}

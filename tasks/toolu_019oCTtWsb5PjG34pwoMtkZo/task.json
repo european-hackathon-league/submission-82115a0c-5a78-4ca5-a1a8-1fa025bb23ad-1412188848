@@ -1,0 +1,15 @@
+{
+  "tool_use_id": "toolu_019oCTtWsb5PjG34pwoMtkZo",
+  "agent_id": "a2e8ba8479bbc4ec6",
+  "subagent_type": "general-purpose",
+  "task_description": "Multi-supplier RFQ tactics research",
+  "token_usage": {
+    "input_tokens": 8,
+    "cache_creation_tokens": 37165,
+    "cache_read_tokens": 88386,
+    "output_tokens": 31,
+    "api_call_count": 4
+  },
+  "started_at": "2026-10-10T20:22:06.03929+02:00",
+  "completed_at": "2026-10-10T20:22:43.659161+02:00"
+}

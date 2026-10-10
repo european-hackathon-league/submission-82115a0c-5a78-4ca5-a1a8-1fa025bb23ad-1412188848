@@ -1,0 +1,15 @@
+{
+  "tool_use_id": "toolu_01MuQsb1kDW94MfKQ4RgLzcL",
+  "agent_id": "a21b488d294f1ec52",
+  "subagent_type": "general-purpose",
+  "task_description": "Opponent modelling reservation price",
+  "token_usage": {
+    "input_tokens": 6,
+    "cache_creation_tokens": 33586,
+    "cache_read_tokens": 53678,
+    "output_tokens": 12,
+    "api_call_count": 3
+  },
+  "started_at": "2026-10-10T20:22:06.037327+02:00",
+  "completed_at": "2026-10-10T20:22:48.043375+02:00"
+}

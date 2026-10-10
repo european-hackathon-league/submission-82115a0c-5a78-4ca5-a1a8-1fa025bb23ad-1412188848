@@ -1,0 +1,15 @@
+{
+  "tool_use_id": "toolu_01H5MQemizDZSFNQPBcN3WtY",
+  "agent_id": "aa009318e23215883",
+  "subagent_type": "general-purpose",
+  "task_description": "MESOs and integrative bargaining",
+  "token_usage": {
+    "input_tokens": 12,
+    "cache_creation_tokens": 40582,
+    "cache_read_tokens": 157301,
+    "output_tokens": 36,
+    "api_call_count": 6
+  },
+  "started_at": "2026-10-10T20:22:06.03873+02:00",
+  "completed_at": "2026-10-10T20:23:17.722035+02:00"
+}

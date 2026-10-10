@@ -1,0 +1,15 @@
+{
+  "tool_use_id": "toolu_016BWhrKbYQ5aYst8GLfiUyK",
+  "agent_id": "a3f40857b1a0c8b2f",
+  "subagent_type": "general-purpose",
+  "task_description": "Anchoring and concession research",
+  "token_usage": {
+    "input_tokens": 6,
+    "cache_creation_tokens": 36704,
+    "cache_read_tokens": 53084,
+    "output_tokens": 9,
+    "api_call_count": 3
+  },
+  "started_at": "2026-10-10T20:22:06.043125+02:00",
+  "completed_at": "2026-10-10T20:22:40.803855+02:00"
+}

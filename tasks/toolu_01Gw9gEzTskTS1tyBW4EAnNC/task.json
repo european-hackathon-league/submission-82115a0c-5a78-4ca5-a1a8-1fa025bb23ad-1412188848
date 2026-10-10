@@ -1,0 +1,15 @@
+{
+  "tool_use_id": "toolu_01Gw9gEzTskTS1tyBW4EAnNC",
+  "agent_id": "a16b9f4303dcd6d57",
+  "subagent_type": "general-purpose",
+  "task_description": "Deadline and bargaining theory",
+  "token_usage": {
+    "input_tokens": 6,
+    "cache_creation_tokens": 34604,
+    "cache_read_tokens": 52393,
+    "output_tokens": 12,
+    "api_call_count": 3
+  },
+  "started_at": "2026-10-10T20:22:06.038175+02:00",
+  "completed_at": "2026-10-10T20:22:42.544322+02:00"
+}

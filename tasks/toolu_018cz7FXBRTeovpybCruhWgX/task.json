@@ -1,0 +1,15 @@
+{
+  "tool_use_id": "toolu_018cz7FXBRTeovpybCruhWgX",
+  "agent_id": "a9dcfe19399690247",
+  "subagent_type": "general-purpose",
+  "task_description": "LLM negotiation agents research",
+  "token_usage": {
+    "input_tokens": 10,
+    "cache_creation_tokens": 39513,
+    "cache_read_tokens": 119040,
+    "output_tokens": 2714,
+    "api_call_count": 5
+  },
+  "started_at": "2026-10-10T20:22:06.041275+02:00",
+  "completed_at": "2026-10-10T20:22:58.853617+02:00"
+}
