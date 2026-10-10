@@ -1,0 +1,32 @@
+{
+  "cli_version": "0.11.4",
+  "checkpoint_id": "01M4K6QGB1MH31CR7J5B2PD1BB",
+  "strategy": "manual-commit",
+  "branch": "julian/draft-two",
+  "checkpoints_count": 5,
+  "files_touched": [
+    "AGENTS.md",
+    "buyer/agent.py",
+    "buyer/cli.py",
+    "docs/findings.md",
+    "pyproject.toml",
+    "tests/test_buyer.py",
+    "uv.lock"
+  ],
+  "sessions": [
+    {
+      "metadata": "/0/metadata.json",
+      "transcript": "/0/full.jsonl",
+      "compact_transcript": "/0/transcript.jsonl",
+      "content_hash": "/0/content_hash.txt",
+      "prompt": "/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 984,
+    "cache_creation_tokens": 305035,
+    "cache_read_tokens": 10683383,
+    "output_tokens": 86893,
+    "api_call_count": 39
+  }
+}

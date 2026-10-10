@@ -1,0 +1,182 @@
+{
+  "cli_version": "0.11.4",
+  "checkpoint_id": "01M4K6QGB1MH31CR7J5B2PD1BB",
+  "session_id": "42c24a49-af67-4a02-972f-4da06573eeba",
+  "strategy": "manual-commit",
+  "created_at": "2026-10-10T15:26:00.001502Z",
+  "branch": "julian/draft-two",
+  "checkpoints_count": 5,
+  "save_step_count": 5,
+  "files_touched": [
+    "AGENTS.md",
+    "buyer/agent.py",
+    "buyer/cli.py",
+    "docs/findings.md",
+    "pyproject.toml",
+    "tests/test_buyer.py",
+    "uv.lock"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-fable-5-1",
+  "turn_id": "322d25028d5a",
+  "compact_transcript_start": 0,
+  "token_usage": {
+    "input_tokens": 984,
+    "cache_creation_tokens": 305035,
+    "cache_read_tokens": 10683383,
+    "output_tokens": 86893,
+    "api_call_count": 39
+  },
+  "skill_events_version": 1,
+  "skill_events": [
+    {
+      "id": "claude-skill-toolu_01RQx6vGVC2u9LfJvoiVLF6V",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "claude-api"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "322d25028d5a",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 162,
+        "end": 163,
+        "entry_ids": [
+          "2699093f-5419-4743-bb61-61de3fe77af5"
+        ],
+        "tool_use_id": "toolu_01RQx6vGVC2u9LfJvoiVLF6V"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_01RQx6vGVC2u9LfJvoiVLF6V"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: claude-api",
+        "default_collapsed": true
+      }
+    }
+  ],
+  "session_metrics": {
+    "turn_count": 5
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-10-10T15:25:59.958745Z",
+    "agent_lines": 0,
+    "agent_removed": 2,
+    "human_added": 0,
+    "human_modified": 70,
+    "human_removed": 7,
+    "total_committed": 25,
+    "total_lines_changed": 79,
+    "agent_percentage": 2.5316455696202533,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 2559,
+      "user_lines_removed": 53,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        "buyer/agent.py": 261,
+        "buyer/claims.py": 424,
+        "buyer/cli.py": 52,
+        "buyer/economics.py": 305,
+        "buyer/guard.py": 91,
+        "buyer/llm.py": 197,
+        "buyer/log.py": 33,
+        "buyer/personas.py": 341,
+        "buyer/runner.py": 186,
+        "buyer/thread.py": 339,
+        "pyproject.toml": 4,
+        "tests/conftest.py": 64,
+        "tests/test_buyer.py": 194,
+        "uv.lock": 68
+      },
+      "user_removed_per_file": {
+        "buyer/agent.py": 6,
+        "buyer/cli.py": 8,
+        "pyproject.toml": 1,
+        "tests/test_buyer.py": 36,
+        "uv.lock": 2
+      }
+    },
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 2574,
+      "agent_lines_removed": 55
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 17,
+      "user_lines_removed": 6,
+      "agent_lines_added": 2595,
+      "agent_lines_removed": 55,
+      "user_added_per_file": {
+        "buyer/claims.py": 6,
+        "buyer/economics.py": 8,
+        "buyer/thread.py": 3
+      },
+      "user_removed_per_file": {
+        "buyer/economics.py": 3,
+        "buyer/thread.py": 3
+      }
+    },
+    {
+      "checkpoint_number": 4,
+      "user_lines_added": 17,
+      "user_lines_removed": 6,
+      "agent_lines_added": 2595,
+      "agent_lines_removed": 55,
+      "user_added_per_file": {
+        "buyer/claims.py": 6,
+        "buyer/economics.py": 8,
+        "buyer/thread.py": 3
+      },
+      "user_removed_per_file": {
+        "buyer/economics.py": 3,
+        "buyer/thread.py": 3
+      }
+    },
+    {
+      "checkpoint_number": 5,
+      "user_lines_added": 17,
+      "user_lines_removed": 6,
+      "agent_lines_added": 2595,
+      "agent_lines_removed": 55,
+      "user_added_per_file": {
+        "buyer/claims.py": 6,
+        "buyer/economics.py": 8,
+        "buyer/thread.py": 3
+      },
+      "user_removed_per_file": {
+        "buyer/economics.py": 3,
+        "buyer/thread.py": 3
+      }
+    },
+    {
+      "checkpoint_number": 6,
+      "user_lines_added": 17,
+      "user_lines_removed": 6,
+      "agent_lines_added": 2595,
+      "agent_lines_removed": 55,
+      "user_added_per_file": {
+        "buyer/claims.py": 6,
+        "buyer/economics.py": 8,
+        "buyer/thread.py": 3
+      },
+      "user_removed_per_file": {
+        "buyer/economics.py": 3,
+        "buyer/thread.py": 3
+      }
+    }
+  ]
+}
