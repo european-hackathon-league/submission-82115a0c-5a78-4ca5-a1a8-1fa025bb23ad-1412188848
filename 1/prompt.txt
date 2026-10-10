@@ -9,3 +9,7 @@ How far are you from each goal condition
 <status>completed</status>
 <summary>Background command "Refine deep rule, drop mild anchor; run P05, P08, P18" completed (exit code 0)</summary>
 </task-notification>
+
+---
+
+Give me an updated /goal for a new session. I will provide it with additional information. Max. 4000 chars max. Push
