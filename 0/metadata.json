@@ -1,0 +1,47 @@
+{
+  "cli_version": "0.11.4",
+  "checkpoint_id": "01M4KKBFFCAM13DPHF0TZCDJJG",
+  "session_id": "4c0a6383-ddc6-4c81-98b5-030363ce02d8",
+  "strategy": "manual-commit",
+  "created_at": "2026-10-10T19:06:39.291956Z",
+  "branch": "steffen/price-engine",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "tests/test_guards.py"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-opus-5-5",
+  "turn_id": "fda8724415d2",
+  "compact_transcript_start": 0,
+  "token_usage": {
+    "input_tokens": 66,
+    "cache_creation_tokens": 82794,
+    "cache_read_tokens": 2264237,
+    "output_tokens": 24601,
+    "api_call_count": 33
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-10-10T19:06:39.277326Z",
+    "agent_lines": 198,
+    "agent_removed": 0,
+    "human_added": 89,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 287,
+    "total_lines_changed": 333,
+    "agent_percentage": 59.45945945945946,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 19,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 19
+      }
+    }
+  ]
+}
