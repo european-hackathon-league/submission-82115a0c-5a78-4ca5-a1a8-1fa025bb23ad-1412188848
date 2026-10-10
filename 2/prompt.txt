@@ -1,0 +1,1 @@
+Check which variables and parameters are hard coded rn, and could be dynamically determined. You may use up to 10 concurrent haiku agents for your use
