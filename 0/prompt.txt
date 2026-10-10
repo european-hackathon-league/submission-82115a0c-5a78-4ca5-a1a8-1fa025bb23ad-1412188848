@@ -1,0 +1,175 @@
+/goal Raise our practice mean (best score per hosted case, GET /v1/me) on https://arena.tacto.ai/live from 0.727 toward 0.82+ AND make the agent robust for Sunday's Live Final (hidden cases, new suppliers). We are Team Codacabana. Work on branch steffen/price-engine (PR #12); read docs/learnings.md (Takeaways, Where we stand, claim table, Hypotheses) and docs/design.md (Implemented) first.
+
+Budget: 35 practice runs left (100 total, 65 used); sandbox D01/D02 is free, use it for every mechanism test. OpenAI (gpt-6-luna, LLM_EFFORT=low) within $200, about $2 spent. Stop when 10 consecutive practice runs bring no meaningful improvement (>0.01 on the mean), or at 0.85.
+
+Current best per case (ours / best of all teams): P01 0.974/0.995, P02 0.507/0.847, P03 0.923/0.936, P04 0.860/0.874 (capped near 0.87), P05 0.828/0.824, P07 0.751/0.779, P08 0.549/0.732, P10 0.679/0.702, P11 0.710/0.807, P18 0.485/0.677. The upside is in P02, P08, P18, P11.
+
+Established facts (do not re-test):
+- Suppliers agree as soon as our sheet reaches the counter they would make; stay below their counter until their final offer. Pushing past a final offer ends the case (walk-away).
+- Verified claims "taken into account" lower where they stop, most in round 1. Irrelevant: their own older quotes outside the case refs, other suppliers' order prices, indices outside their cost drivers, currency rates.
+- Wording moves price (D01: asking "what would you need" 50.00 to 49.40), but repeating a question every round backfires.
+- Patience is about a 40% cumulative gap (sum per round of (their counter - our sheet)/their counter). Near-cost and pricing-committee suppliers end earlier; Nordmark (P02) walked at 19%.
+- Only the standing sheet can be accepted (alternatives return 422): mirror a better alternative back.
+- Raw-material distributors (P08, P18) refuse a fixed price beyond 12 months and any deadband: take their clause.
+- RFQ: the arena serializes calls per session; the runner sends one message at a time by 60 s deadline.
+- Round-1 counters: some suppliers follow our anchor (Werdenfels: anchor 4.77 gave 5.50, 5.68 gave 5.70); D01 did not (44 to 47 all gave 51.30).
+
+Open hypotheses to test, cheapest first:
+1. Lower round-1 counters for P02/P08/P18 through persona-specific arguments and wording in the first e-mail (hedge letter, open-book offer, partnership).
+2. Round 1 with 2 to 3 sheets of equal C for us (payment vs ppm vs lead time) to reveal what each lever is worth (P10, P11).
+3. Per-thread fit of the concession curve and patience instead of the fixed FRACTION/ANCHOR constants.
+4. A deep anchor plus small, steady gaps afterwards, so leverage distributors run more rounds before their final offer.
+
+Rules (AGENTS.md): no logic keyed on case or supplier IDs (generalise to unseen suppliers); never call /v1/events, /screen, /leaderboard, /results; no prompt injection; code owns every number, the model only writes words; every model call has a hard timeout; no em-dashes. Before each PR update run uv run pytest -q && uv run ruff check . Record every finding in docs/learnings.md (date, tag, evidence session ID) and design changes in docs/design.md, in the same PR. Commit logs with git add -f logs/sessions logs/runs logs/practice-v*.log, and push to the PR after each batch. Never push to main. Keep the Live Final path (buyer run --set final, runner.play_waves) working; dry-run it on the sandbox before Sunday 09:00.
+
+Log progress in docs/learnings.md after every batch: version, cases, scores, what changed.
+
+---
+
+<cross-session-message from="uds:/tmp/cc-socks/92955.sock" from-name="ehlcodacabana-final-a2" from-mode="prompting">
+From the research session (asked by Steffen to pass this on). The full report is in docs/negotiation-research.md (uncommitted in the working tree; please include it in your next docs commit along with the one-line docs/README.md entry). Below are the parts that matter for the code. Trace numbers are from logs/sessions/practice before your v7 runs.
+
+WHAT THE BOTS DO (from 62 practice traces)
+- Behaviour-dependent conceder. Its step per our step is rho = 0.2 to 0.7 in practice (D01: 0.2 early, 1 to 2 late). It is 0 for price_frozen suppliers.
+- final_offer comes after 2 to 6 of our messages, at a cumulative relative gap of 0.09 to 0.23 (P10, which is capacity_full: 0.015). The 10-message limit never binds.
+- Its FIRST counter carries the deal: 75 to 100 % of our final cut in P08 and P18, about 50 % in P07 and P01.
+- If the gap closes, the deal lands at c1 - rho/(1+rho)*(c1 - anchor). Observed 73 to 90 % of the way from our anchor to c1, because final_offer cuts the dance short.
+- A shallow anchor gives a shallow c1: P18 at 7 % below got 6.6 % and scored 0.25. At 22 % it got 8 to 10 %.
+- Consequence: Boulware advice ("hold early, concede late") inverts here. Win round 1, then close in few, larger steps.
+
+RANKED CHANGES TO TRY (one per batch; sandbox D01/D02 first, it is free and deterministic)
+1. FRACTION sweep 0.3 / 0.5 / 0.7 in next_price on D01 and D02. With rho < 1 and a cumulative-gap stop, small steps burn patience for little price. Read out: final price, rounds to final_offer, sum of gaps.
+2. Round 1 MESO. send() already takes a list of sheets. In the first move, send 3 sheets of EQUAL C to us, with each price solved so C matches s.terms at the anchor. Use the top 3 distinct term sets from eco.plan_terms, varying terms where its valuation differs from ours (payment days at its rate, contract months, lead time, ppm headroom, start date). Literature (Leonardelli et al. 2019) says MESOs anchor harder and the pick reveals priorities; adopt() can carry the picked terms forward. Every sheet must be a deal we would take: agreed freezes the price.
+3. Concede in currencies, not price. plan_terms currently gives every lever in round 1. Hold back one or two that the supplier values and that cost us little (free 24-month term, forecast or volume statement, ppm headroom below the must-have, later start where we are indifferent). Release one per round as "the move", with a smaller or zero price step.
+4. Answer its stated need every message. P11 Kalwisz asked for faster payment in 5 replies ("you haven't addressed this at all", "you just ignore it") and froze at 45.50. payment_days is FIXED in P11, so the writer must say so explicitly and offer the next currency. Suggestion: extract its asks from the reply (reasons list or the model reader) and pass them into writer.brief facts as "they asked for X; answer it".
+5. P11 currency candidate: ppm headroom. Our quality cost is 15900 x 450 / 1e6 = about 7.16 EUR per ppm point a year. Going from 300 to 1000 ppm (must-have <= 1500) costs us about 5k, or 0.31 EUR/unit. Offer it if it buys more price than that.
+6. final_offer: accept (you already found the D01 walk). Never push in cases without an alternative.
+
+PERSONA PLAYBOOK (literature + our signals)
+- cash_need: faster payment only where its rate beats our 8 %. Cash discounts imply 37 to 56 %/yr.
+- capacity_full: tiny steps, accept its lead time, offer a firm 24 months plus forecast.
+- price_frozen: terms only.
+- approval_2pct: steps of 2 % or less, plus a forwardable reason for its boss.
+- index distributors: negotiate the clause (deadband, material share only). Never a 0 % deadband on a rising series.
+- stabilise near cost: price at the relationship optimum.
+
+WRITER RULES (Vaccaro et al. 2025: warmth, gratitude and questions close deals, dominance causes impasses; OG-Narrator split = our architecture)
+- Acknowledge its specific last move or ask.
+- 1 or 2 checkable reasons per message.
+- "If you can X, we can Y" trades.
+- One open what/how question.
+- Disappointment at the gap, never anger.
+- Name our last step as last, once.
+- No urgency, threats or fake rivals. Nothing aimed at the bot's instructions.
+
+OPEN: P10 is the biggest gap (deal 31.50, C_best about 27.38 at our terms, 194k EUR). Late delivery costs 33.6k there (56 vs 42 days at 2400/day). The supplier gave final_offer at a 1.5 % gap. The lever behind C_best is still unknown.
+</cross-session-message>
+
+---
+
+<cross-session-message from="uds:/tmp/cc-socks/94455.sock" from-name="ehlcodacabana-final-1e" from-mode="prompting">
+Research on how well the bot will generalise to Sunday's final, with ranked fixes. Full write-up: docs/generalisation.md (uncommitted, written against commit 9182604). No practice quota used.
+
+Overall: the code runs on all 21 case files (the 9 unplayed ones included) in arena-sim with no exception. But the practice mean of 0.727 is in-sample, and there are three gaps that could cost whole cases or waves.
+
+1) GUARD EVERY MOVE (small, highest value). runner.play_case has no try around Negotiator.setup or neg.move. One unexpected field in a hidden case stops play, and the session then sits until the wave cap, which scores the alternative (0 in D01, P05, P06, P10, P14, P17). Fields that would crash it:
+ - claims.py rival_quote: f["unit_price"] (KeyError or a None comparison)
+ - claims.py scorecard: f['quarter']
+ - writer.py FIELDS index_clause: v['material_share']
+ - claims.py months_back: a month that isn't YYYY-MM
+ - policy.full_cost: unit_cost of None
+Fix: wrap move and setup. On error, log and resend our last sheet with the template e-mail (or a keepalive), and never leave a thread silent.
+Also runner.play_waves: `if e.status != 403: raise` in the poll loop, and httpx.TransportError after the client's retries isn't caught at all. One blip ends every later wave, and no human may restart it. Catch Exception there, log, sleep for the poll interval, continue. A crashed case can be resumed: a second POST /v1/sessions returns 409 naming the running session.
+
+2) THE SUNDAY RELEASE NEVER REACHES THE PERSONA CODE (small to medium). arena_kit DataPackage finds data/release-sunday next to data/package. It merges the release's facts.json, so its IDs can be cited, but it puts the release's data/*.csv rows only into the ID index (pkg.ids / pkg.lookup; each row carries a "root" key), never into SQLite. So personas.profile(), Negotiator.full_cost() and the SQL-built claims (po_lines, cost_drivers, documents, suppliers) never see the new letters and news. Document paths also resolve against pkg.root, not the release.
+Fix: in profile(), also collect release rows for the supplier via pkg.ids("news:"), pkg.ids("doc:") etc. plus pkg.lookup, filtered on supplier_id; read their body/text, or the file under row["root"]. The CSV schema is unknown until 08:00, so keep it generic: any text column, any row whose supplier_id matches.
+Related: 401 of 447 suppliers have no text in the package and fall to the neutral profile (7 %, no signals). A new supplier will almost always be one of them.
+Cheap win: run personas.signals_in over every supplier e-mail in the thread at setup and on each reply, and merge new traits into s.prof["signals"]. 13 of 220 supplier e-mails in exports/messages.jsonl match a trait, including DEMO-J1, a sandbox supplier the package doesn't know. Note: setup sets the anchor once, so a trait found later should at least adjust the budget and the payment rate.
+
+3) TIMEOUTS WITH 4 OR MORE BIDDERS (medium; a tactics decision, so check with Steffen). The arena answers one call per session at a time (the kit's client.py says so). Supplier replies take 19 s median and 28 s p90 (121 moves in logs/runs). Our writer is not the bottleneck: 1.8 s median, 6.3 s max. A thread therefore waits about (N-1) x 21 s for its next message, against a 60 s limit: N=2 is safe, N=3 only at median latency (P05 had one late move in v5), N=4 is about 65 s, so late. No case file has more than 3 bidders, but hidden cases are "new settings". Suggestion: with N>=4, stop negotiating after round 1 with bidders whose price at our terms is clearly worst. Note that keepalives also hold the session for a full supplier reply.
+
+4) PERSONA PATTERNS MISS OTHER WORD FORMS (small, personas.SIGNALS). Unmatched phrases in the package:
+ - "restructuring programme with its banks" (70150), "negotiating with its banks" (70280), "lowered its rating" (70310): cash_need
+ - "bought their nickel and alloys forward" (70730): hedged; `\w+` allows only one word before "forward"
+ - "advertising free machine capacity" (70250): spare_capacity
+ - "allocated in line with last year's call-offs" (70410): capacity_full
+ - "I cannot sign anything that lowers our margin now" (5 call notes): no trait exists for it
+Widening these to word stems should pay off on the release's new wording.
+
+5) price_unit IS IGNORED (small). 15 of 108 quotes are priced per 100 or per 1000 pieces (quotes.price_unit). claims.rival_quote, order_history and policy.pick compare unit_price with a per-piece price, so a claim can point the wrong way. Divide by price_unit.
+
+6) CONSTANTS RESTING ON ONE CASE OR NONE (evidence from git log -p):
+ - ANCHOR for stabilise (0.92) and secure_supply (0.88) never took effect in practice: always overridden. A hidden case without an override opens at an anchor nobody has played.
+ - near_cost (0.97, budget 0.14) rests on P02 alone.
+ - routine 0.82 rests on P07 alone.
+ - Run-to-run spread is large (P18 0.25 to 0.49, P08 0.40 to 0.55), partly because the model's paragraph changes per run. Treat single-run moves under about 0.1 as noise.
+
+7) TEST WORTH ADDING: play every case file in arena-sim. Fetch GET /v1/cases (free) for practice and sandbox, strip the "hosted" key, build Sim(cases, pkg.facts, clock=lambda: 1_000_000.0), serve it like the fixture in tests/test_buyer.py, then play_case(RemoteTable(client), cid, pkg) for each. All 21 take about 20 s total. It catches crashes on unseen structures, not tactics.
+Structures that only appear in unplayed cases: tooling_eur negotiable with lead time <= 84 (P06), chargeback in the alternative (P12), the PPI-C241 clause (P16), fixed payment in a quality case (P12), a 3-part bundle (P15). Runner caveat: runner.save writes logs/runs/<case>_<session>.json relative to the working directory, and a sim run overwrites the tracked logs/runs/S01_sim1.json. That file is currently modified with timestamp-only changes.
+
+08:00 CHECK: run `uv run arena data`; check that DataPackage("data/package").release is not None; list the release's CSV columns; count supplier IDs that are new vs already in the package.
+</cross-session-message>
+
+---
+
+<cross-session-message from="uds:/tmp/cc-socks/97954.sock" from-name="ehlcodacabana-final-d7" from-mode="prompting">
+Research brief for the bot (from a parallel session that analysed all 125 sessions, the code and the data with 10 subagents; everything below is verified against code/data unless marked). Ranked by expected gain.
+
+== 1. Core finding: the deal is decided in round 1 ==
+Over 45 practice threads with run logs: final price / round-1 counter median 0.984 (range 0.78 to 1.015). Median 3 of 10 messages used. Supplier stops moving (<0.3 %) at median round 3. A lower anchor never gave a lower final in any case where anchors differed (P07/P18 v6 higher anchors ended higher). At equal anchor P08 finals still vary 5.35 to 5.61: wording and claims, not the price path, make the difference. Consequence: stop tuning FRACTION/ANCHOR/BUDGET. Put everything into message 1: three equal-C sheets on the axes suppliers trade (payment speed, contract length, lead time, ppm headroom), the 3 strongest claims, an explicit volume statement with figure and fc: ID, a direct answer to its letter. Then 2 or 3 larger steps and close.
+
+== 2. Nobody reads the supplier; we ignore its asks ==
+Counts over 800 supplier e-mails:
+- "Which volume can you commit to?": 147 e-mails, we gave a volume statement 23 times, ignored 97.
+- Proof of forecast / binding volume: 67, answered 12.
+- "Which figures is that based on?": 19, answered 0.
+- "Send us the data / 8D": 34, answered 0.
+P11 Kalwisz: "I keep asking for faster payment, you just ignore it" -> final_offer at 45.50 in every run. P02 Nordmark: "as you cannot commit to a higher volume ... our flexibility is strictly limited" -> walked once. Our QUESTION constant ("What would you need from us to move further on the price?", policy.py:40, sent in rounds 1 and 3) drew "you keep asking, I keep telling you: volume!" from all three P05 bidders. Remove it.
+The bots use FIXED phrases, so a regex reader needs no model: detect asks (volume, payment, proof, figures basis, data) in latest(events)["body"] and (a) feed them into Negotiator.facts() so the paragraph answers each explicitly, (b) act: volume asked -> state need/12*months figure plus fc: ID; figures questioned -> cite the cost: ID again in words; payment asked and negotiable and its rate > 8 % -> offer shorter payment as the round's move; payment fixed -> say so and name the next currency. Julian's origin/julian/draft-two has buyer/thread.py read_reply (model JSON, 14 s) and buyer/guard.py if you want a model fallback.
+
+== 3. Supplier value model cannot price the trades suppliers offer ==
+Trades suppliers proposed (sentence counts): volume for price 163, faster payment for price 121, longer contract for price 27, relaxed lead time for price 15, DAP 4, ppm 9. In arena_kit supplier_value volume and contract_months are worth 0, tighter ppm costs the supplier nothing, and economics.estimate never sets usual_rate (so cash_now=1). So plan_terms cannot see these currencies. Give 24 months, a binding volume statement and ppm headroom a nonzero supplier value (evidence in learnings: "valuable planning security" P03/P04/P07/P10), then hold one or two currencies back and release one per round instead of a price step.
+
+== 4. Where the gap to C_best sits ==
+Price explains 88 to 100 % of the gap in every case; non-price is 3.4 % of C on average. Exceptions: P08 index clause + risk = 32k of 79k gap; P10 late delivery 33.6k in every deal; P11 freight 24.5k. Single-term sensitivity (scratch script, proxies): P08 contract 12 months = -44k; P10 contract 12 = +389k, volume 16379 = +233k; P11 chargeback 500 = -18k, ppm 300 = -16k. Four sessions closed ABOVE c_open (P02 680eb114, P02 d52ccdd3, P04 7f7dc7e8, P04 cb1eb418): the accept gate should never take a sheet whose C exceeds c_open.
+
+== 5. Correctness holes hidden cases will hit (verified) ==
+- price_unit: quotes.csv has price_unit 100 on 13 rows and 1000 on 2; po_lines 936 and 144. facts.json carries price_unit too. NO buyer or kit code reads it. rival_quote (claims.py:167-182) and order_history (claims.py:103-120) print "EUR 102.34 per unit" and the cheaper-rival filter compares per-100 to per-unit. Affected parts: P07 (hosted bundle; order_history is off for bundles so only rival_quote), P14, P15, P16 (not hosted). Divide by price_unit before comparing/printing.
+- Multi-part cases: policy.full_cost uses parts[0] only (policy.py:87-88); claims run per part against the kit price (claims.py:290-294).
+- Unknown incoterm in freight_eur_per_unit: KeyError in economics.value/price_for_value/plan_terms (no try) kills the thread; in cost() it maps to inf, and c_alt=inf makes acceptable() pass any sheet. Guard both.
+- Unknown index series: kit cost.py:141 index_paths.get(series, 0.0) prices the clause at 0 while index_risk still charges (about 17k swing on P02).
+- plan_terms returning None -> at_price(quote) sheet is not complete_offer'd nor must-have-checked (policy.py:110-112): 422 risk on a quote missing a null field.
+- economics.price_for_value returns 0.0 or 3x target when effective_date >= horizon end (latent, not triggered by current options).
+- The cost-breakdown XLSX is requested every round 1, downloaded by fetch_documents, never parsed (draft-two has breakdown_full_cost).
+
+== 6. Final runner single points of failure (verified in buyer/runner.py) ==
+- play_waves 147-151: any non-403 ArenaError OR httpx.TransportError on client.cases("final") propagates out of the while; no later wave starts. Wrap in except Exception, log, sleep. Poll every 1 s not 5 (10 calls/s allowed).
+- one() 137-142: a case that throws is logged and dropped, no retry. Retry once; 409 RUNNING resume works (play.py:47-62).
+- Resume re-anchors: setup() builds Side with empty ours/gaps/used, so next_price reopens at the anchor. Rebuild from the thread's buyer sheets.
+- client.py TIMEOUT_S=180 x 3 retries: one hung POST can block a case past the 8-min cap. Use ~75 s for message POSTs and no retry on read timeout.
+- Sends within a case are serialized, each = LLM (TIMEOUT_S 20 in llm.py:14) + supplier reply (up to 60 s). A 3-bidder RFQ fits ~4-5 rounds per supplier in 390 usable seconds. Cut LLM timeout to ~8 s; skip the model when another open thread's clock is under ~25 s.
+- cli.py parallel default 8; run with --parallel 10 -v (INFO lines only with -v). logs/runs is written only on a successful close.
+- NOT a problem: Sunday release. arena_kit DataPackage auto-loads data/release-sunday/ next to the package (data.py:25-27) once `uv run arena data` has fetched it. ClaimBank.foreign (claims.py:58) only goes facts-only when zero refs resolve.
+
+== 7. Unused data with direct use ==
+negotiation_history (300 rows, asked_pct vs settled_pct per supplier: a prior for how far it moves), invoices (we pay late; 7 suppliers sent overdue letters: promise on-time payment as a free currency), contract_clauses (deadband_pct, material_share for index terms), quality_notifications (cost_recharged_eur for chargeback), spend_cube. None is queried today.
+
+== 8. Rules worth knowing ==
+Claim cap is per message, not per sentence; one argument may carry several IDs. Tolerance +/-0.5 pp for %, else +/-0.5 %. A message with no term sheet is valid. After agreed the price holds; a better alternative sent back can become standing. Walk-away scores the alternative, 0 if none (D01, P05, P06, P10, P14, P17). Accepting ends the whole case (RFQ too). Attachments md/csv/json are read by the supplier: sending the forecast as a file to answer "send us the data" is untested. "Near-monopolist that barely moves" and "price frozen: trade the terms" from the brief have no working lever yet (P03/P04 refused every trade).
+
+Not worth time: anchor depth, patience budgets, new claim types beyond index/notice/rival offer, a bigger model. docs/negotiation-research.md (today) covers the literature side of 1 and 3.
+</cross-session-message>
+
+---
+
+You may use practice runs up to 200 / 450
+
+---
+
+<task-notification>
+<task-id>bvbvqj441</task-id>
+<tool-use-id>toolu_01TkvyYg1qtLp4kdowr8DoCj</tool-use-id>
+<output-file>/private/tmp/claude-501/-Users-stef-Projects-ehlcodacabana-final/4cfb76fd-b649-4756-b196-6f9d96c3c28e/tasks/bvbvqj441.output</output-file>
+<status>completed</status>
+<summary>Background command "Play both sandbox cases with the new code (free)" completed (exit code 0)</summary>
+</task-notification>

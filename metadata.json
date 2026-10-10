@@ -1,0 +1,47 @@
+{
+  "cli_version": "0.11.4",
+  "checkpoint_id": "01M4KK1WNFA598GZAN4J8A93GN",
+  "strategy": "manual-commit",
+  "branch": "steffen/price-engine",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "buyer/claims.py",
+    "buyer/economics.py",
+    "buyer/personas.py",
+    "buyer/policy.py",
+    "buyer/reader.py",
+    "buyer/runner.py",
+    "buyer/writer.py",
+    "docs/README.md",
+    "docs/design.md",
+    "docs/generalisation.md",
+    "docs/learnings.md",
+    "docs/negotiation-research.md",
+    "logs/runs/D01_db9689f3907a8443.json",
+    "logs/runs/D02_c4282d48f7554c51.json",
+    "logs/sandbox-v8.log",
+    "logs/sessions/.DS_Store",
+    "logs/sessions/practice/.DS_Store",
+    "logs/sessions/sandbox/.DS_Store",
+    "logs/sessions/sandbox/D01_db9689f3907a8443.json",
+    "logs/sessions/sandbox/D02_c4282d48f7554c51.json",
+    "tests/test_buyer.py",
+    "tests/test_cases.py"
+  ],
+  "sessions": [
+    {
+      "metadata": "/0/metadata.json",
+      "transcript": "/0/full.jsonl",
+      "compact_transcript": "/0/transcript.jsonl",
+      "content_hash": "/0/content_hash.txt",
+      "prompt": "/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 940,
+    "cache_creation_tokens": 355606,
+    "cache_read_tokens": 8540390,
+    "output_tokens": 95145,
+    "api_call_count": 35
+  }
+}
