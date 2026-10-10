@@ -1,0 +1,9 @@
+The sanboxed test cases are test cases from tactos arena?
+
+---
+
+Breakdown the data we got from tacto what do we got? What can we derive for our negotiations?
+
+---
+
+create a data exploration and our current version of the negotiator

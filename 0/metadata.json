@@ -1,0 +1,148 @@
+{
+  "cli_version": "0.11.4",
+  "checkpoint_id": "01M4K1BHQHV7W21QEGX45Y4TZ1",
+  "session_id": "a8bceea6-012d-4df9-8747-aaacb91a4fe1",
+  "strategy": "manual-commit",
+  "created_at": "2026-10-10T13:52:06.31026Z",
+  "branch": "julian/negotiation-agent",
+  "checkpoints_count": 2,
+  "files_touched": [
+    "README.md",
+    "docs/data-exploration.md",
+    "pyproject.toml",
+    "scripts/explore_data.py"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-fable-5-1",
+  "turn_id": "80ef7c9bc2a7",
+  "checkpoint_transcript_start": 894,
+  "transcript_lines_at_start": 894,
+  "compact_transcript_start": 90,
+  "token_usage": {
+    "input_tokens": 166,
+    "cache_creation_tokens": 79148,
+    "cache_read_tokens": 4314331,
+    "output_tokens": 50740,
+    "api_call_count": 8
+  },
+  "skill_events_version": 1,
+  "skill_events": [
+    {
+      "id": "claude-skill-toolu_01UTB27jr9o4Xzz15AdGex48",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "claude-api"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "967a3e8490ca",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 189,
+        "end": 190,
+        "entry_ids": [
+          "a8051256-f718-4a09-8670-176aeee40a50"
+        ],
+        "tool_use_id": "toolu_01UTB27jr9o4Xzz15AdGex48"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_01UTB27jr9o4Xzz15AdGex48"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: claude-api",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "claude-skill-toolu_01AVSrsKvppo6qFsnP6cGeJc",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "anthropic-skills:built-in-browser"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "967a3e8490ca",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 547,
+        "end": 548,
+        "entry_ids": [
+          "3bde12cc-b33d-4764-a1a8-4dc3f8952afd"
+        ],
+        "tool_use_id": "toolu_01AVSrsKvppo6qFsnP6cGeJc"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_01AVSrsKvppo6qFsnP6cGeJc"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: anthropic-skills:built-in-browser",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "claude-skill-toolu_016SS56733mHL9rrnPBWRuL1",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "anthropic-skills:docs"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "9cafb8360215",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 620,
+        "end": 621,
+        "entry_ids": [
+          "96736557-22e9-4a31-a776-a560bebdd91c"
+        ],
+        "tool_use_id": "toolu_016SS56733mHL9rrnPBWRuL1"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_016SS56733mHL9rrnPBWRuL1"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: anthropic-skills:docs",
+        "default_collapsed": true
+      }
+    }
+  ],
+  "session_metrics": {
+    "turn_count": 13
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-10-10T13:52:06.225029Z",
+    "agent_lines": 621,
+    "agent_removed": 0,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 621,
+    "total_lines_changed": 621,
+    "agent_percentage": 100,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0
+    }
+  ]
+}
