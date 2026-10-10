@@ -3,7 +3,7 @@
   "checkpoint_id": "01M4KPAQHNZYHV3101D8DF07DR",
   "strategy": "manual-commit",
   "branch": "steffen/logs",
-  "checkpoints_count": 1,
+  "checkpoints_count": 3,
   "files_touched": [
     "logs/autoprobe-1.log",
     "logs/autoprobe-2.log",
@@ -110,13 +110,20 @@
       "compact_transcript": "/0/transcript.jsonl",
       "content_hash": "/0/content_hash.txt",
       "prompt": ""
+    },
+    {
+      "metadata": "/1/metadata.json",
+      "transcript": "/1/full.jsonl",
+      "compact_transcript": "/1/transcript.jsonl",
+      "content_hash": "/1/content_hash.txt",
+      "prompt": ""
     }
   ],
   "token_usage": {
-    "input_tokens": 2,
-    "cache_creation_tokens": 18519,
-    "cache_read_tokens": 17351,
-    "output_tokens": 266,
-    "api_call_count": 1
+    "input_tokens": 132,
+    "cache_creation_tokens": 30134,
+    "cache_read_tokens": 2692381,
+    "output_tokens": 7920,
+    "api_call_count": 6
   }
 }
