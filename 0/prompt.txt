@@ -17,3 +17,11 @@ openai key, add it: REDACTED
 ---
 
 Earlier, we mentioned being able to use up up to 15 test practice runs. have you done any of them? Have you done any research regarding server agent behavior? For me, it is not clear what you are doing right now.
+
+---
+
+To be clear: I want one command, where me & my teammates can run all 15 runs, with only keyboard input.
+
+---
+
+my teammates will look at my screen.
