@@ -3,7 +3,7 @@
   "checkpoint_id": "01M4KMCCCJWYP4E2GC83Z0N0M6",
   "strategy": "manual-commit",
   "branch": "steffen/final-prep",
-  "checkpoints_count": 2,
+  "checkpoints_count": 11,
   "files_touched": [
     "docs/learnings.md",
     "tests/test_waves.py"
@@ -22,13 +22,27 @@
       "compact_transcript": "/1/transcript.jsonl",
       "content_hash": "/1/content_hash.txt",
       "prompt": "/1/prompt.txt"
+    },
+    {
+      "metadata": "/2/metadata.json",
+      "transcript": "/2/full.jsonl",
+      "compact_transcript": "/2/transcript.jsonl",
+      "content_hash": "/2/content_hash.txt",
+      "prompt": "/2/prompt.txt"
     }
   ],
   "token_usage": {
-    "input_tokens": 1344,
-    "cache_creation_tokens": 430568,
-    "cache_read_tokens": 16118624,
-    "output_tokens": 127304,
-    "api_call_count": 57
+    "input_tokens": 1602,
+    "cache_creation_tokens": 501010,
+    "cache_read_tokens": 17417593,
+    "output_tokens": 142082,
+    "api_call_count": 74,
+    "subagent_tokens": {
+      "input_tokens": 112,
+      "cache_creation_tokens": 478774,
+      "cache_read_tokens": 1739326,
+      "output_tokens": 927,
+      "api_call_count": 56
+    }
   }
 }

@@ -1,0 +1,15 @@
+{
+  "tool_use_id": "toolu_01TjpmHPhEskGLssAJpLe25s",
+  "agent_id": "a6fa0b8932107b244",
+  "subagent_type": "general-purpose",
+  "task_description": "Audit personas, reader, agent, cli",
+  "token_usage": {
+    "input_tokens": 24,
+    "cache_creation_tokens": 56640,
+    "cache_read_tokens": 486398,
+    "output_tokens": 562,
+    "api_call_count": 12
+  },
+  "started_at": "2026-10-10T21:11:38.843538+02:00",
+  "completed_at": "2026-10-10T21:13:03.262974+02:00"
+}

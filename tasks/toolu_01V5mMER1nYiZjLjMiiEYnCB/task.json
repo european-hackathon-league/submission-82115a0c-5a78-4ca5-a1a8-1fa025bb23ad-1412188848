@@ -1,0 +1,15 @@
+{
+  "tool_use_id": "toolu_01V5mMER1nYiZjLjMiiEYnCB",
+  "agent_id": "a6a39751bd98bc1c9",
+  "subagent_type": "general-purpose",
+  "task_description": "Mine docs for tuned parameters",
+  "token_usage": {
+    "input_tokens": 4,
+    "cache_creation_tokens": 43584,
+    "cache_read_tokens": 22321,
+    "output_tokens": 9,
+    "api_call_count": 2
+  },
+  "started_at": "2026-10-10T21:11:38.848548+02:00",
+  "completed_at": "2026-10-10T21:12:24.303273+02:00"
+}
