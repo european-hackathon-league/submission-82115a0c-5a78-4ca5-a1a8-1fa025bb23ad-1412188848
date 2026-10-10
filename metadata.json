@@ -1,0 +1,36 @@
+{
+  "cli_version": "0.10.2",
+  "checkpoint_id": "01M4M2XQDAE3WP8ATR8TS0J3S3",
+  "strategy": "manual-commit",
+  "branch": "louis/subagent-team",
+  "checkpoints_count": 6,
+  "files_touched": [
+    "buyer/analyst.py",
+    "buyer/llm.py",
+    "buyer/memory.py",
+    "buyer/policy.py",
+    "buyer/research.py",
+    "buyer/runner.py",
+    "buyer/writer.py",
+    "docs/design.md",
+    "docs/learnings.md",
+    "tests/test_guards.py",
+    "tests/test_team.py"
+  ],
+  "sessions": [
+    {
+      "metadata": "/0/metadata.json",
+      "transcript": "/0/full.jsonl",
+      "compact_transcript": "/0/transcript.jsonl",
+      "content_hash": "/0/content_hash.txt",
+      "prompt": "/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 72,
+    "cache_creation_tokens": 47556,
+    "cache_read_tokens": 13247598,
+    "output_tokens": 36757,
+    "api_call_count": 29
+  }
+}
