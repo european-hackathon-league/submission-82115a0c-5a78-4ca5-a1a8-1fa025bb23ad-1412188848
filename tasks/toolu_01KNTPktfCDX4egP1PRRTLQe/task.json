@@ -1,0 +1,15 @@
+{
+  "tool_use_id": "toolu_01KNTPktfCDX4egP1PRRTLQe",
+  "agent_id": "a9b53d9d38ed11e80",
+  "subagent_type": "general-purpose",
+  "task_description": "Cost gap breakdown per case",
+  "token_usage": {
+    "input_tokens": 28,
+    "cache_creation_tokens": 53906,
+    "cache_read_tokens": 598502,
+    "output_tokens": 106,
+    "api_call_count": 14
+  },
+  "started_at": "2026-10-10T20:29:13.629751+02:00",
+  "completed_at": "2026-10-10T20:30:31.376449+02:00"
+}

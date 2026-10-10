@@ -1,0 +1,15 @@
+{
+  "tool_use_id": "toolu_01Npxtz1npBmWXu1bPuTpH4D",
+  "agent_id": "a822546b82b160238",
+  "subagent_type": "general-purpose",
+  "task_description": "Runner robustness for the final",
+  "token_usage": {
+    "input_tokens": 16,
+    "cache_creation_tokens": 67251,
+    "cache_read_tokens": 335568,
+    "output_tokens": 53,
+    "api_call_count": 8
+  },
+  "started_at": "2026-10-10T20:29:13.622487+02:00",
+  "completed_at": "2026-10-10T20:31:10.378673+02:00"
+}

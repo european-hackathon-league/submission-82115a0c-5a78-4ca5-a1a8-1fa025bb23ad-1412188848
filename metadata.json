@@ -3,7 +3,7 @@
   "checkpoint_id": "01M4KHMR8ATK790SEJ1PPXHJ2Q",
   "strategy": "manual-commit",
   "branch": "steffen/price-engine",
-  "checkpoints_count": 3,
+  "checkpoints_count": 12,
   "files_touched": [
     "logs/runs/S01_sim1.json"
   ],
@@ -21,20 +21,27 @@
       "compact_transcript": "/1/transcript.jsonl",
       "content_hash": "/1/content_hash.txt",
       "prompt": "/1/prompt.txt"
+    },
+    {
+      "metadata": "/2/metadata.json",
+      "transcript": "/2/full.jsonl",
+      "compact_transcript": "/2/transcript.jsonl",
+      "content_hash": "/2/content_hash.txt",
+      "prompt": "/2/prompt.txt"
     }
   ],
   "token_usage": {
-    "input_tokens": 98,
-    "cache_creation_tokens": 140069,
-    "cache_read_tokens": 7107264,
-    "output_tokens": 36300,
-    "api_call_count": 45,
+    "input_tokens": 362,
+    "cache_creation_tokens": 211850,
+    "cache_read_tokens": 9045016,
+    "output_tokens": 47873,
+    "api_call_count": 64,
     "subagent_tokens": {
-      "input_tokens": 4,
-      "cache_creation_tokens": 3576,
-      "cache_read_tokens": 165130,
-      "output_tokens": 16,
-      "api_call_count": 2
+      "input_tokens": 318,
+      "cache_creation_tokens": 739145,
+      "cache_read_tokens": 8069882,
+      "output_tokens": 6334,
+      "api_call_count": 157
     }
   }
 }

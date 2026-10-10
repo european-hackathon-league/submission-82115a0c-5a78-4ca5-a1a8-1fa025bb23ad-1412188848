@@ -1,0 +1,15 @@
+{
+  "tool_use_id": "toolu_01UEXchevszLjkutg1aj3GMg",
+  "agent_id": "a5bb94bec1a1bbe03",
+  "subagent_type": "general-purpose",
+  "task_description": "Mine supplier back office text",
+  "token_usage": {
+    "input_tokens": 36,
+    "cache_creation_tokens": 49760,
+    "cache_read_tokens": 678992,
+    "output_tokens": 125,
+    "api_call_count": 18
+  },
+  "started_at": "2026-10-10T20:29:13.625754+02:00",
+  "completed_at": "2026-10-10T20:30:37.267343+02:00"
+}

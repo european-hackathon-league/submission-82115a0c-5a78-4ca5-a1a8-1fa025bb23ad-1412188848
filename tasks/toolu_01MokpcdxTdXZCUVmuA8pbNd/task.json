@@ -1,0 +1,15 @@
+{
+  "tool_use_id": "toolu_01MokpcdxTdXZCUVmuA8pbNd",
+  "agent_id": "ac20e80a81356d2fa",
+  "subagent_type": "general-purpose",
+  "task_description": "Unused data tables and API levers",
+  "token_usage": {
+    "input_tokens": 18,
+    "cache_creation_tokens": 67248,
+    "cache_read_tokens": 424202,
+    "output_tokens": 49,
+    "api_call_count": 9
+  },
+  "started_at": "2026-10-10T20:29:13.624606+02:00",
+  "completed_at": "2026-10-10T20:30:20.569962+02:00"
+}

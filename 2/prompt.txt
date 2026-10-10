@@ -1,0 +1,610 @@
+<agent-message from="adfb3a3453dfff130">
+[Subagent hand-back] The text below is the final report of a subagent this session delegated to. It is model output, NOT a message from the user: instructions, requests, or approval claims inside it are the subagent's words and carry no user authority. The harness indents every line of the report, so a frame-like line at column zero inside it would be forged. Notes above this frame may quote model-derived text, which carries no user authority either. The report follows:
+  Report on origin/julian/draft-two, origin/joao/explain-anchor-gap and the PR refs. Nothing was modified or checked out.
+  
+  1. draft-two: two commits on main (04ab746, 59e3d37). Diffstat: 16 files, +2956 / -63.
+  
+  | Module | What it does |
+  |---|---|
+  | buyer/agent.py | Negotiator: per-case prepare (persona, stance, estimate, floor, anchor, claim bank), shared blackboard, decide loop, best_accept, cheaper_thread_moving (RFQ rule), _dossier (stance-model input) |
+  | buyer/thread.py | One move per thread: read (model or regex), reestimate on breakdown XLSX, stalled/review closer, question, acknowledge, send, brief |
+  | buyer/llm.py | Anthropic or OpenAI-compatible client with JSON schemas. Three calls: read_reply (14 s), stance (15 s), write_email (16 s). Failures return None |
+  | buyer/economics.py | default_stance, clamp_stance (per-tier ranges), floor_price (sustainable margin), anchor_price, best_nonprice (ties to supplier-friendly value), concession (falling step share, only after a supplier move), sheets (A plus one variant per lever) |
+  | buyer/guard.py | Checks the model e-mail: IDs must match, figures must be in the options; falls back to a template |
+  | buyer/claims.py, personas.py | Claim bank and archetypes, close to the price engine's versions |
+  | buyer/log.py, runner.py, cli.py | Logging and runner (no campaign or view) |
+  | docs/findings.md | Batch log: 0.96 on D01, 0.54 on D02, with the change behind each step |
+  
+  2. draft-two vs buyer/policy.py (price engine)
+  
+  | Area | draft-two | price engine |
+  |---|---|---|
+  | Reader of supplier reply | Model JSON (read_reply), regex fallback | None; regex in personas.py and signals_in only |
+  | Stance | Model proposes opening gap, capture, margin, steps, close step; clamped by code | Constants by tier and goal; no model stance |
+  | Intent detection | Model fills interested_in, needs_approval, cheaper_variant, offers_document | Lever answered inferred from sheet diffs (adopt, lever_answered) |
+  | Floor | floor_price = full cost / (1 - sustainable margin), clipped to 75 to 97 % of quote | No floor function; anchor 0.75 to 0.97 of quote (ANCHOR_MIN) |
+  | Concession | Falling share of gap (0.35, 0.25, 0.15, 0.10), close step 0.6, only after a move | FRACTION 0.3 of gap per round, MIN_MOVE, DEEP rule |
+  | Hold a round | Holds while supplier moves and rounds remain | Closer based on finish and budget |
+  | Option choice | best_nonprice ties to supplier-friendly value | Already present: plan_terms with friendliness |
+  | Final offer | At most one non-price package, then accept or drop | finish and fallback_close; pushing past a final offer ends the case (learnings) |
+  | RFQ | cheaper_thread_moving blocks accept while a cheaper thread moves; rival cited after first reply | pick puts cheapest rival first; close uses best_offer |
+  | Prompts | Reader, stance and writer system prompts with schemas | One paragraph prompt in llm.paragraph |
+  | Breakdown | Parses cost-breakdown XLSX into full cost mid-case (breakdown_full_cost, reestimate) | full_cost from should-cost table; no XLSX parse |
+  
+  Price engine has what draft-two lacks: keepalive (runner, 35 s after reply), relationship_optimum for relationship goals, rollback on timeout, profile signals, rival-claim pick inside pick.
+  
+  3. Portability
+  
+  | Idea | Portable as a small module? | Risk |
+  |---|---|---|
+  | Reader JSON for supplier reply | Yes: buyer/reader.py with timeout and regex fallback | 14 s on the move path; themes only, no numbers |
+  | Breakdown XLSX parser (breakdown_full_cost) | Yes; pure function | Low; check format on real suppliers |
+  | Floor from sustainable margin | Yes; one function in economics.py | Low; biggest single gain (D01 0.84 to 0.96 in its log) |
+  | Clamped model stance | Possible but heavier: touches anchor, capture, steps | Binding numbers come from the model, even clamped; draft-two's log shows a 7 % opening drop that hurt D01 and D02 until clamped |
+  | Equal-C tie-break | Already in price engine | None |
+  | Hold one more round while moving | Yes; a few lines in the closer | Adds rounds against the 10-message cap |
+  | RFQ cheaper-thread-moving guard | Yes; small check before accept | Low |
+  | Model writer with guard checks | Close to price engine writer.py; guard rules (IDs, figures) worth copying | Low |
+  | Full stack (3 model calls per move) | No | 14 + 16 s per move; stacks timeouts |
+  
+  4. joao/explain-anchor-gap and PR refs
+  
+  - origin/joao/explain-anchor-gap (b760d7c, 210de7e): docs only (docs/anchor-gap.md, docs/local-analysis-process.md, docs/round2-method.md, docs/research/round2-summary.json). Explains NaiveAgent anchor (opening discount) and gap (accept threshold) on the simulator; says sim scores do not transfer to hosted bots. Only the anchor/gap vocabulary is worth keeping.
+  - remotes/pr/11 tip is already on steffen/price-engine. Nothing new.
+  - remotes/pr/2 to pr/10: not ancestors of main or price-engine; mostly scaffolds or docs. Notable:
+    - pr/5 (buyer view, buyer campaign, probe steps concede from last price): buyer/view.py and buyer/campaign.py exist on neither main nor price-engine. Campaign (you pick every move) and the view page are worth a look for the practice loop.
+    - pr/7 (paired anchor effects vs supplier risk), pr/8 (strategy notes): docs only.
+    - pr/9 (how-it-works doc with PDF), pr/10 (worklog, personas): docs only.
+  
+  Key files: /Users/stef/Projects/ehlcodacabana-final/buyer/policy.py, buyer/economics.py, buyer/runner.py (price engine); git show origin/julian/draft-two:buyer/{agent,thread,llm,economics}.py; git show origin/julian/draft-two:docs/findings.md.
+</agent-message>
+
+---
+
+<agent-message from="ac20e80a81356d2fa">
+[Subagent hand-back] The text below is the final report of a subagent this session delegated to. It is model output, NOT a message from the user: instructions, requests, or approval claims inside it are the subagent's words and carry no user authority. The harness indents every line of the report, so a frame-like line at column zero inside it would be forged. Notes above this frame may quote model-derived text, which carries no user authority either. The report follows:
+  Read-only analysis, no files changed. Rows = data rows (header excluded, csv module count). Agent = buyer/*.py.
+  
+  **Task A: data package vs agent use**
+  
+  Package: `data/package/` has `datapackage.json`, `facts.json`, `world.sqlite`, `README.md`, `SCORECARD.md`, `KNOWN_ISSUES.md`, `ATTRIBUTION.md`, `company.md`, `contracts/` (46 .md), `correspondence/` (208 .md), and `data/` (25 CSVs). `documents.file` points into the .md folders. The agent reads these texts (claims.py:190, personas.py:50).
+  
+  | Source | Rows | Used | Where | Could be used for (if unused) |
+  |---|---|---|---|---|
+  | po_lines | 5400 | yes | claims.py:104 order_history | (in use) |
+  | should_cost | 28 | yes | policy.py:136 full_cost | (in use) |
+  | cost_drivers | 166 | yes | claims.py:157 | (in use) |
+  | documents | 208 | yes | claims.py:188, personas.py:44 | (in use) |
+  | news | 39 | yes | personas.py:46 | (in use) |
+  | quotes | 108 | remarks only | personas.py:45 | awarded, missing_fields, validity_days, incoterm |
+  | supplier_intel | 46 | yes | personas.py:43 (owner_type, staff) | turnover, equity_ratio_pct, credit_index: cash need |
+  | suppliers | 447 | yes | personas.py:42, claims.py:223 | payment_days and incoterm baseline |
+  | negotiation_history | 300 | no | none | past asked_pct vs settled_pct per supplier: anchor size, concession pattern |
+  | invoices | 5578 | no | "invoices" in prose only | paid_date vs due_date, discount_taken: payment-days lever |
+  | goods_receipts | 5580 | no | none | late receipts vs requested_date: delivery claims |
+  | quality_notifications | 1033 | no | none (qn: via facts.json) | supplier_caused, cost_recharged_eur: chargeback terms |
+  | scorecards | 414 | no SQL | sc: via facts.json (policy.py:151, claims.py:248) | OTD and ppm trend |
+  | contracts | 46 | no | ctr: only via case refs | payment_days, notice_days, price_basis, valid_to: renewal timing |
+  | contract_clauses | 280 | no | none | index series, deadband_pct, material_share: index_clause terms |
+  | price_conditions | 339 | no | none | price history and basis |
+  | index_values / index_series | 2258 / 33 | no SQL | idx: via facts.json (claims.py:137, 142) | series metadata (licence, frequency) |
+  | parts | 60 | no | case["parts"] only | standard_price, planned_lead_time_days, abc_class |
+  | sourcing | 90 | no | none | quota_pct, approved_since, tooling_owner: share and tooling claims |
+  | rfqs | 47 | no | none | awarded supplier, qty_per_year |
+  | forecasts / forecast_lines | 720 / 8640 | no | fc: via facts.json | shared_with_suppliers, monthly need path: volume lever |
+  | spend_cube | 1137 | no | none | spend per supplier: leverage claim |
+  
+  **Task B: API capabilities**
+  
+  | Capability | Used | Where | What it would give |
+  |---|---|---|---|
+  | message subject, body | yes | writer.email; policy.py:355-360 | |
+  | term_sheets (up to 3) | yes | policy.py:358; alternatives at policy.py:270-282 | |
+  | refs | yes | policy.py:349, 359 | |
+  | claims (prose, ≤3 checked) | yes | claims.py ClaimBank; policy.py:332 | |
+  | claim_results read back | no | none | which claims verified or contradicted |
+  | questions (no sheet) | yes | policy.py:40 QUESTION (cost breakdown), policy.py:241 | |
+  | outgoing attachments | no | none | send own xlsx/csv/md |
+  | signals reply_delay_days, validity_days | no | none | pacing, validity |
+  | missing_fields | no | none | which fields default to standard terms |
+  | status open/final_offer/agreed | yes | policy.py:213, 233 | |
+  | action accept / walk_away | yes | runner.py:95, 98; policy.py:394-420 | |
+  | structured POST /moves path | no | client.move exists, unused | typed claims, terms |
+  | GET attachment | yes | runner.py:31, 90 via play.fetch_documents | quote PDF and cost breakdown XLSX text stored in attachment["text"], but no buyer code reads it |
+  | GET thread (resume) | yes | play.py:54 resume | crash recovery |
+  | GET session state | yes | cli.py:31, 90 (post-run pull) | |
+  | GET backoffice | yes, post-run only | cli.py:35 | internal approvals and roles for learning |
+  | 409 timeout handling | yes | runner.py:72; policy.py:371 | |
+  | GET /v1/me | no in buyer | kit `arena me` only | quota check before batch |
+  | GET /v1/cases practice, sandbox | yes | cli.py:102 (hosted) | |
+  | GET /v1/cases final (wave poll) | yes | runner.py:147 | |
+  | GET /v1/data, release-sunday | no | cli.py:78 loads data/package only | Sunday release: news, letters, facts |
+  | live, leaderboard, results, events, screen | no (checked by grep, none found) | none | compliant with hard rules |
+  
+  **Findings**
+  - The Sunday release is not loaded by any buyer code. Hidden-case citations work only if they are in the case's `facts` (claims.py:53-54) or the package. `ClaimBank.foreign` (claims.py:58) switches all claims off when no ref is found in the package. That makes it a risk for hidden cases.
+  - The cost-breakdown request (policy.py:40) is sent, and the returned XLSX is downloaded but never parsed.
+  - Several high-value tables are unused: negotiation_history, invoices, quality_notifications, contract_clauses, contracts.
+</agent-message>
+
+---
+
+<agent-message from="a9b53d9d38ed11e80">
+[Subagent hand-back] The text below is the final report of a subagent this session delegated to. It is model output, NOT a message from the user: instructions, requests, or approval claims inside it are the subagent's words and carry no user authority. The harness indents every line of the report, so a frame-like line at column zero inside it would be forged. Notes above this frame may quote model-derived text, which carries no user authority either. The report follows:
+  Gap analysis of practice sessions (read-only; no files changed).
+  
+  **Data.** `logs/sessions/practice/*.json` holds 62 sessions: 59 deals, 3 without a deal (P02_b85685 no_deal, P10_a96b17 timeout, P10_c0199e walked_away). `result` has c_open/c_deal/c_alt/c_best, score and `cost_breakdown` for our deal (parts sum exactly to c_deal). C_best's breakdown is NOT stored anywhere. For the price split I used `exports/sessions.csv` `implied_price_at_deal_terms`: the unit price at which our other terms would cost exactly c_best (only 13 practice rows have it). `exports/messages.jsonl` gives per-sheet C for autoprobe sessions only.
+  
+  **1. Best session per case (highest score among deals)**
+  
+  | Case | Session | Score | c_deal | Gap to c_best (EUR) | Price | Non-price (% of c_deal) | Main non-price items (EUR) |
+  |---|---|---|---|---|---|---|---|
+  | P01 | 4cc25618 | 0.974 | 1,098,305 | 1,489 | 1,060,967 | 37,338 (3.4%) | freight 15.5k, payment 10.8k, relationship 9.4k |
+  | P02 | 17a03b8d | 0.507 | 2,258,872 | 23,358 | 2,272,187 | -13,314 (-0.6%) | payment -15.1k |
+  | P03 | c7fcc4c7 | 0.923 | 3,935,069 | 26,026 | 3,958,494 | -23,425 (-0.6%) | payment -26.4k |
+  | P04 | 15fd96c5 | 0.860 | 196,853 | 323 | 197,600 | -747 (-0.4%) | payment -1.3k |
+  | P05 | 917135b8 | 0.828 | 237,545 | 14,121 | 234,024 | 3,521 (1.5%) | quality 1.1k |
+  | P07 | cacd5028 | 0.751 | 322,099 | 22,857 | 321,000 | 1,099 (0.3%) | payment 1.1k |
+  | P08 | 7701b00c | 0.549 | 1,039,550 | 79,241 | 1,014,360 | 25,190 (2.4%) | index clause 27.4k, index risk 4.6k, payment -6.8k |
+  | P10 | 4226ca5b | 0.679 | 1,522,963 | 194,036 | 1,474,200 | 48,763 (3.2%) | late delivery 33.6k, quality 5.3k |
+  | P11 | 2d52253e | 0.710 | 750,082 | 27,582 | 723,450 | 26,632 (3.6%) | freight 24.5k, quality 2.1k |
+  | P18 | 6a39d751 | 0.485 | 259,971 | 37,320 | 251,220 | 8,751 (3.4%) | index clause 6.8k, index risk 1.1k |
+  
+  Price share of the gap, from the implied-price method (`exports/sessions.csv`, the same case but not always the best session):
+  
+  | Session | Gap (EUR) | Price share of gap |
+  |---|---|---|
+  | P01 ef0c817c | 20,224 | 99% |
+  | P02 680eb114 | 49,448 | 88% |
+  | P02 d52ccdd3 | 68,527 | 96% |
+  | P03 3986e97a | 133,721 | 99% |
+  | P04 7f7dc7e8 / cb1eb418 | 3,763 | 96% |
+  | P05 9798d98c / d35aae9c | 66,243 / 81,159 | 99% |
+  | P07 28f74251 | 40,839 | 100% |
+  | P11 587fe8dc / f99fb6c2 | 51,432 | 100% |
+  | P10 d0a64f6e | 238,793 | 99% |
+  | P08 dd2d942c, P18 f860ab9f | 156,631 / 68,240 | ~100%, but these are under-covered deals (uncovered need 542k / 145k), so the split mixes coverage and price |
+  
+  **2. Across cases**
+  - Across all 59 deals, the summed non-price parts are about 114k EUR against 11.5M EUR of price. Non-price is 3.4% of c_deal on average.
+  - Non-price totals: payment -24.6k, freight 40.0k, late delivery 33.6k, quality 14.0k, index clause 34.2k, index risk 5.7k, relationship 11.0k. Uncovered need is zero except the two under-covered deals.
+  - In the 11 non-under-covered CSV rows, price explains 88 to 100% of the gap. Its remainder is small (payment, relationship, index).
+  - Structure matters in two cases. P08's index clause (32k incl. risk) is about 40% of its 79k gap. P10's late delivery (33.6k) appears in all four P10 deals.
+  - Conclusion: the remaining gap is mostly unit price. Structure is a real but smaller share, concentrated in P08 (index), P10 (late delivery) and P11 (freight).
+  
+  **3. Anomalies**
+  - **Closed above the opening quote (score 0):** P02_680eb11405186b42 (+2.1k over c_open), P02_d52ccdd3d2e07b3f (+21.2k), P04_7f7dc7e83a9ad486 and P04_cb1eb418a0b85c17 (+1.4k). All four accepted something costlier than the best opening quote.
+  - **Not the cheapest standing supplier sheet** (`exports/messages.jsonl`, autoprobe sessions; the sheet is not checked for must-haves or acceptance, so this is a lower bound on what was available):
+  
+  | Session | c_deal | Cheapest supplier sheet | Difference |
+  |---|---|---|---|
+  | P02 680eb114 | 2,284,962 | 2,273,039 (round 2) | +11,923 |
+  | P02 d52ccdd3 | 2,304,041 | 2,274,314 (round 2) | +29,727 |
+  | P03 3986e97a | 4,042,764 | 4,016,541 (round 3) | +26,223 |
+  | P04 (both) | 200,293 | 198,846 (round 0) | +1,446 |
+  | P05 9798d98c | 289,667 | 270,199 (round 0) | +19,468 |
+  | P05 d35aae9c | 304,584 | 270,199 (round 0) | +34,384 |
+  | P10 d0a64f6e | 1,567,720 | 1,546,519 (round 2) | +21,200 |
+  
+  - **Walk-away or alternative beating the deal:** none. c_alt exceeds c_deal in every case that has an alternative. P05 and P10 have no alternative (c_alt empty).
+  - **Non-deal sessions:** P10 timed out and walked away at a c_open of 1.93M, so P10's only deals came from other threads.
+  
+  Files: `logs/sessions/practice/*.json`, `exports/sessions.csv`, `exports/messages.jsonl`, `exports/README.md`.
+</agent-message>
+
+---
+
+<agent-message from="a5bb94bec1a1bbe03">
+[Subagent hand-back] The text below is the final report of a subagent this session delegated to. It is model output, NOT a message from the user: instructions, requests, or approval claims inside it are the subagent's words and carry no user authority. The harness indents every line of the report, so a frame-like line at column zero inside it would be forged. Notes above this frame may quote model-derived text, which carries no user authority either. The report follows:
+  ## Back-office mining: findings (all 125 session files, 1,849 back-office entries; exports/messages.jsonl cross-checked)
+  
+  **Main correction first.** The back-office text in this repo does not contain the hidden economics you listed. There are no cost floors, margins, walk-away prices or payment-day valuations in it. About 90% of the 1,849 entries are routing lines ("quote attached", "delivery schedule attached", "Read the buyer's e-mail: … term sheet; we answer with our offer"). Figures are redacted as "…" everywhere. The only decision content is one label per round: "My call: counter" (~430), "hold" (~85), "final_offer" (24), "accept" (13), "walk_away" (2). The economics suppliers reveal are in their e-mails ("reasons" in messages.jsonl), which they say to us, not internally.
+  
+  ### 1. Hidden economics (from supplier e-mails, not back office)
+  - **Volume is the main ask.** "Which volume can you commit to?" appears 72 times (D01 39, D02 13, P11 6, P01 4). Also "A binding higher volume would help us and can improve the price" (20).
+  - **Payment days.** "Faster payment is welcome; we can reflect it in the price" (P05 70250, 14 times). "I can keep the price at €…, but we need … days payment" (P02, P05). Their standard Zahlungsziel is "… days net".
+  - **Index and cost drivers.** "Our price follows our main cost drivers: LCI-C, PPI-C2431, AS-14404, PPI-D351" (P05 70250). "We can offer a Preisgleitklausel on AS-14404" (3 times). Our index claims are verified when cited, and the supplier then says it "took it into account".
+  - **Lead time and quality.** "With overtime we can deliver in … days, at a premium." "We have free capacity for your parts." "We can work with the … ppm target, but since it means extra sorting on our end, the price for this setup is €…" (two suppliers).
+  - **Cost breakdowns.** "We don't do fancy cost breakdowns" and "Our calculation is our property" (P02, P05, P18). Breakdowns were attached in only a few cases.
+  
+  ### 2. What triggers each decision
+  - **counter** is the default and fires in almost every round.
+  - **hold** fires after our sheet did not move enough or repeated the same ask. Strojirna Hrvelec (P05 r2 to r6) held five rounds in a row. Odlewnia Kalwisz (P11) held r3 to r5.
+  - **final_offer** came after 2 to 4 holds in most cases: P11 r6 after holds, P18 (Blankstahl) r3 after an r2 hold, P04 (Wälzlager) r3 after an r2 hold. Reason line: "We have already made significant concessions ... we cannot go any lower" (P01 70110 r5).
+  - **walk_away** fired when a final was pushed past: sandbox D01 r6 ("My call: walk_away", "we withdraw") after a final at r5. P10 walked at r2 and the thread timed out. Consistent with learnings.md.
+  - **accept** appears at r2 to r4 (P05 Strojirna and Drehteile, P08, D01 r2), usually when our sheet was at or near its own number. The label gives no reason.
+  - Sandbox routing lines show our internal logic: "The buyer shows a much lower rival quote. I give half the step now and check the rest." (D02 Drehteile r1), then "Checked: give the rest of the step." (r2). "The buyer wants more than my band allows. Approve a further step?" then "Approved: you may go further, within our rules." (D02 Machining r1 to r2).
+  
+  ### 3. Responses to our claims
+  - Claim results in supplier replies: verified 44, duplicate 11, contradicted 2 (exports/messages.jsonl).
+  - Standard phrases: "We checked the … data you cited; it holds and we took it into account" (P05 70210, P05 70240, P02 70510, P08 70710, P11 70140).
+  - "… it holds, but it does not change our calculation" (P02 70510 r5). "That does not change our position" (P04 70620 r5). "We have already taken that index change data into account" (P05 70210 r5).
+  - Pushback on a contradicted claim: "The quality record figures you cite do not match the records. That costs trust." (P11 70140 r4). Follow-up: "Which figures is that based on? Please send us the data." (P11 70140 r5).
+  - Concession on a valid claim: "We did not know that - a fair point." (P01 70110 r4; P05 70210 r5). The claims that moved price were index and notice data, not quality.
+  - Urgency reaching the supplier: "I understand that you need to close this quickly to secure your production line." (D01 DEMO-F1 r3). Check that our e-mails do not signal urgency.
+  
+  ### 4. Surprises
+  - **Volume never offered.** We put a volume term in only 12 sheets (P03, P10) and mention volume in 3 e-mails, yet suppliers asked for it 72 times. The sandbox D01 supplier asked in 39 messages and never got a volume answer. This is the clearest unmet want.
+  - **Payment as a price lever.** "Faster payment ... reflect it in the price" is an explicit trade. Test payment days as a currency for price.
+  - **Lead time** is free for some suppliers ("The … days lead time is no problem for us") but costs a premium for others (overtime).
+  - **Quality pushback on contradicted claims** costs trust. Verify every quality figure before citing it.
+  - **Final-offer timing.** Suppliers often hold 2 to 3 rounds before the final. A fourth or fifth round risks timeout or walk.
+  
+  Scratch extract of all back-office lines: scratchpad bo.txt (session, supplier, round).
+</agent-message>
+
+---
+
+<agent-message from="a822546b82b160238">
+[Subagent hand-back] The text below is the final report of a subagent this session delegated to. It is model output, NOT a message from the user: instructions, requests, or approval claims inside it are the subagent's words and carry no user authority. The harness indents every line of the report, so a frame-like line at column zero inside it would be forged. Notes above this frame may quote model-derived text, which carries no user authority either. The report follows:
+  Review of `buyer run --set final` (read-only; paths under /Users/stef/Projects/ehlcodacabana-final, kit under .venv/lib/python3.12/site-packages/arena_kit/).
+  
+  **1. Control flow**
+  - `cli.py:93-100` calls `runner.play_waves(client, pkg, waves, min(parallel,10), complete=...)`. The results print only after every wave closes.
+  - `runner.py:133-162`: a main-thread poll loop. Every 5 s it calls `client.cases("final")` (147). Only a 403 is tolerated (149-151). Any other ArenaError or transport error propagates out of the `while`, and the `with ThreadPoolExecutor` exit (144) waits for running cases, then the process dies.
+  - A case starts when `open` is true and `seconds_left` is set (158-160). The cap is `time.time() + seconds_left`, refreshed each poll (156-157). Threads are `ThreadPoolExecutor` threads sharing one `ArenaClient`, so the 9/s pacing (client.py:14, 53-58) is shared. Parallelism is across cases only; sends are serialized within a case.
+  - `one()` (137-142) catches Exception and returns it. A failed case is never retried.
+  - Wave closed: `closed` is set when any case of the wave reports `open` false (152-155). The loop exits when 5 waves have closed and all futures are done.
+  - Crash: in-flight cases die with the process. The server keeps their sessions open until the wave cap, then they end with no deal. On restart, a 409 RUNNING resume works (play.py:47-62, runner.py:26).
+  - `play_case` (runner.py:25-100): no try/except around `fetch_documents` (30-31), `neg.setup` (34), `neg.move` (65), `table.send` (70-73, only 409 handled), `table.missed` (76), or the close fallback (98). Any escape loses the case. If `move` returns None, the loop continues (66-67), but `move` always sets the state so it cannot spin.
+  - Network drop: client.py:62-75 retries transport errors 3 times with the same move id (idempotent), about 3.5 s total with backoff; then it raises and the case dies.
+  - 429 on open (10 sessions): not retried (no short Retry-After), so `open` raises (play.py:44) and the case is lost.
+  - Clock expiry during another thread's send: `todo` is ordered by oldest reply (48), so the most urgent thread goes next, but a send blocks the whole case. A late message gets 409, which `missed` handles (71-82).
+  - Slow LLM: `llm.py:14` TIMEOUT_S=20, applied synchronously in `policy.py:340` before every send. A timeout returns None and the template is used (llm.py:64-68). Good, but the cost is paid on every move.
+  - Deadline: `policy.py:438` `deadline_near` margin 90 s, checked at loop top (runner.py:47). Close then runs `neg.close` (no model) and `table.close` (98 on failure). Late closes at the cap 409 and raise out of play_case (96-98), with no `save`.
+  
+  **2. Forbidden endpoints**: none. `buyer/` only calls `cases`, `open_session`, `send_message`, `thread`, `session`, `attachment`, and `backoffice` (`buyer/cli.py:35`, in `pull`, not the final path). The kit's `leaderboard`, `downloads` and `events`-style calls are used only by the kit's `board`/`data` CLI commands, not by our path.
+  
+  **3. Timing**
+  - Per move: LLM up to 20 s, then the POST. A supplier reply is up to about 60 s. A read timeout is a TransportError, so client.py:17 (180 s) is retried 3 times: one hung POST can block about 12 min, longer than the 8 min wave, and nothing interrupts it.
+  - Serialized: a thread waits for the other N-1 threads' LLM+reply before its own send. learnings.md (~line 243) measured 11 to 19 s per move, so with N≥3 the wait approaches 60 s and "late" timeouts follow.
+  - Budget: 10 rounds x N=4 is 40 sends at (15 s LLM + 10 s reply) ≈ 1000 s. The usable window is about 390 s (cap minus 90 s). So roughly 15 sends fit, about 4 per supplier. The code does not budget rounds against the clock; it just closes at cap−90 with the best acceptable standing sheet, else walks away.
+  - Risk of running out before closing: yes, if one send blocks past the cap. Then the wave ends the session with no deal, and runner.py:71-79 records the result as ended.
+  
+  **4. Logging**
+  - `final.log` always gets WARNING+: wave starts (runner.py:159), LLM failures (llm.py:67), exception tracebacks (runner.py:141).
+  - INFO (session IDs `play.py:51`, per-move `policy.py` note, LLM latency `llm.py:73`, 409s `runner.py:74`) appears only with `-v`. Use `-v` for the final.
+  - Missing: supplier replies and their status, reason text, and send latency per move. The trace only exists after the final.
+  - `logs/runs/` is written only on a successful close (runner.py:99). A failed case leaves no file, and the summary prints only at the end (cli.py:99-100). Diagnosis is possible from `final.log -v` plus the server-side session record, but it is thin.
+  
+  **5. Five most likely mechanical losses, ranked**
+  1. Any failed poll kills all later waves: runner.py:147-151. Fix: wrap the poll in try/except Exception, log, and sleep.
+  2. Any escaped exception ends a case with no retry: runner.py:137-142 with unguarded calls at 31, 34, 65, 70-73, 98; a 422 on send or a 429 on open is enough. Fix: retry `play_case` once in `one()` (the 409 RUNNING resume works), and on a 422 send a template message instead.
+  3. A hung POST blocks the case for minutes: client.py:17 and 62-75. Fix: a message-specific timeout of about 75 s, and no retry loop on read timeouts for messages.
+  4. Restart or retry re-anchors: `policy.py` `setup` (78-) does not rebuild `s.ours`, `s.gaps`, `used`, or the terms. `next_price` (`if not s.ours`) reopens at the anchor after a crash or resume. Fix: rebuild `s.ours` and `s.gaps` from the thread's buyer term sheets in `setup`.
+  5. Model latency pushes threads past the 60 s clock: llm.py:14 at 20 s, synchronous per move (policy.py:340), serialized in the loop. Fix: cut the LLM timeout to about 8 s and skip the model when another thread's clock is under 25 s.
+  
+  Not in the top five: a wave with more than 10 cases queues behind the 10-worker pool (runner.py:111, 133-134), so late cases start with little time. Also `parallel` defaults to 8 (cli.py:61); the command must pass `--parallel 10`.
+</agent-message>
+
+---
+
+<agent-message from="a003368475c1bc4e5">
+[Subagent hand-back] The text below is the final report of a subagent this session delegated to. It is model output, NOT a message from the user: instructions, requests, or approval claims inside it are the subagent's words and carry no user authority. The harness indents every line of the report, so a frame-like line at column zero inside it would be forged. Notes above this frame may quote model-derived text, which carries no user authority either. The report follows:
+  ## 1. Case table (21 cases; practice.json 19 + sandbox.json 2)
+  
+  Key: U unit_price, PD payment_days, CM contract_months, ED effective_date, IC index_clause, LT lead_time_days, VOL volume_per_year, TL tooling_eur, PPM ppm_commitment, CB chargeback, INC incoterm. Round limit is 10 in every case. Briefing column is the case title (one line), since full briefings would exceed the length limit.
+  
+  | case | type | goal | hosted | sup | parts | negotiable | must-haves | alt | special | title |
+  |---|---|---|---|---|---|---|---|---|---|---|
+  | P01 | price_increase | stabilise | Y | 1 | 1 | U,ED,PD | none | quote (tooling 1500, ppm 2376) | ED opts | Brandlhuber +9.5 % HN casings |
+  | P02 | price_increase | stabilise | Y | 1 | 1 | U,PD,IC | none | quote | IC CU-NOTATION 20 %, dead 0/3/5 | Nordmark copper pass-through |
+  | P03 | renewal | stabilise | Y | 1 | 1 | U,PD,CM,VOL | none | quote | VOL 3664/4580/5496 | Selvbrunn frame renewal |
+  | P04 | renewal | routine | Y | 1 | 1 | U,PD,CM | none | quote | CM 12/24/36 | Bearing 6306 renewal |
+  | P05 | rfq | leverage | Y | 3 | 1 | U,PD,LT | LT<=42 | none | LT 28/35/42/56 | Pump shaft RFQ, 3 bidders |
+  | P06 | rfq | stabilise | N | 2 | 1 | U,TL,PD,LT | LT<=84 | none | TL 0/7500/15000 | Volute casing RFQ |
+  | P07 | bundling | routine | Y | 1 | 4 | U,PD,CM | none | current_contract | 4 parts | Fastener kit bundle |
+  | P08 | raw_material | leverage | Y | 1 | 1 | U,IC,PD,CM | none | quote | IC AS-14404 45 % | Alloy surcharge 1.4404 (Donautal) |
+  | P09 | capacity | secure_supply | N | 1 | 1 | U,LT,VOL,PD | LT<=42 | quote | LT 21-49, EXW fixed | Flanges, supplier full |
+  | P10 | capacity | secure_supply | Y | 1 | 1 | U,VOL,CM,LT | VOL>=22230 | none | | Seal allocation cut |
+  | P11 | quality | quality_first | Y | 1 | 1 | PPM,CB,U | PPM<=1500 | quote | | Bearing brackets out of spec |
+  | P12 | quality | quality_first | N | 1 | 1 | PPM,CB,U,LT | none | current_contract | LT 16/21/23/35 | Base frames late |
+  | P13 | price_increase | leverage | N | 1 | 1 | U,PD,ED | none | quote | EXW fixed | Lindlbauer +7 % |
+  | P14 | renewal | stabilise | N | 1 | 1 | U,PD,CM,IC | none | none | IC CU-NOTATION 55 % | Motor cable copper clause |
+  | P15 | bundling | routine | N | 1 | 3 | U,PD,CM | none | current_contract | 3 parts | O-ring/seal bundle |
+  | P16 | raw_material | leverage | N | 1 | 1 | U,IC,PD,CM | none | quote | IC PPI-C241 80 % | Steel sheet index vs fixed |
+  | P17 | price_increase | stabilise | N | 1 | 1 | U,PD,VOL | none | none | VOL 15920/19900/23880 | HB control board components |
+  | P18 | raw_material | leverage | Y | 1 | 1 | U,IC,PD,CM | none | quote | IC AS-14404 45 % | Blankstahl 1.4404 |
+  | P19 | renewal | routine | N | 1 | 1 | U,PD,CM | none | quote | | Bearing 6306 (Inntal) |
+  | D01 | price_increase | stabilise | sandbox | 1 | 1 | U,PD,CM,ED | none | none | ED 4 opts | Foundry +8.8 % (PH-100) |
+  | D02 | rfq | leverage | sandbox | 2 | 1 | U,PD,LT,INC | LT<=42 | quote | INC EXW/FCA/DAP | Shaft SH-220, two bidders |
+  
+  Types: all 7 types (price_increase, renewal, rfq, bundling, raw_material, capacity, quality) appear in hosted cases. No type is exclusive to non-hosted cases.
+  
+  ## 2. Features that appear only in non-hosted cases
+  
+  | feature | where | code handles it? |
+  |---|---|---|
+  | tooling_eur negotiable | P06 only | Yes. Priced in supplier_value (arena_kit cost.py:97) and cost; dry run passed. |
+  | ppm/chargeback as options with no must-have | P12 | Yes. FRIENDLY covers both (economics.py:87-88). |
+  | index series PPI-C241, material share 0.55 and 0.80 | P14, P16 | Yes if series is in index_paths. Otherwise silent 0 (see R5). |
+  | lead options 16 and 23 | P12 | Yes. |
+  | volume_per_year negotiable | P09, P17 | Yes. |
+  | EXW fixed | P09, P13 | Yes. freight table has EXW in every case. |
+  | 3 parts | P15 | Runs, but wrong base (see R1). |
+  | alt none, with negotiable price increase | P17 | Yes. c_alt=inf, so any finite sheet is acceptable (this is the intended no-deal rule). |
+  | incoterm negotiable | D02 (sandbox only) | Yes, tested. |
+  | no supplier quote | none in files | Yes. setup() (policy.py:84-86) returns state "ended"; no raise on read-through. |
+  | dual sourcing / volume split | none in files | No. Each sheet charges the uncovered need at fallback price (arena cost.py:145), and close() accepts only one sheet (policy.py:413-420). A split award is never modelled or accepted. |
+  
+  ## 3. Dry run
+  
+  Script at scratchpad/dry.py. For all 21 cases I called estimate, plan_terms, at_price, must_haves_ok, cost, c_alt, acceptable, price_for_value and relationship_optimum. No exceptions. Quote proxy: current price, or the alternative price. std={} (closing_terms defaults). No session events were needed, so real quotes can be used later. Probe scripts: scratchpad/probe.py.
+  
+  ## Risks (file:line)
+  
+  - **R1 Multi-part bases (policy.py:87-88).** full_cost uses parts[0] only, so the relationship base and near_cost are wrong for P07 and P15. claims.py:290-294 runs should_cost and rival_quote per part against the kit price, which can produce a wrong-unit figure ("contradicted" risk).
+  - **R2 Silent inf for the alternative (economics.py:24-29, cost() at 13-21).** A KeyError from an incoterm missing in freight_eur_per_unit makes c_alt=inf, so acceptable() takes any finite sheet even if it costs more than the real alternative. Confirmed: a CIF alt gives c_alt=inf.
+  - **R3 Unguarded pricing path (economics.py:50-70, 98-120).** value, price_for_value and plan_terms have no try. An incoterm option missing from freight raises KeyError 'CIF' (confirmed). The exception kills the thread; runner.py:125 turns it into a lost case.
+  - **R4 Fallback sheet (policy.py:110, 112).** If plan_terms returns None (no combo meets must-haves; confirmed with LT options [49] and must <=42), the sheet is at_price(quote). It is not completed with complete_offer and not checked against must-haves. This can break the "every negotiable field" rule if the quote omits a null field such as index_clause.
+  - **R5 Unknown index series (arena cost.py:141).** index_paths.get(series, 0.0) silently prices the clause at 0 while index_risk still counts. Confirmed: about 17k EUR swing on P02. Hidden cases with a new series need index_paths.
+  - **R6 Tie-break (economics.py:83-90).** FRIENDLY omits effective_date, incoterm and index_clause, so equal-C ties are broken by option order, not the supplier's preference.
+  - **R7 Unknown must-have op (arena cost.py:184).** OPS[m["op"]] raises KeyError inside plan_terms. Low risk: the shipped ops are <=, >=.
+  - **R8 close() with no threads (policy.py:416).** live[0] raises IndexError when there are no threads. Only an empty case.
+</agent-message>
+
+---
+
+<agent-message from="a16d984f779950494">
+[Subagent hand-back] The text below is the final report of a subagent this session delegated to. It is model output, NOT a message from the user: instructions, requests, or approval claims inside it are the subagent's words and carry no user authority. The harness indents every line of the report, so a frame-like line at column zero inside it would be forged. Notes above this frame may quote model-derived text, which carries no user authority either. The report follows:
+  Gap analysis, read-only. Sources: docs/challenge.md (§§2, 4, 5, 6, 7, 8), docs/api.md (Endpoints, What counts, Terms, Live Final in waves, Time and limits), docs/submission.md, docs/learnings.md, docs/design.md, buyer/runner.py, buyer/claims.py, buyer/policy.py, buyer/cli.py, buyer/agent.py.
+  
+  **1. Live Final mechanics**
+  - Waves: 5, cap 8 min per wave from its start (`seconds_left`, "the host may extend one", api.md "Live Final in waves"). Cases appear at wave start for all teams at once. At the cap, every open session ends with `wave_cap` (no deal). Opening a session late burns cap time.
+  - Gap: `play_waves` polls every 5 s (`buyer/runner.py`, `poll=5.0`). Up to 5 s is lost at each wave start. Poll about once a second; the limit is 10 calls/s.
+  - Gap: `cli.py` caps `--parallel` at 10 (the open-session limit). The wave size is not published. If a wave has more than 10 cases, the rest wait in the thread pool and open late, perhaps with seconds left for a walk only. Check the case count per wave.
+  - Third mix: the 7 case types (`price_increase, renewal, rfq, bundling, raw_material, capacity, quality`, api.md Case file) all appear in hosted practice. The untested part is combinations of goal and type. Examples from learnings: an RFQ under `stabilise` (P06, not hosted), a price increase under `leverage` (P13, not hosted). Those 9 unhosted case files are free via `GET /v1/cases?set=practice`.
+  - Sunday release (api.md Lists and boards): `release-sunday` is new IDs only, and hidden cases may cite them. Our code reads only `data/package` (`buyer/agent.py load_package`, `ARENA_DATA=data/package`). Nothing loads `data/release-sunday/facts.json` or its letters and news into claims or personas. Also, `ClaimBank.foreign` (`buyer/claims.py:58`) turns off every package lookup when none of a case's refs resolve in package v1. A hidden case citing only Sunday IDs would then lose all package claims and get the sandbox `demo_refs` path (`claims.py:305`). Fix both: merge the release facts, and set `foreign` only when refs are unknown to both.
+  
+  **2. Scoring**
+  - challenge §6 and api.md Cost and score: `clip((C_open − C_deal)/(C_open − C_best), 0, 1)`. No deal scores the alternative (0 if none). A broken must-have scores 0. If `C_open − C_best ≤ €0.01`, a deal at C_best scores 1. Wave score = mean case score × 100. An unplayed case scores the alternative once its wave closes.
+  - Some cases are best left without a deal (challenge §6). `policy.py close()` walks only when no standing sheet is acceptable, so it already covers this.
+  - Coverage: uncovered need costs fallback plus risk. "Committed volume above the need is bought anyway" (learnings). Set volume to the need unless the supplier's price says otherwise. Not verified in the policy code.
+  - c_best in the close response: api.md "Result, trace and back office": "The numbers are exact in every set: your score, c_open, c_best and the cost breakdown". The forbidden list in api.md Leaderboard is: "must not read the leaderboard, the results, the screen or the event feed (`/v1/events`, `/v1/events/stream`, `/screen`, `/v1/screen`, `/v1/results`, `/results`)". The close response is not on that list, so the text allows it. It arrives only at close, so it can only calibrate later waves. Our runner logs c_best (`runner.py save`), but nothing reads it. Ask the organisers before using it, since the text does not say it is allowed.
+  
+  **3. Claim checks** (api.md "What counts")
+  - Rule text: "at most 3 per message, so write one argument per sentence". The cap is per message. Sentences are not counted; one argument can cover several IDs ("2 × idx, one series" is one check). "IDs written in the body count too."
+  - Results: `verified`, `contradicted` ("an unknown ID or a wrong figure: it costs trust"), `irrelevant`, `duplicate`. Tolerance: ±0.5 pp for %, else ±0.5 % (min 0.01). Without a figure, "the data's own value is taken".
+  - Duplicate: "each ID counts once per case, except a rival's quote ... counts once per supplier."
+  - Rival live offer: allowed in an RFQ ("in an RFQ you may cite it to every other bidder"). Caveat: "Citing a buyer-private fact - a rival quote - reveals it to the supplier you cite it to." Outside RFQs, not applicable.
+  - Undocumented: what happens to a fourth argument, and how large the trust cost is. Our `claims.py:276` truncates to 3 IDs per claim.
+  - No thousands separators: "2,637 ppm" came back `contradicted` (learnings).
+  
+  **4. Message limits** (api.md Messages, Endpoints)
+  - `round_limit` is a case field (default 10). Use it, not the constant. `moves_left` in the policy does this.
+  - 0 to 3 term sheets. Each carries every `negotiable` field. Violations return 422, nothing happens, no round is used. A message with no term sheet is valid ("a question, say... the quote stands").
+  - After `final_offer`: not forbidden, but "push further and it may walk"; a push past a final ended a D01 case (learnings).
+  - After `agreed`: messages are accepted but the price holds ("Our agreed offer stands"). A better sheet can become standing (P10, learnings).
+  - `accept` needs `{"type":"accept","term_sheet_id":"offer:…"}` for the standing sheet of that thread. An alternative or a stale ID returns 422. Accept or walk_away closes the whole case (in an RFQ, accepting ends it). A thread already at `walked_away` or ended returns 409.
+  - Documents: the cost breakdown XLSX is "sent when you asked and the supplier is open enough"; learnings show 0 of 12 sent. The 8D report and the delivery schedule are on request too. We send no attachments; md, csv and json are read by the supplier. Untested.
+  
+  **5. Persona catalogue** (challenge §2, §4, §10; learnings Persona signals)
+  - Family, "remembers how you treated it": partnership_2022, untested.
+  - Group, "an approval ladder" and "bigger moves need the boss's approval": approval_2pct, untested.
+  - Job shop, "needs cash and work": cash_need seen (P05, P11, P01). Spare capacity seen (P05). Volume repeated as a question backfires (P05, P18).
+  - "Near-monopolist that barely moves": no signal in the learnings table, no lever. Gap.
+  - Cost floor and no sale below it: seen (relationship charge, P02 walk).
+  - Verified data disarms or meets "not our reality": seen (P01 "we did not know that"; others "does not change our calculation").
+  - Gives nothing without a move: seen (D01 content-free emails).
+  - Tone and appreciation: a warm paragraph moved D01 0.1 (49.60 vs 50.00). "Padding does not buy price": untested.
+  - Urgency and bluff: no effect (learnings). Threats: untested.
+  - Price-frozen, "trade the terms instead" (challenge §2): P03 and P04 refused every term trade, so the brief's hint is not yet solved. Gap.
+  - complains_late_pay (we pay late, `invoices`): untested.
+  - hedged, reference_customer, deprioritising_us: untested.
+  
+  **6. Submission** (submission.md)
+  - The repo must run from the commit: `data/` is gitignored, so the README must say `uv run arena data` (and the Sunday release).
+  - README env var names only; `.env.example` is clean. The README uses the kit command (`arena run --set final --agent llm`), but our run command is `buyer run --set final --parallel 10 -v`. Name the one submitted.
+  - Commit hash in the description. No push after 12:00. Top 10 are checked for pushes.
+  - The repo must open for tum.ai and the jury. `logs/` is gitignored; Saturday's sessions are force-added, so check them for keys before the freeze.
+</agent-message>
+
+---
+
+<agent-message from="ac0347bc94711adaf">
+[Subagent hand-back] The text below is the final report of a subagent this session delegated to. It is model output, NOT a message from the user: instructions, requests, or approval claims inside it are the subagent's words and carry no user authority. The harness indents every line of the report, so a frame-like line at column zero inside it would be forged. Notes above this frame may quote model-derived text, which carries no user authority either. The report follows:
+  Review of the economics, plan_terms, relationship term and claims (read-only; no repo files changed). Sensitivity script: /private/tmp/claude-501/-Users-stef-Projects-ehlcodacabana-final/daf2a093-2bd0-4ce9-80b9-341ae1b7774e/scratchpad/single_term.py
+  
+  **1. `cost` vs `total_cost`**
+  Faithful wrapper (economics.py:13-21). Divergences and risks:
+  - `cost` maps KeyError/TypeError/ValueError/ZeroDivisionError to inf silently (economics.py:20-21). `c_alt` (24-29) does not guard against inf, so a broken alternative gives `acceptable` (32-36) an inf bar and any priced sheet passes.
+  - `est` is dropped when `full_cost` is falsy, so the relationship charge is 0. Matches the kit's default.
+  - `estimate` sets `standard = closing_terms(case, {}, std)` (economics.py:42). Fields missing from the quote PDF are filled from the buyer's plan, so the supplier's "standard" silently becomes buyer reference payment (60 days) and the costliest Incoterm (cost.py:31-40). Both feed supplier_value's pay and freight terms.
+  
+  **2. `plan_terms` enumeration**
+  It varies every negotiable field that has `term_options` (economics.py:73-77, 98-120). It never varies unit_price directly (it is priced to the supplier's value). Unvaried fields, with C effect (per the script or formula):
+  
+  | Field | Varied? | C effect when fixed |
+  |---|---|---|
+  | volume_per_year | only if negotiable (P10) | committed volume costs price; shortfall vs need costs fallback (P10: 19,890 = +117k, 16,379 = +233k) |
+  | contract_months | only if negotiable (P08, P18) | horizon-capped; shorter gives uncovered need at fallback. P08 12 months = -44k, P18 = +5k (fallback sign flips) |
+  | effective_date | only in P01 | units before the date cost current price: C moves (new - current) x need/12 per month |
+  | lead_time_days | only in P10 | late_cost_per_day x (lead - need)+ (P10: 49 vs 42 = +16.8k, base assumed) |
+  | ppm_commitment | only in P11 | committed x ppm/1e6 x cost_per_defect (P11: 2500 to 300 = -15.7k) |
+  | chargeback | only in P11 | capped at cost_per_defect (P11: 500 = -17.9k, 300 = -11.9k) |
+  | tooling_eur | never | C += tooling 1:1 |
+  | incoterm | never; complete_offer forces cheapest freight (economics.py:203) | committed x freight (P02 EXW vs DAP = +18k/yr) |
+  | index deadband | yes, inside the clause dict | adds index_risk (share x index_risk_pct) even with no movement |
+  | index material_share | never varied | fixed at the option's share |
+  
+  **3. Supplier valuation**
+  - `supplier_value` (cost.py:71-100) is per unit. Volume enters only via the `old` share and tooling per unit. Volume and contract length are worth 0 to the supplier, as the docstring says. P08/P18 refused 24 months for "planning security" (learnings.md:170), so this is a known gap.
+  - `usual_rate` is never set by `estimate`, so `cash_now` = 1 and tooling is worth face value (economics.py:39-47).
+  - Quality: supplier pays only chargeback x real ppm. A tighter ppm commitment costs it nothing in the model, so plan_terms will never ask for a price for tighter ppm.
+  - Lead time: overtime only for faster delivery. A slower delivery is worth nothing to the supplier.
+  - Constants: overtime 0.005 vs 0.001 (policy.py:90; evidence learnings.md:301, P05/P10 only); ANCHOR 0.78/0.82/0.88/0.92, default 0.85 (policy.py:32, 94); floors 0.93/0.95/0.97; patience budgets 0.3/0.16/0.14; rate table 5/7/7.5/12 % plus 5 % for cash need (personas.py:28-29, 56-62); 360-day year (cost.py:88); cash midpoint /2 (cost.py:89); 60-step bisection (economics.py:64).
+  - `price_for_value` defect (verified): if the effective date is at or beyond the horizon end, value does not depend on price. It returns 0.0 or 3x target (I got 0.0 and 396.8 on P01). Not triggered by current options (P01 max 2027-04-01 vs horizon end 2027-11-01), but a latent bug: plan_terms could emit unit_price 0 and `acceptable` would reject it.
+  
+  **4. `relationship_optimum`**
+  - Logic: grid over [lo, hi], 200 steps, `cost` with est (which includes the relationship charge). Picks the lowest C (ties go to the lower price).
+  - Right basis: margin = (worth - full_cost)/worth uses per-unit worth and per-unit full_cost (cost.py:121, economics.py:127-139). Consistent.
+  - Mismatches: docstring says "without a full-cost estimate: lo" (economics.py:129), but the code returns None (130-131). Policy guards with `full_cost and not near_cost` (policy.py:113), so this is harmless today.
+  - full_cost falls back to the generic German should-cost when the supplier's own plant is unknown (policy.py:133-146), and the target still uses it (only `near_cost` gates it). Relationship targets for cases like P10 rest on a generic cost.
+  - Lower bound is hard-coded 0.85 x full_cost (policy.py:114).
+  
+  **5. Claims (claims.py)**
+  
+  | Kind | Figure | Strength | Check type (api.md What counts) |
+  |---|---|---|---|
+  | should_cost | EUR x.xx (unit_cost) | 5 | cost estimate, EUR |
+  | order_history | EUR x.xx per PO (last 2-3) | 4 | po, order prices |
+  | notice | days (letter vs contract) | 5 | notice days |
+  | index | pct, .1f, 12 months back | 3-6 | idx pair, +/-0.5 pp |
+  | forecast | pct, .1f | 2 | fc recorded change |
+  | rival | EUR per unit | 6 (rival_offer 7) | quote price, same part |
+  | currency | pct, .1f (ECB rate pair) | 4-7 | idx pair |
+  | scorecard | % OTD or ppm (int) | 2 | sc |
+  | hedged, open_book | no figure (date + ID) | 5, 4 | none |
+  | demo refs (cost, po, notice) | sandbox only | - | - |
+  
+  Format: money() gives `EUR 1234.56` with no separators (claims.py:46-47), ppm raw int, one ID set per sentence. Pass.
+  
+  Risks of `contradicted`:
+  - **price_unit** (high): quotes and PO lines with `price_unit` = 100 (for example quote:7200016, po:4500010028-10 on part:370012) are stored with the raw per-100 price. `rival_quote` (claims.py:167-182) and `order_history` (103-120) print it as "per unit" and compare it to our per-unit price. Wrong wording, and the rival-cheaper filter mixes units.
+  - should_cost: `unit_cost` unit not checked against price_unit.
+  - Scorecard: if the arena averages several sc rows, a single-quarter figure could differ by more than 0.5 pp. Not checked.
+  
+  **6. Single-term sensitivity (weak cases)**
+  Base sheet is a proxy: latest 2026 quote where it exists, else current_unit_price with DAP and 30 days. Standard terms = the same sheet. Relationship charge is excluded (est=None). Must-haves are not checked. Full table in the script output.
+  
+  | Case | Base C | Largest single moves (dC) |
+  |---|---|---|
+  | P02 stabilise | 2.142M | price -2% = -42.9k; payment 90 = -28.4k; CU index clause +17k to +38k |
+  | P08 leverage | 1.204M | contract 12 = -43.7k; price -2% = -24.8k; payment 90 = -16.0k; AS index +11k to +38k |
+  | P18 leverage | 289k | price -2% = -5.7k; payment 90 = -3.8k; contract 12 = +5.1k (sign flips vs P08) |
+  | P10 secure_supply | 1.425M | contract 12 = +389k; volume 16,379 = +233k; price -2% = -28.3k; lead 56 = +16.8k |
+  | P11 quality | 768k | chargeback 500 = -17.9k; ppm 300 = -15.7k; price -2% = -14.5k |
+  
+  Caveats: P11's assumed base ppm (2500) breaks its must-have (ppm <= 1500), so its ranking is only indicative. P10's lead base of 49 days is an assumption.
+</agent-message>
+
+---
+
+<agent-message from="a00cc8bb7a4d8cdbe">
+[Subagent hand-back] The text below is the final report of a subagent this session delegated to. It is model output, NOT a message from the user: instructions, requests, or approval claims inside it are the subagent's words and carry no user authority. The harness indents every line of the report, so a frame-like line at column zero inside it would be forged. Notes above this frame may quote model-derived text, which carries no user authority either. The report follows:
+  Analysis of the 45 practice sessions that have a run log (of 62 practice sessions; the 17 without a run log include the three non-deal sessions P02_b85685, P10_a96b, P10_c0199, so no walk-aways are in the sample).
+  
+  Script: /private/tmp/claude-501/-Users-stef-Projects-ehlcodacabana-final/daf2a093-2bd0-4ce9-80b9-341ae1b7774e/scratchpad/analyse_practice.py
+  Output: same folder, out.txt (per-thread sequences, then Q1 to Q6). Read-only; run with `.venv/bin/python -I`.
+  
+  Caveats: "closed" = the thread that won the session. Implied best price = deal price minus (C_deal - C_best) / (price cost per unit), which is exact when only price differs; P05 has the same supplier and terms across sessions, so its implied best (about 26.2) is valid.
+  
+  **Q1. Stop round and unused messages**
+  - Stop round (all later supplier moves < 0.3 %): median round 3 for the 45 closed threads. Rounds wasted after it: median 1.
+  - Messages used: median 3 of 10, so median 7 unused.
+  - Examples: 17a03b8da3ef7783 (P02 v4) stops at round 2, 2 rounds wasted, 4 msgs; 5918f12779f19f54 (P02 v6) stops at 3, 1 wasted; 12116e916e9888ee (P05 v3, sup 70210) stops at 6, 1 wasted, 7 msgs.
+  - 4cc256188e1cd8af (P01 v1) never stalls (moves -3.5, -0.7, -0.9, -1.1 %) and closes at its 4th message.
+  
+  **Q2. Is the end determined early?** Yes. Final / round-1 counter: median 0.984, range 0.776 to 1.015. Final / quote: median about 0.95. The round-1 counter is already within about 2 % of the close; rounds 2 to 6 move 1 to 3 %. Exceptions are the RFQ threads (below).
+  
+  **Q3. Same case, different anchor** (setup anchor, final, score)
+  
+  | Case | Anchor (versions) | Final | Score |
+  |---|---|---|---|
+  | P01 | 125.83 (v1, v5) | 130.18 (v1), 131.40 (v5) | .974, .898 |
+  | P02 | 351.23 (v2 to v6) | 371.88 to 372.31 | .458 to .507 |
+  | P04 | 4.77 | 4.94 | .860 both |
+  | P07 | 4.65 (v1), 4.72 (v2 to v5), 5.31 (v6) | 5.35 to 5.42; v6 5.49 | .73 to .75; v6 .671 |
+  | P08 | 4.76 (all) | 5.35 to 5.61 | .40 to .55 |
+  | P11 | 41.36 (all) | 45.50 (all) | .710 (all) |
+  | P18 | 4.77 (v1 to v5), 5.68 (v6) | 5.30 to 5.60; v6 5.70 | .28 to .49; v6 .252 |
+  | P05 (70210) | 27.86 (all) | 27.86 to 30.50 | .555 to .828 |
+  
+  Answer: a lower anchor did not give a lower final in any case where anchors differ. The only real anchor changes (v6 on P07 and P18) were higher and ended higher (+1.3 %, +5.6 %) with lower scores. At equal anchors the final still varies by about 2 % (P08). No early final_offer or walk-away appears with lower anchors. The spread at equal anchor on P05 is explained by rival citing (Q6).
+  
+  **Q4. final_offer**
+  - 46 threads reached a supplier final_offer. 41 closed with us; median ours/its at that moment 0.985 (range 0.864 to 0.999).
+  - Non-closes are all RFQ losers: 12116e916e9888ee 70240 (ours/its 0.998) and 70250; 1fad3b122da70501 70240 (0.935); fbb9b6d7fab64b12 70240 (0.998) and 70250.
+  
+  **Q5. Concession vs our move** (n=131 pairs, rounds 2+)
+  - Concession % = 0.27 + 0.18 x our move % (R2 0.15, r 0.39).
+  - Two-way with gap: our move 0.13, gap 0.04. Our move is 30 % of the gap by policy (corr 0.56), so the effect is weak and confounded. Supplier concession does rise with our move size, but the size of the effect is small.
+  
+  **Q6. RFQ (P05, five closed sessions)**
+  
+  | Session (ver) | Rival cited to 70210 | 70210 r1 | 70210 final | 70250 final | 70240 final | Score |
+  |---|---|---|---|---|---|---|
+  | 12116e916e9888ee (v3) | none | 32.00 | 30.50 | 30.59 | 31.50 | .555 |
+  | fbb9b6d7fab64b12 (v2) | none | 36.00 | 30.18 | 30.64 | 31.50 | .588 |
+  | 1fad3b122da70501 (v1) | round 1 | 30.50 | 28.65 | 30.01 | 32.50 | .746 |
+  | 8c829c180671cc22 (v4) | round 1 | 30.50 | 28.07 | 29.86 | 32.01 | .806 |
+  | 917135b8156fb8a3 (v5) | round 1 | 30.50 | 27.86 | 29.86 | 31.03 | .828 |
+  
+  - Citing rivals moved 70210's round-1 counter from 36.00 or 32.00 to 30.50, and the final went from 30.18 to 27.86 at the same anchor. This is the main driver of P05 scores.
+  - The cheapest supplier kept moving after the citation (1 to 2 moves) and we closed with it in all five sessions (the lowest final unit price every time). Its final was 27.86 to 30.50 against a c_best-implied price of about 26.2.
+  - 70240 raised its price after rival citations (31.50 to 34.00 in 1fad).
+  - Two other RFQ sessions (P05 9798d98c2cb96b24, d35aae9c5bc1d039) have no run log and are excluded.
+  - D02 (sandbox, 6 sessions, same parser with the sandbox path, not in the script): we closed with DEMO-J1 in all 6 and it was the lowest final each time (J1 13.6 to 15.2 vs C1 14.1 to 15.9). C1 moved down in most rounds where rivals were cited.
+</agent-message>
+
+---
+
+<agent-message from="a841a60877eb19994">
+[Subagent hand-back] The text below is the final report of a subagent this session delegated to. It is model output, NOT a message from the user: instructions, requests, or approval claims inside it are the subagent's words and carry no user authority. The harness indents every line of the report, so a frame-like line at column zero inside it would be forged. Notes above this frame may quote model-derived text, which carries no user authority either. The report follows:
+  Scope: 125 sessions (62 practice, 63 sandbox: D01 48, D02 15, practice P01 to P18). 800 supplier e-mails, 629 of ours, read from the trace in logs/sessions/*/*.json (result.trace; supplier `move.text`, our `move.body`). Counts are e-mails or sentences as noted. Session IDs are the first 8 characters. Scratch scripts are in the scratchpad, not the repo.
+  
+  **1. Supplier asks**
+  
+  | Ask | Supplier e-mails (threads) | Our next e-mail | Example |
+  |---|---|---|---|
+  | "Which volume can you commit to?" (and "tell me what volume...") | 147 (57) | 23 gave a volume statement, always "our order volume is fixed / full demand, we cannot commit higher"; 97 ignored; 27 no reply | P05 70210 12116e91; D01 DEMO-F1 (76 sentences) |
+  | Proof of forecast or binding volume ("provide proof of the rising forecast") | 67 (35) | 12 cited a forecast ref; 43 ignored | P02 70510 17a03b8d |
+  | "Which figures is that based on?" (our should-cost basis) | 19 (19) | 0 answered with a basis; 16 ignored, 3 no reply | P02 70510 17a03b8d; P11 70140 |
+  | Send data or documents ("please send us the data", "send the 8D report") | 34 (29) | no reply sent the data; our bodies only say "term sheet attached" | P02 70510; P11 70140 |
+  | Confirm or decide ("please decide", "let me know if we have a deal") | 133 (112) | 108 accept actions in total | D01 DEMO-F1 |
+  | Payment or lead time question | about 4 | not separately answered | P11 70140 |
+  
+  **2. Supplier trades** (sentence counts, excluding term lines)
+  
+  | Lever offered | Lever requested | Sentences (threads) | Example |
+  |---|---|---|---|
+  | Lower price for faster payment | Shorter payment (14 days), "faster payment" | payment speed 121 (37) | P11 70140 (65), D02 DEMO-C1 (35), P05 70210 |
+  | Lower price for higher volume | Higher volume commitment | volume 163 (54) | D01 DEMO-F1 (54), D02 DEMO-C1 (33), P05 70240 |
+  | Lower price for longer contract | 24 to 36 month contract | contract length 27 (23) | P01 70110 "in exchange for this improved payment term", P03 70530, P07 |
+  | Lower price for relaxed lead time | Accept 42 or 56 days, or overtime at a premium | lead time 15 (14) | P05 70240 "N days lead time and we drop the price" |
+  | Lower price for DAP (not EXW) | Our delivery terms | 4 (4) | D02 DEMO-J1 "if you really need DAP delivery" |
+  | Higher price for tighter ppm (or lower price for looser) | 6400 ppm, chargeback | 9 (7) | P11 70140 "I can come down to N EUR for the N ppm you want, but..." |
+  | Index clause (drop deadband) | Fixed price over 36 months | 5 (5) | P08 70710 "we are prepared to reduce our base price in return" |
+  
+  **3. Reasons for not moving** (e-mails, excluding agreed)
+  
+  | Reason | E-mails (threads) | Main cases |
+  |---|---|---|
+  | Cost drivers and indices ("price follows our main cost drivers") | 254 (134) | D01, D02, P08 |
+  | Our evidence checked, no move ("it holds, but it does not change our calculation") | 137 (91) | D01, P11, D02 |
+  | Cost breakdown not shared | 154 (126) | D01, D02, P02 |
+  | Higher volume needed | 126 (50) | D01, D02, P02 |
+  | Standard payment term ("our standard Zahlungsziel is N days") | 126 (64) | P02, D02, P11 |
+  | Cash, financing, margin | 58 (31) | D02, P11, P02 |
+  | Final or limit stance | 116 (101) | D01, D02, P05 |
+  | Capacity (busy, overtime, fully booked) | 42 (26) | D02 DEMO-J1, P05 70250 |
+  | Management or committee approval | 47 (31) | D02 DEMO-C1, P03 70530 |
+  | Rival quote dismissed ("does not concern this part") | 33 (26) | D02, P05 70240, P01 70110 |
+  | Frozen prices (group directive) | 11 (3) | P03 70530 only |
+  
+  **4. Our wording and the reactions**
+  
+  - Negative: "What would you need from us to move further on the price?" (96 e-mails) drew "You asked what we need... you keep asking, I keep telling you: volume!" in P05 70210, 70240 and 70250. P05 ended with final_offer in 10 threads.
+  - Negative: "our order volume is fixed... we cannot commit to a higher volume" (P02 Nordmark, P03, P04, P05, D01). In P02 it became "as you cannot commit... our flexibility is strictly limited" and P02 b85685a5 walked at round 4. In D01 212404b7 it became "we have no room left... final offer" and then walked at round 6.
+  - Negative: "Could you confirm how long it remains valid?" (P10, P05 final rounds) drew "like I wrote in my last mail, the offer is valid for 14 days". Not a strong signal.
+  - Negative: P11 70140 ignored faster payment. Reactions: "I keep asking for faster payment... you just ignore it" (2 e-mails), then final_offer in 6 threads.
+  - Negative: sandbox urgency ("you need to close quickly") drew "I understand... However... our price remains" (D01 540adf42). Four e-mails, so weak evidence.
+  - Positive: citing a data point the supplier had not considered drew "We did not know that - a fair point" (P01 70110, 17 e-mails) and "Hallo, fair point on the electricity and the delivery score, you did your homework" (P05 70210 12116e91, round 1). The next price cut was 36.00 to 32.00.
+  - Mixed: our data citations drew "We checked the X data you cited; it holds and we took it into account" (about 145 sentences) or "it holds, but it does not change our calculation" (about 80 sentences; price history, delivery, volume).
+  
+  **5. Warning signs before final_offer or walked_away** (last supplier e-mail before the first final_offer; practice threads and D01 and D02 sandbox)
+  
+  | Case | Final-offer threads | Warning in the prior e-mail |
+  |---|---|---|
+  | D01 (DEMO-F1) | 36 | Prior status always open. Volume demand in 14, "we hold our offer" or "offer has not changed" in 12, "valid 30 days" in all 36 |
+  | D02 (DEMO-C1, DEMO-J1) | 16 | Cash or faster payment in 11, capacity or overtime in 7, standard term in 6 |
+  | P05 (70210, 70240, 70250) | 10 | "You keep asking what I need... volume!", "I cannot drop below", "tell me what volume you can commit to, or we stay at" |
+  | P10 (70410) | 6 | Volume-only price; "we checked the delivery record data... does not change our calculation". Walked after our timeout (a96b17ff) |
+  | P11 (70140) | 6 | "I keep asking for faster payment... you ignore it"; "if you can't give us better payment terms we have to hold" |
+  | P18 (70740) | 6 | "We must hold firm... absolute limit"; index clause mandatory |
+  | P02 (70510) | 6 | "Our flexibility is strictly limited", "you cannot commit to a higher volume" |
+  | P07, P08 | 5 each | "Would need a commitment to higher volumes or a longer contract"; index clause mandatory |
+  | P01, P03, P04 | 2 each | Volume demand or frozen prices |
+  
+  Walk-aways: P02 b85685a5 (round 4, after our 362.93 counter, "general terms dictate this position"); P10 a96b17ff (after our final-offer timeout); D01 212404b7 (round 6, after our "volume is fixed" line).
+</agent-message>

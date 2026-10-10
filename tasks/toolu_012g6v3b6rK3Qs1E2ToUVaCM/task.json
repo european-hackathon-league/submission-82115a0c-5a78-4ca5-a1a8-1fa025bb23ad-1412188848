@@ -1,0 +1,15 @@
+{
+  "tool_use_id": "toolu_012g6v3b6rK3Qs1E2ToUVaCM",
+  "agent_id": "a003368475c1bc4e5",
+  "subagent_type": "general-purpose",
+  "task_description": "Case file coverage and unseen types",
+  "token_usage": {
+    "input_tokens": 20,
+    "cache_creation_tokens": 76509,
+    "cache_read_tokens": 486307,
+    "output_tokens": 60,
+    "api_call_count": 10
+  },
+  "started_at": "2026-10-10T20:29:13.628483+02:00",
+  "completed_at": "2026-10-10T20:31:29.272068+02:00"
+}

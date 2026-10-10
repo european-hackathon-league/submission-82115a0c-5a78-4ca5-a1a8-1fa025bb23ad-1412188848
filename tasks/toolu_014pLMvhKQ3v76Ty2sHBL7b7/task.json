@@ -1,0 +1,15 @@
+{
+  "tool_use_id": "toolu_014pLMvhKQ3v76Ty2sHBL7b7",
+  "agent_id": "ac0347bc94711adaf",
+  "subagent_type": "general-purpose",
+  "task_description": "Economics and claims review",
+  "token_usage": {
+    "input_tokens": 34,
+    "cache_creation_tokens": 83090,
+    "cache_read_tokens": 952450,
+    "output_tokens": 104,
+    "api_call_count": 17
+  },
+  "started_at": "2026-10-10T20:29:13.623376+02:00",
+  "completed_at": "2026-10-10T20:32:18.047518+02:00"
+}
