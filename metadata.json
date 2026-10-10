@@ -3,7 +3,7 @@
   "checkpoint_id": "01M4KR7KZ9XZZWKPXYBD8K9ZDS",
   "strategy": "manual-commit",
   "branch": "steffen/cleanup",
-  "checkpoints_count": 1,
+  "checkpoints_count": 4,
   "files_touched": [
     "logs/sessions/.DS_Store",
     "logs/sessions/practice/.DS_Store",
@@ -16,13 +16,20 @@
       "compact_transcript": "/0/transcript.jsonl",
       "content_hash": "/0/content_hash.txt",
       "prompt": "/0/prompt.txt"
+    },
+    {
+      "metadata": "/1/metadata.json",
+      "transcript": "/1/full.jsonl",
+      "compact_transcript": "/1/transcript.jsonl",
+      "content_hash": "/1/content_hash.txt",
+      "prompt": "/1/prompt.txt"
     }
   ],
   "token_usage": {
-    "input_tokens": 36,
-    "cache_creation_tokens": 2274,
-    "cache_read_tokens": 1170757,
-    "output_tokens": 593,
-    "api_call_count": 2
+    "input_tokens": 42,
+    "cache_creation_tokens": 5513,
+    "cache_read_tokens": 1531134,
+    "output_tokens": 2264,
+    "api_call_count": 5
   }
 }
