@@ -3,16 +3,22 @@
   "checkpoint_id": "01M4KX1HG7PE3MDN82N61GXMEA",
   "strategy": "manual-commit",
   "branch": "louis/engine-improvements",
-  "checkpoints_count": 1,
+  "checkpoints_count": 13,
   "files_touched": [
     "AGENTS.md",
+    "buyer/analyst.py",
     "buyer/cli.py",
+    "buyer/lessons.jsonl",
     "buyer/llm.py",
+    "buyer/memory.py",
     "buyer/policy.py",
+    "buyer/rehearsal.py",
+    "buyer/research.py",
     "buyer/runner.py",
     "buyer/writer.py",
     "docs/design.md",
-    "docs/learnings.md"
+    "docs/learnings.md",
+    "tests/test_team.py"
   ],
   "sessions": [
     {
@@ -21,13 +27,20 @@
       "compact_transcript": "/0/transcript.jsonl",
       "content_hash": "/0/content_hash.txt",
       "prompt": "/0/prompt.txt"
+    },
+    {
+      "metadata": "/1/metadata.json",
+      "transcript": "/1/full.jsonl",
+      "compact_transcript": "/1/transcript.jsonl",
+      "content_hash": "/1/content_hash.txt",
+      "prompt": "/1/prompt.txt"
     }
   ],
   "token_usage": {
-    "input_tokens": 2,
-    "cache_creation_tokens": 15058,
-    "cache_read_tokens": 44273,
-    "output_tokens": 521,
-    "api_call_count": 1
+    "input_tokens": 190,
+    "cache_creation_tokens": 303506,
+    "cache_read_tokens": 19165866,
+    "output_tokens": 115570,
+    "api_call_count": 83
   }
 }

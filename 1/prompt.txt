@@ -1,0 +1,51 @@
+i would like to pivot the current design and implement a subagent architecture: multiple specialized agents analyze the firm on grouped similar data (look input table from /docs) before starting the bidding. a main resarcher should then consolidate the findings and create a bidding strategy, (which can also be fine tuned by two demo bidding agents, one buyer one supplier who big against each other) learnings from this process are then fed into the main bidder who start the real bidding and analyses the persona of the buyer in the messages and refines strategy. afterwards learnings are collected and ideally fed into the process again. test the implementation locally and in the sandbox without using live arena runs which decrease our budget. evaluate with this if this new implemented subagent approach improves over our current state in the leaderboard (you can get it with the api key)
+
+---
+
+what is the time that this takes to run one case, is it under the deadline?
+
+---
+
+what is the mean improvement?
+
+---
+
+can you run 10 runs on the live dashboard to benchmark the real performance of this system
+
+---
+
+<task-notification>
+<task-id>bupircy5x</task-id>
+<tool-use-id>toolu_01CjK5vEArN5vVze1fpKau2V</tool-use-id>
+<output-file>/private/tmp/claude-502/-Users-louis-Documents-TUM-semester-6-Sonstiges-EHL-Final/e9c38c45-bc01-4801-ba0f-64a313f8e42d/tasks/bupircy5x.output</output-file>
+<status>completed</status>
+<summary>Background command "Play the 10 hosted practice cases once with the team (costs 10 sessions)" completed (exit code 0)</summary>
+</task-notification>
+
+---
+
+ok so no improvement?
+
+---
+
+summarize what cases better and worse
+
+---
+
+no in comparison to our best run
+
+---
+
+visualize the agent architecture
+
+---
+
+can we improve our current approach with the learnings that we got from the runs?  we need to break current best score without overfitting to the cases
+
+---
+
+what should i do in git, i can do it for you?
+
+---
+
+i dont want to change gh, i can only do actions in pycharm
