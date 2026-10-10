@@ -1,0 +1,14 @@
+Continue working
+
+---
+
+I neeed to understand what we even need to do. how do we utilize this? What endpoints do we use, that tacto provides? How do we score high on the leaderboard? Do we have downloaded examples, or do we need to use our trys to get a live example? What does our agent need to be able to do?
+
+---
+
+What do we need to input? We need a good c_best estimate, we need a good company scoring, product quality, covered or not covered, demand forecast, relationship,
+  lieferzeit, market data eu, interest. What else? We want to know what information we need, what we have, and what for what we need to build models
+
+---
+
+Maybe document a bit, in a gitignored folder. add to your agent instructions, so we can have a growing list of things we learned
