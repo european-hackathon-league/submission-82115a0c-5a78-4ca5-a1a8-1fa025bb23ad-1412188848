@@ -1,0 +1,27 @@
+{
+  "cli_version": "0.10.2",
+  "checkpoint_id": "01M4KX4VH6PRMJ2QN1RDPF760H",
+  "strategy": "manual-commit",
+  "branch": "louis/engine-improvements",
+  "checkpoints_count": 10,
+  "files_touched": [
+    "buyer/claims.py",
+    "tests/test_buyer.py"
+  ],
+  "sessions": [
+    {
+      "metadata": "/0/metadata.json",
+      "transcript": "/0/full.jsonl",
+      "compact_transcript": "/0/transcript.jsonl",
+      "content_hash": "/0/content_hash.txt",
+      "prompt": "/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 104,
+    "cache_creation_tokens": 179700,
+    "cache_read_tokens": 6753210,
+    "output_tokens": 53416,
+    "api_call_count": 43
+  }
+}
