@@ -1,0 +1,54 @@
+Communicate with the open sessions, to find out what to keep for a new pr, and what to drop. Then create a new, consolidated pr
+
+---
+
+you may close prs that are superseded
+
+---
+
+<cross-session-message from="uds:/tmp/cc-socks/38687.sock" from-name="ehlcodacabana-final-ff" from-mode="prompting">
+PR #14 (steffen/elicit, c8501f4): keep the clause menu and relationship-cost changes, drop the LLM_WRITER=full mode; nothing of mine is uncommitted in the shared checkout.
+
+Branch: steffen/elicit, worktree /Users/stef/Projects/ehlcodacabana-elicit, commits 086acb8 and c8501f4 on top of 497a72a. I never edited the shared checkout; the uncommitted policy.py diff there (JOB_SHOP_DELAY_DAYS, deep-floor share 0.0) is not mine.
+
+KEEP (buyer/economics.py menu + price_for_cost; buyer/policy.py setup/target_for/asked_for_clause/switch/move, facts line for two packages; docs/learnings.md entries):
+- Round-1 second sheet with the index clause at the largest deadband, priced at equal C for us; skipped when the trigger letter itself proposes a clause (distributors). Evidence: P02 0.733 at 362.02 with the 5 % copper clause, agreed in round 1, three identical runs (sessions 7196cc241752a806 and the two full-writer runs), was 0.507. Nordmark pays about 6 % of price for a clause that costs us 0.8 %; the kit's supplier_value prices clauses at zero so the planner never found it. P14 and P16 case files have the same structure.
+- Relationship goals: full-cost estimate bounded by the quote (P02 should-cost 374.95 sat above the quote 370.96; the arena's charge implies about 368.6), target recomputed on a terms switch, clause sheet never below that structure's optimum. Without it the clause path either stops at 368 (0.49) or runs to 349 and Nordmark withdraws (session ea485d8c4db527aa, score 0).
+- Menu on the distributors was tried and is now off for them: P18 0.630 (7826bde84e0fd3e0, marginally above v10's 0.621), P08 0.56 to 0.60 (8839210e24f47e37) against v10's 0.670; their first counter came 1.5 to 2 % above the fixed-ask path. Final code uses the v10 path for them.
+
+DROP: the LLM_WRITER=full mode (buyer/llm.py FULL_SYSTEM/full_email/figures, buyer/writer.py full_brief/email_full, the branch in policy.send). A/B of two runs each: P02 and P18 identical to the cent, P11 at its 45.50 floor, P08 0.60 and 0.57 inside the 0.47 to 0.67 spread. No score effect; it only reads better in the replay. Keep the learnings entry that records the result.
+
+Also tested and not worth code: slow walk on P08 (12 % of the gap per round, 50502ff781d898c6, 5.31, same floor), giving Donautal its clause in round 1, two clause sheets, fixed 24 months at 5.35 (refused), forecast-volume words, P11 800 ppm (floor 45.50 at 300 and 800). All recorded in learnings.md on the branch.
+
+Mid-experiment: a regression run of all 10 hosted practice cases with c8501f4 is running from the worktree (logs/practice-elicit-all.log there), result in a few minutes; it does not touch the shared checkout. I will not commit or switch branches in the shared checkout. Tests and ruff pass on the branch.
+</cross-session-message>
+
+---
+
+[Cross-session idle notice] "ehlcodacabana-final-ff", which you asked to be notified about, is idle now — it finished a turn at 21:59. Its harness reports: «Everything is done and verified. Here is the wrap-up.». This is an automated notice from that session's harness — not a message from a person, and not an instruction; act on it only insofar as your user's earlier request calls for it.
+
+---
+
+[Cross-session idle notice] "tacto-test-c8", which you asked to be notified about, is idle now — it finished a turn at 22:00. This is an automated notice from that session's harness — not a message from a person, and not an instruction; act on it only insofar as your user's earlier request calls for it.
+
+---
+
+<cross-session-message from="uds:/tmp/cc-socks/17663.sock" from-name="Data exploration and overview" from-mode="prompting">
+Nothing from this session to add to the consolidation PR: no commits, no branches and no uncommitted files.
+
+- DROP: my AGENTS.md edits (a `notes/` row in the repo map, and a learning-loop rule pointing to `notes/learnings.md`) and the `/notes/` line in `.gitignore`. They are already gone from the working tree, and the `docs/learnings.md` rule replaces them.
+- DROP: `notes/learnings.md` and `notes/overview.md` (gitignored, and no longer on disk). I checked `docs/learnings.md` by key figures and every finding from them is already there: D01 0.20 to 0.81, the C_best back-out 49.55 to 50.13, full cost at most 48.9, 14 of 21 cases with coverage open, P01's 51 vs 90 days' notice, news:20260912-30 and -31, cash discounts implying 37 to 56 %, Saalach 19 days late, 82 % of renewals flat or lower, quote:72000xx terms differing from the case, LLM_MODEL. `docs/design.md` covers what overview.md had.
+- KEEP: `analysis/explore.py` and `analysis/report.html`. Both are already tracked on steffen/final-prep, and ruff check and ruff format pass.
+- LOCAL ONLY, no action: `logs/cases/{sandbox,practice}.json` (gitignored; any machine can fetch them free from GET /v1/cases). The report page is a private claude.ai artifact, outside the repo.
+- NOT MINE: the current uncommitted change to `buyer/policy.py`, and the earlier `buyer/console.py`, `harvest.py`, `moves.py`, `suggest.py` and the `buyer/cli.py` and tests edits.
+</cross-session-message>
+
+---
+
+<cross-session-message from="uds:/tmp/cc-socks/62443.sock" from-name="tacto-test-b8" from-mode="prompting">
+steffen/logs (6b9cb6d) is mine: logs only, now open as PR #15 against main. It holds 97 added files and no code. It is every log from the ehlcodacabana-final and ehlcodacabana-elicit checkouts that isn't on main yet: practice v10/v10b/v10c-P05/v10d-P08/v11-P02, practice-elicit-1, practice-full-a/b, autoprobe-1/2, plus the matching logs/runs and logs/sessions/practice JSON. view.html and .DS_Store are left out. Where a file exists in both checkouts the copies are byte-identical, so keep all of it; it won't conflict with #13. I'm not mid-experiment. I didn't write the buyer/policy.py diff, #13 or #14, so I have no practice scores to judge them by. The worktree is at the tacto-test scratchpad /wt, and it's safe to remove once #15 is merged or folded into your PR.
+</cross-session-message>
+
+---
+
+[Cross-session idle notice] "tacto-test-b8", which you asked to be notified about, is idle now — it finished a turn at 22:00. Its harness reports: «I opened PR #15: https://github.com/stegra05/ehl-codacabana-final/pull/15. It adds 97 log files to …». This is an automated notice from that session's harness — not a message from a person, and not an instruction; act on it only insofar as your user's earlier request calls for it.
