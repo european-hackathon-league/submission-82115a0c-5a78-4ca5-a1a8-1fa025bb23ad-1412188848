@@ -1,0 +1,85 @@
+{
+  "cli_version": "0.11.4",
+  "checkpoint_id": "01M4KP3ZYSFCWVDQ54DRVTTV3S",
+  "session_id": "31f64cbe-b95d-4649-8176-195af5b7326f",
+  "strategy": "manual-commit",
+  "created_at": "2026-10-10T19:54:59.779256Z",
+  "branch": "steffen/final-prep",
+  "checkpoints_count": 2,
+  "files_touched": [
+    "docs/design.md",
+    "docs/learnings.md"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-fable-5-1",
+  "turn_id": "7225babf6c22",
+  "checkpoint_transcript_start": 1226,
+  "transcript_lines_at_start": 1226,
+  "compact_transcript_start": 102,
+  "token_usage": {
+    "input_tokens": 98,
+    "cache_creation_tokens": 10111,
+    "cache_read_tokens": 2092406,
+    "output_tokens": 6084,
+    "api_call_count": 4
+  },
+  "skill_events_version": 1,
+  "skill_events": [
+    {
+      "id": "prompt-skill-claude-code-goal-2026-10-10T18:37:21.681721Z",
+      "event_type": "prompt_invocation",
+      "skill": {
+        "name": "goal"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "prompt_slash_command",
+        "confidence": "explicit"
+      },
+      "turn_id": "f88a1ffe3acb",
+      "timestamp": "2026-10-10T18:37:21.681721Z",
+      "native": {
+        "command": "/goal"
+      },
+      "collapse": {
+        "target": "user_message",
+        "label": "/goal",
+        "default_collapsed": true
+      }
+    }
+  ],
+  "session_metrics": {
+    "turn_count": 2
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-10-10T19:54:59.726296Z",
+    "agent_lines": 5,
+    "agent_removed": 6,
+    "human_added": 4278,
+    "human_modified": 1,
+    "human_removed": 0,
+    "total_committed": 4284,
+    "total_lines_changed": 4291,
+    "agent_percentage": 0.2563505010487066,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 136,
+      "user_lines_removed": 1,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 22,
+        "buyer/claims.py": 11,
+        "buyer/economics.py": 45,
+        "buyer/policy.py": 43,
+        "docs/learnings.md": 15
+      },
+      "user_removed_per_file": {
+        "buyer/economics.py": 1
+      }
+    }
+  ]
+}
