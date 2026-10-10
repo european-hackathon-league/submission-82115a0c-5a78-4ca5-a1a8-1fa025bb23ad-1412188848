@@ -1,0 +1,1 @@
+prune secrets from chat histories and entire.io histories
