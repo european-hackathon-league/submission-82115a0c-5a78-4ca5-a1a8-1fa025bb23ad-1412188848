@@ -53,6 +53,37 @@
         "label": "Skill: dataviz",
         "default_collapsed": true
       }
+    },
+    {
+      "id": "claude-skill-toolu_01JTpSYBXiR2NnnAcjsaTRtN",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "artifact-design"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "468c71995606",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 214,
+        "end": 215,
+        "entry_ids": [
+          "42bb4f2a-1d62-4a50-8bcd-e91502ddcdd3"
+        ],
+        "tool_use_id": "toolu_01JTpSYBXiR2NnnAcjsaTRtN"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_01JTpSYBXiR2NnnAcjsaTRtN"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: artifact-design",
+        "default_collapsed": true
+      }
     }
   ],
   "initial_attribution": {
