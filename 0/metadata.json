@@ -1,0 +1,107 @@
+{
+  "cli_version": "0.11.4",
+  "checkpoint_id": "01M4JYK99A63WGHRBEJY7Z1ANZ",
+  "session_id": "a8bceea6-012d-4df9-8747-aaacb91a4fe1",
+  "strategy": "manual-commit",
+  "created_at": "2026-10-10T13:03:52.287072Z",
+  "branch": "julian/negotiation-agent",
+  "checkpoints_count": 6,
+  "save_step_count": 1,
+  "files_touched": [
+    ".env.example",
+    ".gitignore",
+    "AGENTS.md",
+    "README.md"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-fable-5-1",
+  "turn_id": "967a3e8490ca",
+  "compact_transcript_start": 0,
+  "token_usage": {
+    "input_tokens": 882,
+    "cache_creation_tokens": 316017,
+    "cache_read_tokens": 8450128,
+    "output_tokens": 155451,
+    "api_call_count": 36
+  },
+  "skill_events_version": 1,
+  "skill_events": [
+    {
+      "id": "claude-skill-toolu_01UTB27jr9o4Xzz15AdGex48",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "claude-api"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "967a3e8490ca",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 189,
+        "end": 190,
+        "entry_ids": [
+          "a8051256-f718-4a09-8670-176aeee40a50"
+        ],
+        "tool_use_id": "toolu_01UTB27jr9o4Xzz15AdGex48"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_01UTB27jr9o4Xzz15AdGex48"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: claude-api",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "claude-skill-toolu_01AVSrsKvppo6qFsnP6cGeJc",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "anthropic-skills:built-in-browser"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "967a3e8490ca",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 547,
+        "end": 548,
+        "entry_ids": [
+          "3bde12cc-b33d-4764-a1a8-4dc3f8952afd"
+        ],
+        "tool_use_id": "toolu_01AVSrsKvppo6qFsnP6cGeJc"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_01AVSrsKvppo6qFsnP6cGeJc"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: anthropic-skills:built-in-browser",
+        "default_collapsed": true
+      }
+    }
+  ],
+  "session_metrics": {
+    "turn_count": 6
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-10-10T13:03:52.229739Z",
+    "agent_lines": 155,
+    "agent_removed": 7,
+    "human_added": 10518,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 10673,
+    "total_lines_changed": 10680,
+    "agent_percentage": 1.5168539325842696,
+    "metric_version": 2
+  }
+}
