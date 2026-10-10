@@ -1,0 +1,15 @@
+{
+  "tool_use_id": "toolu_01AMJsJByuC98b4yw5PoMxEz",
+  "agent_id": "a7e02036559f991df",
+  "subagent_type": "fork",
+  "task_description": "Docs cleanup in cleanup worktree",
+  "token_usage": {
+    "input_tokens": 60,
+    "cache_creation_tokens": 75714,
+    "cache_read_tokens": 3290093,
+    "output_tokens": 2411,
+    "api_call_count": 29
+  },
+  "started_at": "2026-10-10T22:28:53.436848+02:00",
+  "completed_at": "2026-10-10T22:34:16.621834+02:00"
+}
