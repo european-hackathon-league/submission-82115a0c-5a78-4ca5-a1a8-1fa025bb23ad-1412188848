@@ -1,0 +1,15 @@
+{
+  "tool_use_id": "toolu_013sidqHPFQxe5fUVFRn41EY",
+  "agent_id": "a0a75a2f4d4259337",
+  "subagent_type": "general-purpose",
+  "task_description": "Read supplier docs for levers",
+  "token_usage": {
+    "input_tokens": 16,
+    "cache_creation_tokens": 57905,
+    "cache_read_tokens": 259464,
+    "output_tokens": 72,
+    "api_call_count": 8
+  },
+  "started_at": "2026-10-10T22:09:53.190626+02:00",
+  "completed_at": "2026-10-10T22:10:53.491163+02:00"
+}
