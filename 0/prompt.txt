@@ -1,0 +1,17 @@
+Push of the current branch "louis/engine-improvements" was rejected. Remote changes need to be merged before pushing.
+
+---
+
+fetch successful
+
+---
+
+for the engine: do you really think including it in our architecture benefits and is not overfitting, analyze this first
+
+---
+
+ok and based on the learnings from our run, what can we change to improve our approach? and why are runs exactly the same as our current best? shouldnt the agent architecture change something?
+
+---
+
+the demo bidding should teach us something about exploiting weaknesses of our supplier and finding good answers to arguments of the other side and our own side. and give the live analyst a job about negotiating tactics and mood of the persona. can we move the negotiating strategy of 1 into the lead researcher
