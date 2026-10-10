@@ -163,3 +163,7 @@ Goal set: New system needs to be a general improvement versus the old system. No
 ---
 
 State now honestly, whether you have a reached a wall and are microoptimizing; or whether there are substantial improvements to be made.
+
+---
+
+park only your work in a branch, then discard and checkout main
