@@ -1,0 +1,1 @@
+Research general problems with the current approach, what radical new directions we need to take on, what we could do in general. You may use up to 10 haiku subagents at once to assist you

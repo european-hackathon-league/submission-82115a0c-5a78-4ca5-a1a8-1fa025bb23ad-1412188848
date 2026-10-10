@@ -3,7 +3,7 @@
   "checkpoint_id": "01M4KH4NS95NJ8XXZ204EHMCMP",
   "strategy": "manual-commit",
   "branch": "steffen/price-engine",
-  "checkpoints_count": 4,
+  "checkpoints_count": 5,
   "files_touched": [
     "docs/learnings.md"
   ],
@@ -21,14 +21,21 @@
       "compact_transcript": "/1/transcript.jsonl",
       "content_hash": "/1/content_hash.txt",
       "prompt": ""
+    },
+    {
+      "metadata": "/2/metadata.json",
+      "transcript": "/2/full.jsonl",
+      "compact_transcript": "/2/transcript.jsonl",
+      "content_hash": "/2/content_hash.txt",
+      "prompt": "/2/prompt.txt"
     }
   ],
   "token_usage": {
-    "input_tokens": 38,
-    "cache_creation_tokens": 31898,
-    "cache_read_tokens": 4983465,
-    "output_tokens": 9373,
-    "api_call_count": 16,
+    "input_tokens": 200,
+    "cache_creation_tokens": 82873,
+    "cache_read_tokens": 5237374,
+    "output_tokens": 11846,
+    "api_call_count": 22,
     "subagent_tokens": {
       "input_tokens": 170,
       "cache_creation_tokens": 358426,
