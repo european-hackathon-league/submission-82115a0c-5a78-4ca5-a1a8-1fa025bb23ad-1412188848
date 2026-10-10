@@ -3,7 +3,7 @@
   "checkpoint_id": "01M4KP5X088T9HR6R56JVZW97Y",
   "strategy": "manual-commit",
   "branch": "steffen/elicit",
-  "checkpoints_count": 3,
+  "checkpoints_count": 4,
   "files_touched": [
     "buyer/policy.py",
     "docs/learnings.md"
@@ -22,13 +22,20 @@
       "compact_transcript": "/1/transcript.jsonl",
       "content_hash": "/1/content_hash.txt",
       "prompt": ""
+    },
+    {
+      "metadata": "/2/metadata.json",
+      "transcript": "/2/full.jsonl",
+      "compact_transcript": "/2/transcript.jsonl",
+      "content_hash": "/2/content_hash.txt",
+      "prompt": ""
     }
   ],
   "token_usage": {
-    "input_tokens": 226,
-    "cache_creation_tokens": 31869,
-    "cache_read_tokens": 2769174,
-    "output_tokens": 16075,
-    "api_call_count": 8
+    "input_tokens": 292,
+    "cache_creation_tokens": 72271,
+    "cache_read_tokens": 3274270,
+    "output_tokens": 30065,
+    "api_call_count": 11
   }
 }
