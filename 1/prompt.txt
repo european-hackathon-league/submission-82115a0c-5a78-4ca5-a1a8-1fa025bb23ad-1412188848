@@ -1,0 +1,17 @@
+Review this PR in a new Worktree: gh pr checkout 18
+
+---
+
+Assess whether this pr improves the score without overfitting. Can you run practice runs to see if the improvement is real?
+
+---
+
+pull the newest version, check the logs whetehr the changes improved something, scored went up to 0.79 and zuffo did some runs. Or pull them via api
+
+---
+
+now they are in git
+
+---
+
+what about these reported results? [Image #1]
