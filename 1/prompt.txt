@@ -19,3 +19,7 @@ delete lines from design.md. We want to leave as much freedom as possible. Clean
 ---
 
 Create a pr only with these reductions etc. that enable creativity when done.
+
+---
+
+do not push the other works.
