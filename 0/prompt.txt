@@ -1,0 +1,1 @@
+Communicate with the open sessions, to find out what to keep for a new pr, and what to drop. Then create a new, consolidated pr
