@@ -8,6 +8,7 @@ these copies when it changes.
 - `api.md`: the HTTP API, message format, claim checks, the cost function C
 - `submission.md`: what to hand in on ehl.gg by Sunday 12:00, and the pitch
 
+Ours: `learnings.md`, what we learned about the arena, its suppliers and the data package.
 ## Team notes
 
 - [Local analysis process](local-analysis-process.md): company evidence, supplier
