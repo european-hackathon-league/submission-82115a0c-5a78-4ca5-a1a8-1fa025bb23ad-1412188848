@@ -1,0 +1,44 @@
+{
+  "cli_version": "0.11.4",
+  "checkpoint_id": "01M4K83K8FW9R4FVN6ZCHDGAXP",
+  "session_id": "46589300-a562-4721-b966-82b56257348d",
+  "strategy": "manual-commit",
+  "created_at": "2026-10-10T15:50:05.841939Z",
+  "branch": "julian/how-it-works-doc",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "docs/how-it-works.md"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-fable-5-1",
+  "turn_id": "af1dc6439171",
+  "compact_transcript_start": 0,
+  "token_usage": {
+    "input_tokens": 130,
+    "cache_creation_tokens": 34500,
+    "cache_read_tokens": 339357,
+    "output_tokens": 6628,
+    "api_call_count": 5
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-10-10T15:50:05.832363Z",
+    "agent_lines": 167,
+    "agent_removed": 0,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 167,
+    "total_lines_changed": 167,
+    "agent_percentage": 100,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0
+    }
+  ]
+}
