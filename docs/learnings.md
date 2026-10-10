@@ -53,21 +53,21 @@ Hypotheses. Correct or delete entries that turn out wrong.
 
 ## Where we stand
 
-Best score per hosted case, Saturday 22:30: mean 0.727 (team rank about 4 of 21 on the practice
-board). Record = best of all teams on `/v1/live` at about 20:30 (house agent in brackets).
+Best score per hosted case, Saturday 22:00: mean 0.776 (team rank 4 of 24 on the practice board;
+first place 0.838). Record = best of all teams on `/v1/live` at about 20:30 (house agent in brackets).
 
 | Case | Goal | Ours | Session | Deal | Record (house) | What limits us |
 |---|---|---|---|---|---|---|
 | P01 | stabilise | 0.974 | `4cc256188e1cd8af` | 130.18, Nov, 14 d | 0.995 (0.966) | agreed at our sheet in round 4 |
-| P02 | stabilise | 0.507 | `3ad1d67f26aac5e7` | 371.88, 90 d | 0.847 (0.740) | Nordmark settles near 371.9 after round 1 |
+| P02 | stabilise | 0.735 | `practice-v11-P02.log` | 361.67, 90 d, CU clause 5 % deadband | 0.847 (0.740) | agreed at once at our relationship optimum; the charge (not the price) caps the score |
 | P03 | stabilise | 0.923 | `c7fcc4c7ae8f4e9a` | 432.15, 90 d, 24 m | 0.936 (0.925) | price frozen |
 | P04 | routine | 0.860 | `81e9fd209c3fd659` | 4.94, 90 d, 36 m | 0.874 (0.860) | C_best needs 4.93 |
 | P05 | leverage RFQ | 0.828 | `917135b8156fb8a3` | Dralveck 27.86, 14 d, 35 d | 0.824 (0.555) | ours is the record |
 | P07 | routine | 0.751 | `cacd5028b34d30dc` | 5.35, 45 d, 36 m | 0.779 (0.782) | final offer in round 3 |
-| P08 | leverage | 0.549 | `7701b00c7a9a8b3e` | 5.35, AS-14404 clause | 0.732 (0.752) | final offer in round 2 to 4 |
+| P08 | leverage | 0.670 | `practice-v10.log` | 5.26, AS-14404 clause | 0.916 (0.752) | first counter 5.40 with the falling-driver claims; final offer in round 3 to 4 |
 | P10 | secure_supply | 0.679 | `7c4f1855794797d6` | 31.50, 56 d, 36 m | 0.702 (0.686) | fully booked, final early |
 | P11 | quality_first | 0.710 | `3ac9ee6cf673cf7c` | 45.50, 300 ppm | 0.807 (0.314) | wants faster payment, which is fixed |
-| P18 | leverage | 0.485 | `6a39d7511267e0ff` | 5.30, AS-14404 clause | 0.677 (0.386) | final offer in round 2 to 3 |
+| P18 | leverage | 0.621 | `practice-v10.log` | 5.10, AS-14404 clause | 0.677 (0.386) | first counter 5.30 with the falling-driver claims, path 5.20, 5.10 repeats exactly |
 
 ## Score and terms
 
@@ -113,6 +113,27 @@ board). Record = best of all teams on `/v1/live` at about 20:30 (house agent in 
 
 ## Supplier behaviour
 
+- 2026-10-10 `arena` **Nordmark picks the clause sheet, and the distributors price a deadband at
+  our cost.** Offered a fixed sheet and a clause sheet in one message, Nordmark picked the clause
+  (`91d2b5ad7501ce55`); from an anchor of 345 with the clause it countered 351.05, 349.85, 349.35,
+  349.05 and withdrew (`ea485d8c4db527aa`, score 0). Donautal prices the AS-14404 deadband at our
+  cost (5.45 at 0 % against 5.57 at 5 %); a 5 % clause sheet sent to the distributors got a first
+  counter 1.5 to 2 % above the 0 % clause they add themselves (P08 5.60 to 5.64, P18 5.50 against
+  5.40 and 5.30, six runs on `steffen/elicit`). → Trade a clause only where its value to the
+  supplier beats our cost (`economics.clause_trade`); let a distributor's own clause stand.
+- 2026-10-10 `arena` **How many counters a supplier gives depends on our path; how much it moves
+  per counter is its own.** 115 practice threads: Nordmark 1 to 6 counters, Donautal 2 to 6,
+  Werdenfels 2 to 6, Kalwisz 4 to 6. Its move as a share of our previous move (median, rounds 3
+  on): Brandlhuber 0.62, Donautal 0.44, Werdenfels 0.45, Leitner 0.36, Nordmark 0.15, Kalwisz
+  0.0, Selvbrunn and Wälzlager 0.0. A slow walk on P08 (12 % of the gap per round,
+  `50502ff781d898c6`) got five counters and 5.31; the standard walk four and 5.33 to 5.39:
+  the schedule shrinks to the same floor. Giving Donautal its clause in round 1, two clause
+  sheets, a fixed 24-month ask at 5.35 (refused: "cannot maintain a fixed price for a 24-month
+  term") and a forecast-volume statement all ended 5.36 to 5.39. Kalwisz's floor is 45.50 at 300
+  and at 800 ppm (`1f36a83c6e80e818`, `a74b89173c96c23c`). → An opponent model of the arena's
+  rules is identifiable from two replies, but on these suppliers it would reproduce the caps we
+  already feed; the gap on P08, P18 and P11 is not in the path.
+
 - 2026-10-10 `arena` **The round-1 counter is a cap plus claims, not a reaction to the anchor.**
   D01 (quote 52.90), 30 sandbox runs: anchors 44.0 to 48.5 without claims all got 51.30 (-3.0 %);
   a should-cost claim alone 51.00, the order prices alone 50.30, notice or scorecard alone 51.30,
@@ -155,7 +176,26 @@ board). Record = best of all teams on `/v1/live` at about 20:30 (house agent in 
   review our pricing" (D02 `7e0d70250aee7673`), "please provide the binding volume figures so we
   can properly account for this" (D01 `101f032a24f98a58`). → `buyer/reader.py` reads the asks;
   the e-mail states the binding volume with the figure, answers a fixed payment term plainly and
-  attaches the forecast rows when proof is asked (v8, effect to be measured).
+  attaches the forecast rows when proof is asked. v8 (P02 `8d3a77a03fe49730`, P11
+  `7a472625d72c63b2`): the words register ("We have factored your confirmed volume increase into
+  our calculation", "thanks for sending the forecast") but the prices did not move beyond the
+  usual spread (P02 372.45 against 371.88 to 373.88 before, P11 45.50 as always). Kalwisz read
+  our payment history: "You say you pay reliably, but we often see late payments".
+- 2026-10-10 `arena` **A shallower anchor gets the distributors' same first counter and buys a
+  round.** Anchor 0.85 of the quote (P18 5.18, P08 5.19, log `practice-v8b-anchor085.log`):
+  first counters 5.50 and 5.45, identical to anchor 0.787 in 13 runs; P08 then gave four counters
+  (5.45, 5.40, 5.36, 5.34, our best P08 at 0.571) instead of three, P18 three (5.50, 5.40, final)
+  as before. Kept at 0.78: the job shops of the RFQs drop 12 to 15 % on their first counter (P05
+  Dralveck 36.00 to 30.50, D02 J1 17.10 to 14.99) and an anchor above that counter is agreed at
+  once. → In a single-supplier leverage case the anchor depth between 0.78 and 0.85 does not
+  matter for the price; nothing is gained below 0.78.
+- 2026-10-10 `arena` **The reply signals tell the size of the shop, and the small shops concede
+  most.** `reply_delay_days` 4 to 5 and no validity: the founder-run job shops (Dralveck,
+  Fuchsreiter, DEMO-J1, Kalwisz, Hrvelec), which conceded up to 22 % of their quote; 2 to 3
+  days: family firms (Werdenfels, Brandlhuber, Ravensteiner, DEMO-F1), 1.6 to 13 %; 1 to 2 days:
+  groups (Nordmark, Donautal, Selvbrunn, Wälzlager), 0 to 12 %. 125 sessions. → For a supplier
+  the package does not know, a slow reply without a validity is the job-shop pattern (deep first
+  concession, hold low); the `DEEP` rule reads the same thing from its first counter.
 
 - 2026-10-10 `arena` **Pushing past a final offer ends the case.** D01: one more sheet 0.1 below
   its final 49.70 and the foundry walked away, no deal (sandbox `212404b7930bfc68`, "we have
@@ -272,6 +312,79 @@ board). Record = best of all teams on `/v1/live` at about 20:30 (house agent in 
 
 ## Agent experiments
 
+- 2026-10-10 `rules` **The Live Final per-case path ran on the sandbox** (Saturday 22:30): D01
+  through `RemoteTable(client, case)` with a wave deadline of 480 s, as `play_waves` calls it:
+  deal 49.70, score 0.988, 113 s. The wave loop itself is covered by `tests/test_waves.py`.
+- 2026-10-10 `arena` **P02's ceiling with the clause is the relationship charge.** The arena's C at
+  358.00 (2,251,140) and at 361.67 (2,248,062) with the same 5 % copper clause and 90 days give
+  Nordmark's cost of money as about 0 and its full cost as about 371.7; the C-minimising price is
+  then 361, where we are (0.735). Another payment term does not help: the charge does not move
+  with it and the payment term costs us 0.67 % per 30 days. The record 0.847 has a structure we
+  cannot derive from these two points.
+- 2026-10-10 `arena` **Run tally against the stop rule** (my 24 practice runs since v8): the last
+  mean gain above 0.01 came with v10 (runs 14 and 15: P08 +0.12, P18 +0.14); runs 16 to 24 since
+  then brought P02 +0.065 (v11) and nothing else, +0.0065 on the mean. Team mean 0.776, rank 3.
+  Run 25 (P18 with the forecast claim in round 1 instead of the order prices,
+  `practice-v13-P18-forecast.log`): the same path 5.30, 5.20, 5.10, 0.621; Werdenfels' counters do
+  not depend on which verified claim stands next to the falling index. That makes ten practice
+  runs in a row under 0.01 on the mean: the stop rule of the night holds.
+- 2026-10-10 `arena` **After a job shop's deep first drop, hold the anchor (v12).** Dralveck
+  (P05, 36.00 to 30.0 or 30.5 on its first counter) agreed at our second sheet in every run: at a
+  held anchor 27.86 (0.828) and 27.92 (0.822, `practice-v12b-P05.log`), at 28.03 to 28.07 after an
+  8 % step toward it (0.806, 0.81). A 3 % deeper anchor (26.79) got a lower first counter (30.0),
+  a second concession to 28.0 after the hold ("you only moved a few cents, but I want to keep our
+  machines running"), then a walk-away at a cumulative gap of 39 % (`practice-v12-P05.log`,
+  0.746 on Fuchsreiter). D02 with the hold: 0.735, as before. → `DEEP` share 0.0: the minimum move
+  only; the anchor stays at 0.78, the patience budget binds job shops too.
+- 2026-10-10 `arena` **A supplier values an index clause on its rising driver far above what it
+  costs us (v11).** Nordmark agreed at once to a CU-NOTATION clause with a 5 % deadband at
+  358.00 and 90 days, 4.3 % below its fixed price of 374.06 at 90 days (teammate's run
+  `P02_491006cd111217a3`, score 0.670); the clause costs us only the 4 % index risk on the copper
+  share (0.8 % of spend), the case's path (+5 %) sits inside the deadband. The deal scored 0.67
+  and not more because 358 is below the relationship optimum: the charge was 59.7k, which puts
+  Nordmark's full cost near 368 (our should-cost says 374.95, above its own quote). Model that
+  fits every clause we have seen: the supplier values a clause at `material_share x (its driver's
+  12-month change - deadband)` of the price (Nordmark 8.5 %, Donautal and Werdenfels 0.4 to 2.7 %,
+  which is exactly our cost of their clause, so no trade there); we pay `material_share x (path -
+  deadband) + the index risk`. → `economics.clause_trade`: offer the clause with the largest net
+  gain (ties: the widest deadband) from round 1 at the price worth the same to the supplier as
+  our anchor, in relationship goals no lower than the relationship optimum (P02: 361.71 with the
+  full cost capped at the quote less the sustainable margin). P14 (copper, stabilise) gains 21 %
+  of the price by this rule, P16 (PPI-C241, leverage) 2 %.
+- 2026-10-10 `arena` **A model-written e-mail (whole prose, figures and IDs guarded) changed no
+  outcome.** Tried on branch `steffen/elicit` (commit `086acb8`, not merged): the model wrote
+  the body from the greeting to the proposal, every figure had to be one code put on the table,
+  IDs and leaks were blocked, 2.2 to 2.8 s per call. Two runs each: P02 0.733 and P18 0.630 to the
+  cent as with the template, P11 45.50 again (floor), P08 0.60 and 0.57 against 0.56 with the
+  template (spread of identical runs 0.47 to 0.67). → Wording moves these bots within their
+  noise band only; the sheets, the claims and their caps decide. Not worth the code.
+- 2026-10-10 `arena` **Round-1 clause menu (branch `steffen/elicit`, not merged).** The planned
+  sheet plus the clause with the largest deadband at equal C for us, priced at the relationship
+  optimum, skipped where the supplier's letter proposes a clause. P02 0.733 at 362.02, agreed in
+  round 1 (`7196cc241752a806`, three identical runs), the same as `clause_trade` (0.735); sent to
+  the distributors as well, P18 0.630 at 5.20 (`7826bde84e0fd3e0`) and P08 0.56 at 5.46
+  (`8839210e24f47e37`), both inside their spread. → `clause_trade` kept: it reaches the same P02
+  deal and excludes the distributors by value, without a rule on the letter.
+- 2026-10-10 `arena` **A falling cost driver over the best window moves the first counter (v10).**
+  The claim bank only knew 12-month index changes, where the distributors' main driver AS-14404
+  rose 5.9 %; over the window the arena checks (any two months up to 12 apart, ending within the
+  last 12) it fell 5.5 % from 2026-06 to 2026-09 and PPI-C2431 2.3 % from June. Cited in round 1
+  (`practice-v10.log`): Donautal's first counter 5.40 (5.43 to 5.60 in 14 runs before), then
+  5.33, 5.28, 5.26 final, score 0.670; Werdenfels 5.30 (5.50 to 5.60 before), then 5.20, 5.10,
+  final 5.10, score 0.621 (was 0.485). Both gave four counters instead of three. A second run
+  repeated Werdenfels' path exactly (5.30, 5.20, 5.10) and Donautal's within noise (5.40, 5.35,
+  5.31, 5.30); with the hedge letter moved out of round 1 Donautal opened at 5.52 (one run), so
+  the letter stays first. Electricity (PPI-D351) fell 6.1 % from 2025-11 for P01, P05 and P11:
+  Kalwisz still stopped at 45.50, P05 closed at 0.81 (best 0.828). → Every driver's largest fall
+  within 12 months, ranked above order prices and forecasts.
+- 2026-10-10 `arena` **v8 and v9 on practice (12 runs: P08 x5, P18 x6, P02, P11).** No
+  mechanism moved the distributors' first counter (5.43 to 5.60 at anchors 0.787 and 0.85, with or
+  without claims) or Kalwisz's 45.50; a 40 % share of the gap in round 2 got the same 0.10
+  concession as 30 % (P18, two runs). The spread between identical runs decides the best score:
+  P08 ended 5.26 (0.648, our new best, `practice-v9.log`), 5.34, 5.42, 5.57 with the same code.
+  P02 words registered but the price stayed 372 to 373. → The round-1 counter and the two or
+  three capped concessions after it are the supplier's; what we control is to feed every cap
+  (25 to 35 % of the gap, never under 1 %, never over 50 %) and never to lose a round.
 - 2026-10-10 `rules` **v8 (robustness and the reader), no quota spent.** All 21 case files
   (the nine never hosted included) and both sandbox cases play through `arena-sim` with the
   agent and no guarded error (`tests/test_cases.py`). New: every move and setup is guarded (a
@@ -385,8 +498,9 @@ shows evidence.
 
 ## Hypotheses (untested in the arena)
 
-- Records on P02 (0.85) and P08 (0.73) come from a lower round-1 counter, not from later rounds:
-  our later rounds converge to the same price whatever the gap (P02 371.9 in v4 to v6).
+- The P08 record (0.92) comes from a lower round-1 counter, not from later rounds: our later
+  rounds converge to the same price whatever the gap. (P02's gap is the clause, see Agent
+  experiments.)
 - Three sheets of equal C for us in round 1 reveal what each lever is worth to the supplier
   (payment, lead time, ppm) and could lift P10 and P11.
 - The close response of a final case carries `c_best`; calibrating anchors between waves from it
