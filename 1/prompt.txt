@@ -41,3 +41,7 @@ Consolidating open work into one PR against main: which of your changes should g
 <status>completed</status>
 <summary>Background command "Wait for the regression run to finish and print its summary" completed (exit code 0)</summary>
 </task-notification>
+
+---
+
+Clean up your work. Prune
