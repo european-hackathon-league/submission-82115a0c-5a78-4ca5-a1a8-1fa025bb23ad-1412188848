@@ -1,0 +1,102 @@
+{
+  "cli_version": "0.11.4",
+  "checkpoint_id": "01M4K9F87Q0D5EYTYSQVP4W4BW",
+  "session_id": "13f297ff-c331-4577-bae1-31473ae352e9",
+  "strategy": "manual-commit",
+  "created_at": "2026-10-10T16:13:53.936237Z",
+  "branch": "steffen/consolidate-docs",
+  "checkpoints_count": 1,
+  "save_step_count": 1,
+  "files_touched": [
+    "AGENTS.md"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-opus-5-5",
+  "turn_id": "e2a010dbf594",
+  "compact_transcript_start": 0,
+  "token_usage": {
+    "input_tokens": 4,
+    "cache_creation_tokens": 19618,
+    "cache_read_tokens": 53459,
+    "output_tokens": 831,
+    "api_call_count": 2
+  },
+  "skill_events_version": 1,
+  "skill_events": [
+    {
+      "id": "claude-skill-toolu_01E67ieUS4xwoZXDUEHkU8p7",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "code-review"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "e2a010dbf594",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 31,
+        "end": 32,
+        "entry_ids": [
+          "e96eef02-3d77-40c1-b88a-c4101b674fa3"
+        ],
+        "tool_use_id": "toolu_01E67ieUS4xwoZXDUEHkU8p7"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_01E67ieUS4xwoZXDUEHkU8p7"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: code-review",
+        "default_collapsed": true
+      }
+    }
+  ],
+  "session_metrics": {
+    "turn_count": 1
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-10-10T16:13:53.931403Z",
+    "agent_lines": 0,
+    "agent_removed": 0,
+    "human_added": 168,
+    "human_modified": 94,
+    "human_removed": 0,
+    "total_committed": 168,
+    "total_lines_changed": 11564,
+    "agent_percentage": 0,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 609,
+      "user_lines_removed": 2,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 14,
+        ".gitignore": 3,
+        "AGENTS.md": 9,
+        "analysis/explore.py": 281,
+        "analysis/report.html": 302
+      },
+      "user_removed_per_file": {
+        "AGENTS.md": 2
+      }
+    },
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 14,
+      "user_lines_removed": 0,
+      "agent_lines_added": 595,
+      "agent_lines_removed": 2,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 14
+      }
+    }
+  ]
+}
