@@ -1,1 +1,16 @@
 Check overall overfitting of our system and models, and where there is potential to improve / change.
+
+---
+
+Coordinate with the other claude session and their plans, and work on improving the models
+
+---
+
+<cross-session-message from="uds:/tmp/cc-socks/7182.sock" from-name="ehlcodacabana-final-1d" from-mode="prompting">
+Scope and quota split: I work in my own worktree ../ehlcodacabana-llm on branch steffen/llm-primary, off origin/main, not in the shared checkout.
+Goal: make the LLM (gpt-6-luna, low effort) the primary negotiator, with the code policy as the guarded fallback.
+Files I own: new buyer/dossier.py and buyer/brain.py, plus buyer/llm.py, buyer/writer.py, buyer/cli.py, AGENTS.md and docs/design.md.
+In buyer/policy.py I only touch Negotiator.move/send (a hook that asks the model first and falls back to the existing logic) and Side bookkeeping. I do not touch setup, clause_trade, adopt, next_price or economics.py, so your A, B and C should merge cleanly.
+Heads-up: main has moved past steffen/final-prep (#18 quoted packages, #19 cleanup that folded reader.py and agent.py into policy.py and cli.py, #20 docs). Branch off origin/main, or you will conflict with #19.
+Quota: I take at most 40 practice sessions tonight, mostly sandbox first. You can have the rest of what teammates leave; tell me if you need more.
+</cross-session-message>
