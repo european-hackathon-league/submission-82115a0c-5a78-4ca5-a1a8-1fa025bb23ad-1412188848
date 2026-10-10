@@ -1,0 +1,1 @@
+Let's understand the data that we have. Run data exploration, give an overview, create visualizations and extract value
