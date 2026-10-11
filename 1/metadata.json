@@ -1,0 +1,100 @@
+{
+  "cli_version": "0.11.4",
+  "checkpoint_id": "01M4MR9FJA4QMKFYWJQ5MT9CQ1",
+  "session_id": "7a65ebf2-7118-4491-88e7-872e128a70ac",
+  "strategy": "manual-commit",
+  "created_at": "2026-10-11T05:52:11.606463Z",
+  "branch": "steffen/hidden-case-fixes",
+  "checkpoints_count": 6,
+  "files_touched": [
+    "buyer/claims.py",
+    "buyer/runner.py",
+    "tests/test_claims.py",
+    "tests/test_waves.py"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-fable-5-1",
+  "turn_id": "f79341a74ceb",
+  "compact_transcript_start": 0,
+  "token_usage": {
+    "input_tokens": 1248,
+    "cache_creation_tokens": 298526,
+    "cache_read_tokens": 11678704,
+    "output_tokens": 91466,
+    "api_call_count": 49
+  },
+  "skill_events_version": 1,
+  "skill_events": [
+    {
+      "id": "prompt-skill-claude-code-goal-2026-10-11T05:04:05.885838Z",
+      "event_type": "prompt_invocation",
+      "skill": {
+        "name": "goal"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "prompt_slash_command",
+        "confidence": "explicit"
+      },
+      "turn_id": "cdb2a6a6c71b",
+      "timestamp": "2026-10-11T05:04:05.885838Z",
+      "native": {
+        "command": "/goal"
+      },
+      "collapse": {
+        "target": "user_message",
+        "label": "/goal",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "prompt-skill-claude-code-goal-2026-10-11T05:40:03.504695Z",
+      "event_type": "prompt_invocation",
+      "skill": {
+        "name": "goal"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "prompt_slash_command",
+        "confidence": "explicit"
+      },
+      "turn_id": "ca830c0c5923",
+      "timestamp": "2026-10-11T05:40:03.504695Z",
+      "native": {
+        "command": "/goal"
+      },
+      "collapse": {
+        "target": "user_message",
+        "label": "/goal",
+        "default_collapsed": true
+      }
+    }
+  ],
+  "session_metrics": {
+    "turn_count": 6
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-10-11T05:52:11.576851Z",
+    "agent_lines": 0,
+    "agent_removed": 12,
+    "human_added": 122,
+    "human_modified": 52,
+    "human_removed": 0,
+    "total_committed": 160,
+    "total_lines_changed": 186,
+    "agent_percentage": 6.451612903225806,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 25,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 25
+      }
+    }
+  ]
+}

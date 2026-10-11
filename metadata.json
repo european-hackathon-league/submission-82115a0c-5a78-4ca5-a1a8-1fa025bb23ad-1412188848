@@ -3,7 +3,7 @@
   "checkpoint_id": "01M4MR9FJA4QMKFYWJQ5MT9CQ1",
   "strategy": "manual-commit",
   "branch": "steffen/hidden-case-fixes",
-  "checkpoints_count": 3,
+  "checkpoints_count": 9,
   "files_touched": [
     "buyer/claims.py",
     "buyer/runner.py",
@@ -17,13 +17,20 @@
       "compact_transcript": "/0/transcript.jsonl",
       "content_hash": "/0/content_hash.txt",
       "prompt": ""
+    },
+    {
+      "metadata": "/1/metadata.json",
+      "transcript": "/1/full.jsonl",
+      "compact_transcript": "/1/transcript.jsonl",
+      "content_hash": "/1/content_hash.txt",
+      "prompt": ""
     }
   ],
   "token_usage": {
-    "input_tokens": 1102,
-    "cache_creation_tokens": 175570,
-    "cache_read_tokens": 5522152,
-    "output_tokens": 48966,
-    "api_call_count": 40
+    "input_tokens": 2350,
+    "cache_creation_tokens": 474096,
+    "cache_read_tokens": 17200856,
+    "output_tokens": 140432,
+    "api_call_count": 89
   }
 }
