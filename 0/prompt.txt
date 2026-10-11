@@ -151,3 +151,31 @@ ou seja, nao deu certo com essa questão da memória, correto? Pegue agora a nov
 ---
 
 ou seja, como corrigir o problema de memória aqui?
+
+---
+
+assim que acabar a correção, pode rodar 10 runs only! E depois display aqui! Somente 10 e display aqui logo após!
+
+---
+
+assim que acabar a correção, pode rodar 10 runs only! E depois display aqui! Somente 10 e display aqui logo após!
+
+---
+
+caso os resultados sejam piores (a média), pode alterar e rodar mais 10 vezes como teste! Para tentar melhorar ele!
+
+---
+
+quantos faltam?
+
+---
+
+rode em paralelo! Mostre os dados desse último lote também!
+
+---
+
+como estamos?
+
+---
+
+mande os 10 para eu analisar (com o que aconteceu em casa - também pensando no que podemos ter feito errado!)
