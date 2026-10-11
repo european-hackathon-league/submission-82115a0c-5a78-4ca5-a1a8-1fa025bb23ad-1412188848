@@ -1,0 +1,213 @@
+Bom dia Chat! Temos que usar o gpt-6-luna para o modelo!
+
+---
+
+Pegue os logs de ontem! Vamos analisar as últimas 10 runs e entender o modelO!
+
+---
+
+Pegue os logs de ontem! Vamos analisar as últimas 10 runs e entender o modelO!
+
+---
+
+qual é a atual approach? a do louis, correto?
+
+---
+
+qual é a atual approach? a do louis, correto?
+
+---
+
+a média de ontem foi maior, nao? 0.7772 se eu nao me engano! Dos úlitmos 10 apenas! 316-326
+
+---
+
+a média de ontem foi maior, nao? 0.7772 se eu nao me engano! Dos úlitmos 10 apenas! 316-326
+
+---
+
+317-326! Display aqui os erros!
+
+---
+
+317-326! Display aqui os erros!
+
+---
+
+ou seja, qual o principal problema que você vê aqui? Vamos run por run! Sem deixá-lo overfitted, como lidar?
+
+---
+
+ou seja, qual o principal problema que você vê aqui? Vamos run por run! Sem deixá-lo overfitted, como lidar?
+
+---
+
+poderiamos criar algum contex interno nele, nao?
+
+---
+
+poderiamos criar algum contex interno nele, nao?
+
+---
+
+além disso, faça um santity check nele!
+
+---
+
+nao implemente nada aind! Faça só o sanity check no modelo!
+
+---
+
+nao implemente nada aind! Faça só o sanity check no modelo!
+
+---
+
+ele deve evitar ser overfitting!
+
+---
+
+procure
+
+---
+
+procure
+
+---
+
+voce acha que é mais memória faltando ou outra coisa?
+
+---
+
+voce acha que é mais memória faltando ou outra coisa?
+
+---
+
+ou seja, ele consegue se lembrar desses fatos, correto? O problema é que ele não diferencia?
+
+---
+
+e como poderíamos fazer essa parte?
+
+---
+
+e como poderíamos fazer essa parte?
+
+---
+
+e porque isso nao seria overfitting?
+
+---
+
+entao qual o plano de ação?
+
+---
+
+ou seja isso ia melhorar a questão da memória?
+
+---
+
+ou seja isso ia melhorar a questão da memória?
+
+---
+
+perfeito! Pode prosseguir com as mudanças no código do main! (ele é o do louis, correto?)
+
+---
+
+perfeito! Pode prosseguir com as mudanças no código do main! (ele é o do louis, correto?)
+
+---
+
+e nao temos nada de hard coded ou overfitting, certo?
+
+---
+
+pode rodar em 10 runs no practical run! Vamos testar o novo código! Keep track das 10 - assim que acabarem mande a tabela de score aqui!
+
+---
+
+como algumas pessoas estão rodando juntos, lembre-se de keep track das nossas seções!
+
+---
+
+e agora? As próximas esão rodando?
+
+---
+
+os 10 acabaram?
+
+---
+
+os 10 acabaram?
+
+---
+
+mande aqui!
+
+---
+
+ou seja, nao deu certo com essa questão da memória, correto? Pegue agora a nova versão do github!
+
+---
+
+ou seja, como corrigir o problema de memória aqui?
+
+---
+
+assim que acabar a correção, pode rodar 10 runs only! E depois display aqui! Somente 10 e display aqui logo após!
+
+---
+
+assim que acabar a correção, pode rodar 10 runs only! E depois display aqui! Somente 10 e display aqui logo após!
+
+---
+
+caso os resultados sejam piores (a média), pode alterar e rodar mais 10 vezes como teste! Para tentar melhorar ele!
+
+---
+
+quantos faltam?
+
+---
+
+rode em paralelo! Mostre os dados desse último lote também!
+
+---
+
+como estamos?
+
+---
+
+mande os 10 para eu analisar (com o que aconteceu em casa - também pensando no que podemos ter feito errado!)
+
+---
+
+pegue o atual codigo do github! Pegue e analise ele! Se conseguir levar mudanças e melhorias nessas questões, rode mais 10 vezes e veja o resultado!
+
+---
+
+pegue o atual codigo do github! Pegue e analise ele! Se conseguir levar mudanças e melhorias nessas questões, rode mais 10 vezes e veja o resultado!
+
+---
+
+pode pushar esse código com os resultados!
+
+---
+
+pode pushar esse código com os resultados!
+
+---
+
+mande os resultados também!
+
+---
+
+agora analise cada run! Quais foram possíveis problemas aqui?
+
+---
+
+sem deixar overfitted! Lembre-se!
+
+---
+
+sem deixar overfitted! Lembre-se!
