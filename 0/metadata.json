@@ -1,0 +1,53 @@
+{
+  "cli_version": "0.11.4",
+  "checkpoint_id": "01M4MR9FJA4QMKFYWJQ5MT9CQ1",
+  "session_id": "1ac6c71c-9bf5-4a2d-b8d4-48797b99f84c",
+  "strategy": "manual-commit",
+  "created_at": "2026-10-11T05:52:10.230737Z",
+  "branch": "steffen/hidden-case-fixes",
+  "checkpoints_count": 3,
+  "files_touched": [
+    "buyer/claims.py",
+    "buyer/runner.py",
+    "tests/test_claims.py",
+    "tests/test_waves.py"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-fable-5-1",
+  "turn_id": "56c43dcba3b6",
+  "compact_transcript_start": 0,
+  "token_usage": {
+    "input_tokens": 1102,
+    "cache_creation_tokens": 175570,
+    "cache_read_tokens": 5522152,
+    "output_tokens": 48966,
+    "api_call_count": 40
+  },
+  "session_metrics": {
+    "turn_count": 3
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-10-11T05:52:10.209805Z",
+    "agent_lines": 0,
+    "agent_removed": 12,
+    "human_added": 122,
+    "human_modified": 52,
+    "human_removed": 0,
+    "total_committed": 160,
+    "total_lines_changed": 186,
+    "agent_percentage": 6.451612903225806,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 25,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".claude/settings.local.json": 25
+      }
+    }
+  ]
+}
