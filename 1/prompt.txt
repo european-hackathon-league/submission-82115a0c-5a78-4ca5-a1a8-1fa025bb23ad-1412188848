@@ -1,0 +1,53 @@
+vamos construir juntos (me mande aqui) uma estrutura do projeto atual - depois vamos discutir o que é imporante e como melhorar!
+
+---
+
+pelo visto as respostas nao possuem uma inteligencia por trás! Elas são meio basicas!
+
+---
+
+reverse engineer the API and see if I can access the logs of the processes! You also have my APIs keys!
+
+---
+
+faça isso com um subagent
+
+---
+
+faça isso com um subagent
+
+---
+
+aqui na conversa, me explique em inglês como o atual processo funciona! Detalhadamente! E que possíveis erros/limitações você encontrou (baseado nos resultados) que podem ter nos levado ao nao score 1
+
+---
+
+but the analysis should be on the current agent (running rn!)
+
+---
+
+but the analysis should be on the current agent (running rn!)
+
+---
+
+a teammate's computer! But you can see the results, how it was prompted (gitHub) and try to assume what is still important to take a look at!
+
+---
+
+a teammate's computer! But you can see the results, how it was prompted (gitHub) and try to assume what is still important to take a look at!
+
+---
+
+wie macht er die Einschätzungen?
+
+---
+
+quais papers da internet posso pegar para colocar aqui? No caso da parte de negociações (para melhorar essa skill do nosso agente!)
+
+---
+
+quais papers da internet posso pegar para colocar aqui? No caso da parte de negociações (para melhorar essa skill do nosso agente!)
+
+---
+
+crie uma ótima skill de negociação que também vá se adaptando com o tempo! Ou seja, ele também considera o passado, etc - mantendo sempre assim!
