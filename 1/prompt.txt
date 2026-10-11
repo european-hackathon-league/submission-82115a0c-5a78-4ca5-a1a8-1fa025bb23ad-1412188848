@@ -1,0 +1,66 @@
+# AGENTS.md instructions for /Users/joaofmzuffo/ehl-codacabana-final
+
+<INSTRUCTIONS>
+# AGENTS.md
+
+Rules for AI coding agents working in this repo. Humans follow them too.
+
+- Hackathon repo (EHL Grand Finale, Munich, 10 to 11 Oct 2026). Submission deadline
+  Sunday 12:00, pitch is six minutes including questions. Working demo first, polish second.
+- Do not preserve backward compatibility. Remove obsolete paths instead of adding
+  compatibility layers, fallbacks, or migrations.
+- Choose the simplest implementation that fully meets the current requirement.
+  No speculative abstractions, configuration, or indirection.
+- Grow the system in layers: smallest version that works end to end, then add on
+  top of a product that already works. Never trade a working product for
+  unfinished complexity.
+- Keep components modular and concerns separated.
+- Prefer established libraries already in the project before adding new ones or
+  writing your own implementation.
+- Never commit secrets. API keys go into `.env` (gitignored).
+- All changes go through a pull request against `main`, reviewed by one teammate.
+  Branch naming: `<firstname>/<topic>`.
+- No em-dashes in prose or user-facing copy.
+- Be terse: after an action, state what changed in three lines or fewer.
+
+## Challenge
+
+For ongoing work and restart context, read `docs/SESSION_HANDOFF.md` first.
+
+For negotiation planning, supplier strategy or retrospective improvements, read
+`skills/adaptive-negotiation/SKILL.md`. Load relevant persistent memory before
+planning and record new permitted evidence afterward, following its memory protocol.
+This applies to repository assistants; the deployed buyer needs explicit runtime hooks.
+
+Tacto Negotiation Arena: build an autonomous procurement buyer for Hollerau
+Pumpenwerke that uses company data to negotiate with supplier bots by email.
+Official brief: `docs/challenge.md`. Official kit and data: `vendor/tacto/`.
+
+- Optimise total contract cost using `arena_kit.total_cost`, respecting must-haves;
+  unit price alone does not determine the score. Only accepted term sheets bind.
+- Tests first use the local simulator (0 sessions) or sandbox D01/D02 (0 sessions).
+  One hosted practice case costs 1 session; all 10 cost 10. Quota: 200 per rolling
+  24 hours. The Live Final costs 0 practice sessions, with one attempt per case.
+- Final: five waves capped at 8 minutes each, up to 10 concurrent sessions,
+  60 seconds per buyer message, default 10 messages per supplier.
+- No human intervention or reading live feeds, leaderboards, screens or results
+  during the final. Run the submitted commit and start polling before Sunday 12:00.
+- Refresh the data on Sunday at 08:00; hidden cases can use that release.
+- Tacto's top-10 pitch is 5 minutes plus 2 minutes of questions; the general
+  six-minute pitch guidance above applies separately to the EHL pitch.
+
+</INSTRUCTIONS>
+
+---
+
+<environment_context>
+  <cwd>/Users/joaofmzuffo/ehl-codacabana-final</cwd>
+  <shell>zsh</shell>
+  <current_date>2026-10-11</current_date>
+  <timezone>Europe/Berlin</timezone>
+  <filesystem><workspace_roots><root>/Users/joaofmzuffo/ehl-codacabana-final</root></workspace_roots><permission_profile type="managed"><file_system type="restricted"><entry access="read"><special>:root</special></entry><entry access="write"><path>/Users/joaofmzuffo/ehl-codacabana-final</path></entry><entry access="write"><special>:slash_tmp</special></entry><entry access="write"><special>:tmpdir</special></entry><entry access="read"><path>/Users/joaofmzuffo/ehl-codacabana-final/.git</path></entry><entry access="read"><path>/Users/joaofmzuffo/ehl-codacabana-final/.agents</path></entry><entry access="read"><path>/Users/joaofmzuffo/ehl-codacabana-final/.codex</path></entry><entry access="read"><path>/Users/joaofmzuffo/ehl-codacabana-final/.aws</path></entry></file_system></permission_profile></filesystem>
+</environment_context>
+
+---
+
+give me a summary of the project and take the evolution of results (starting with ReGex and moving to agentic, etc) through the logs. Also the architecture! We need the summary to create the presentation/pitch!
