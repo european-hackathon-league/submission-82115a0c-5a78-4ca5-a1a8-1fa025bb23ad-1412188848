@@ -1,0 +1,48 @@
+{
+  "cli_version": "0.10.2",
+  "checkpoint_id": "01M4MTY9C99TAFCPWR3DHWV2GF",
+  "session_id": "10842ffa-f0a7-4757-90cd-225b135344df",
+  "strategy": "manual-commit",
+  "created_at": "2026-10-11T06:38:28.943808Z",
+  "branch": "louis/arena-prompt-priors",
+  "checkpoints_count": 19,
+  "files_touched": [
+    "buyer/analyst.py",
+    "buyer/economics.py",
+    "buyer/lessons.jsonl",
+    "buyer/policy.py",
+    "docs/design.md",
+    "docs/learnings.md",
+    "tests/test_break_even.py",
+    "tests/test_relationship_target.py",
+    "tests/test_team.py"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-opus-5-5",
+  "turn_id": "bb8906c11bc6",
+  "checkpoint_transcript_start": 457,
+  "transcript_lines_at_start": 457,
+  "compact_transcript_start": 90,
+  "token_usage": {
+    "input_tokens": 12,
+    "cache_creation_tokens": 9880,
+    "cache_read_tokens": 1449220,
+    "output_tokens": 2657,
+    "api_call_count": 6
+  },
+  "session_metrics": {
+    "turn_count": 19
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-10-11T06:38:28.89091Z",
+    "agent_lines": 206,
+    "agent_removed": 24,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 206,
+    "total_lines_changed": 230,
+    "agent_percentage": 100,
+    "metric_version": 2
+  }
+}
