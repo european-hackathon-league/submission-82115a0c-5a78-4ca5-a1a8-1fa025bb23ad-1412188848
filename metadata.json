@@ -1,0 +1,27 @@
+{
+  "cli_version": "0.11.4",
+  "checkpoint_id": "01M4MVGP9QFCV6QQ9FSCX1PY8Z",
+  "strategy": "manual-commit",
+  "branch": "steffen/release-claims",
+  "checkpoints_count": 2,
+  "files_touched": [
+    "buyer/claims.py",
+    "tests/test_team.py"
+  ],
+  "sessions": [
+    {
+      "metadata": "/0/metadata.json",
+      "transcript": "/0/full.jsonl",
+      "compact_transcript": "/0/transcript.jsonl",
+      "content_hash": "/0/content_hash.txt",
+      "prompt": ""
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 54,
+    "cache_creation_tokens": 61767,
+    "cache_read_tokens": 1481982,
+    "output_tokens": 14048,
+    "api_call_count": 27
+  }
+}
