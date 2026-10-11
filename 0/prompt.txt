@@ -1,0 +1,25 @@
+0.999? that's crazy good. Explain.
+
+---
+
+isnt there a new cse that arrived at 9am?
+
+---
+
+<task-notification>
+<summary>Goal check-in: background work still running</summary>
+</task-notification>
+
+---
+
+some changes, make sure that all local is up to date
+
+---
+
+<task-notification>
+<summary>Goal check-in: background work still running</summary>
+</task-notification>
+
+---
+
+confidence that our runs will go through no problem?
