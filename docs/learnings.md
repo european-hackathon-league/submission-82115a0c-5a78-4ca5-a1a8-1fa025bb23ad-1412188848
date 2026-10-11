@@ -1,5 +1,29 @@
 # Learnings
 
+## Louis subagent-team practice batch (2026-10-11)
+
+One hosted Practice session was run for each available case. All ten reached a deal; the mean
+score was 0.7772. The dashboard reference at the time was 0.802, but this single batch is not a
+paired comparison and does not establish a reliable gain or regression.
+
+| Case | Score |
+|---|---:|
+| P01 | 0.9085 |
+| P02 | 0.7347 |
+| P03 | 0.9276 |
+| P04 | 0.8604 |
+| P05 | 0.8218 |
+| P07 | 0.7313 |
+| P08 | 0.7036 |
+| P10 | 0.6785 |
+| P11 | 0.7099 |
+| P18 | 0.6957 |
+
+The run recorded 127 subagent attempts, 121 successes and 6 timeouts; the writer had 37 attempts,
+29 successes, 7 rejected paragraphs, 2 deadline skips and 1 timeout. Fallbacks kept sessions
+running. These counts describe model reliability, not its effect on scores. The batch used the
+`louis/subagent-team` base with the candidate safeguards; it is diagnostic evidence only.
+
 Observations from the arena and the data package, with evidence. An entry says what happened and
 how often, not what to do; what the agent does is in `design.md`. Most entries rest on one to
 three sessions with one supplier. The sandbox bots are deterministic per sheet path; the practice

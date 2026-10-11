@@ -37,7 +37,8 @@ Final is five waves of hidden cases, 8 minutes each, new suppliers and case type
   `docs/architecture.md` the module map; `docs/challenge.md`, `api.md`, `submission.md` Tacto's
   brief, API and hand-in.
 - `buyer/` the agent (`policy.py` decides, `runner.py` plays a case, `economics.py` C and terms,
-  `claims.py`, `personas.py`, `writer.py`, `llm.py`); `tests/` against `arena-sim`;
+  `claims.py`, `personas.py`, `writer.py`, `llm.py`); `research.py`, `rehearsal.py`, `analyst.py`
+  and `memory.py` provide the subagent team; `tests/` run against `arena-sim`;
   `logs/sessions/`, `logs/runs/` traces; `exports/` Saturday's sessions as CSV; `analysis/`.
 - `arena_kit` (in `.venv`) has the cost function, quote parsing, data lookup and runners; the MCP
   server `arena-data` gives SQL over the data package.

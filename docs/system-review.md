@@ -36,4 +36,3 @@ These are review targets, not implemented changes. A risk is marked **observed**
 - `llm.paragraph` rejects digits, data IDs and a list of leak phrases, then returns to the template. It cannot prove that every remaining sentence is supported by the brief. The model's paragraph has no authority over numeric decisions.
 - `runner.play_case` catches setup and move exceptions per supplier. A non-409 send error still escapes to the case-level retry; this is an intentional containment boundary to review against transient network failures.
 - `policy.safe` keeps partial data from stopping setup, but a fallback can change economics. Its exception is logged; the review should correlate those events with scores.
-

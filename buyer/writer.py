@@ -102,8 +102,9 @@ OWNERS = {
 }
 
 
-def brief(case, prof, last_body, facts, tone, question_allowed):
-    """What the model needs for the paragraph: who the supplier is, what it wrote, what we may say."""
+def brief(case, prof, last_body, facts, tone, question_allowed, insight=()):
+    """What the model needs for the paragraph: who the supplier is, what it wrote, what we may say.
+    `insight`: the research team's and the live analyst's notes on this supplier."""
     who = OWNERS.get(prof.get("owner_type"), "a supplier")
     if prof.get("country") and prof.get("country") != "DE":
         who += f" based in {prof['country']}"
@@ -111,6 +112,7 @@ def brief(case, prof, last_body, facts, tone, question_allowed):
     out = [
         f"CASE: {case.get('title')} (we are the buyer; goal: {case['buyer'].get('category_goal')})",
         f"SUPPLIER: {who}." + (f" From our notes: {'; '.join(traits)}." if traits else ""),
+        *[f"OUR TEAM'S READING OF THEM (background, never quote it): {note}" for note in insight if note],
         f"ITS LAST E-MAIL:\n{(last_body or '')[:1800]}",
         "WHAT WE CAN SAY:",
         *[f"- {f}" for f in facts],
@@ -198,3 +200,19 @@ def reply_subject(events, case):
 def keepalive_message(events):
     subject = latest(events).get("subject") or "Re: your offer"
     return {"subject": subject[:300], "body": keepalive(), "term_sheets": []}
+
+
+def fallback_email(statements=()):
+    """A deterministic reply for policy/model failures that does not repeat a term sheet."""
+    lines = [
+        "Dear Sir or Madam,",
+        "",
+        "Thank you for explaining your position. We have noted your points and are reviewing the full commercial",
+        "terms.",
+        *statements,
+        "We will follow up with a considered proposal.",
+        "",
+        "Kind regards,",
+        "Hollerau Pumpenwerke, Purchasing",
+    ]
+    return "\n".join(lines)
