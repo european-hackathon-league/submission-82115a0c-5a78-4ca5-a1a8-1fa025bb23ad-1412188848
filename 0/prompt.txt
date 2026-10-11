@@ -211,3 +211,7 @@ sem deixar overfitted! Lembre-se!
 ---
 
 sem deixar overfitted! Lembre-se!
+
+---
+
+estamos com merge conflicts! Resolva eles antes
