@@ -7,3 +7,7 @@ Ensure generalization, no overfitting
 ---
 
 Any improvement? If no, then stop.
+
+---
+
+anything reasonable to merge? Regarding stability or safety, that it works at 12:00. You have the freedom.
