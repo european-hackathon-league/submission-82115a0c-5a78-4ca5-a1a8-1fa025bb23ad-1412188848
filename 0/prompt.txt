@@ -1,0 +1,91 @@
+visualize the subagent architecture
+
+---
+
+where is the most leverage to improve our overall hackathon score wihtout overfitting,
+
+---
+
+and what about the price engine, visualize it
+
+---
+
+what does this mean: The disasters are term-structure errors
+
+---
+
+how would you fix that, no code
+
+---
+
+is this still part of main?
+
+---
+
+with changes from current main, how would you fix the issue
+
+---
+
+where can we harden our architecture that this is better handeled / prompt engineeering
+
+---
+
+do 3 (ARENA) block
+
+---
+
+should other prompts be changed too?
+
+---
+
+do all three
+
+---
+
+can you run at max 10 testruns against live dashbard
+
+---
+
+<task-notification>
+<task-id>btsqwcqtt</task-id>
+<tool-use-id>toolu_014VjsxfSFAMvVkdjFt6ejoT</tool-use-id>
+<output-file>/private/tmp/claude-502/-Users-louis-Documents-TUM-semester-6-Sonstiges-EHL-Final/10842ffa-f0a7-4757-90cd-225b135344df/tasks/btsqwcqtt.output</output-file>
+<status>completed</status>
+<summary>Background command "Play one hosted practice session per case (10 sessions) with the branch's changes" completed (exit code 0)</summary>
+</task-notification>
+
+---
+
+can you get the new data from the db first, its 8 now
+
+---
+
+widen the patterns and fix the research letters
+
+---
+
+run the practice rerun now
+
+---
+
+<task-notification>
+<task-id>bfavisvsu</task-id>
+<tool-use-id>REDACTED</tool-use-id>
+<output-file>/private/tmp/claude-502/-Users-louis-Documents-TUM-semester-6-Sonstiges-EHL-Final/10842ffa-f0a7-4757-90cd-225b135344df/tasks/bfavisvsu.output</output-file>
+<status>completed</status>
+<summary>Background command "Play one hosted practice session per case (10 sessions) with the branch's changes" completed (exit code 0)</summary>
+</task-notification>
+
+---
+
+rerun the rest
+
+---
+
+<task-notification>
+<task-id>bjd9urd61</task-id>
+<tool-use-id>REDACTED</tool-use-id>
+<output-file>/private/tmp/claude-502/-Users-louis-Documents-TUM-semester-6-Sonstiges-EHL-Final/10842ffa-f0a7-4757-90cd-225b135344df/tasks/bjd9urd61.output</output-file>
+<status>completed</status>
+<summary>Background command "Play the five remaining practice cases and tabulate scores against the previous batch" completed (exit code 0)</summary>
+</task-notification>
