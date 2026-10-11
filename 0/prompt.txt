@@ -1,0 +1,386 @@
+https://arena.tacto.ai/live Challenge Tacto. API Key: jnLkxKxa715AmUXIJn87xJnKEwMkhlPx, https://arena.tacto.ai/faq⚔️ NEGOTIATION ARENA: 2-HOUR CHECK-IN ⚔️ @here
+
+Our supplier bots have been under fire all early-afternoon. Here is where the battle stands:
+
+📊 The numbers
+• 22 teams in the arena, 13 active in the last hour
+• 84 negotiations played, 60 deals closed
+• 9 of 10 practice suppliers are still unbeaten by Tacto’s house agent
+
+🔥 The record race: y/agent vs Boo 👾
+y/agent holds 6 of 10 supplier records. On P01 they squeezed the family foundry to 0.93. The house agent sits at 0.97, so they are close.
+Boo 👾 went on a run of five records in five minutes. Then they did what nobody else has done yet: they beat the house agent, on P11 (Kalwisz), 0.41 vs 0.31. 🏆
+
+😬 So close: y/agent’s 0.386 on P18 is a hair short of the house agent’s 0.3861. One better e-mail beats it.
+
+🎯 Wide open: P02 (Nordmark, copper) has a best of 0.29 against a house score of 0.74. P08 (Donautal, alloy surcharge) has 0.23 against 0.75. Plenty of room left.
+
+⚠️ Reminder: practice is for learning, not the ranking. On Sunday at 12:00 your agent meets suppliers nobody has seen. The teams that learn how suppliers think will win, not the teams that memorise P01.
+
+🛠️ Speed up your loop: read your replays, score term sheets offline with total_cost, and use the sandbox for free (D01/D02 don’t count against your 200 a day). Everything is here: arena.tacto.ai/faq
+
+Still deciding which track to pick? Watch one live negotiation on arena.tacto.ai/faq and get your key at arena.tacto.ai/apply. 🚀
+
+---
+
+temos dados de testes também!
+
+---
+
+Command	Sessions used
+negotiator play case:D01 or case:D02 (sandbox)	0
+negotiator play case:P01 (one hosted practice case)	1
+negotiator run --set practice (all 10 hosted cases)	10
+Local arena-sim	0
+The Live Final	0 IMPORTANTE PARA OS TESTES TAMBÉM!
+
+---
+
+esses são os comandos para onde?
+
+---
+
+okok, mantenha eles na capeça! Vamos instalar o kit oficial!
+
+---
+
+ou seja, assim que tivermos nosso agente, podemos já ir testando ele, correto?
+
+---
+
+perfeito! Agora vamos entender o desafio inteiro! Me de um resumo e tudo o que é importante ter em mente!
+
+---
+
+em alemao! Me de em alemao o resumo!
+
+---
+
+agora pegue os dados e abra-os para mim por favor! Vamos entender como funcionam isso!
+
+---
+
+me fale como eles funcionam, etc!
+
+---
+
+how can we structuring and what different parts do we have?
+
+---
+
+lets build a pipeline of steps we should take! The negotiation comes in the last step only, right? We have to analyze everything before
+
+---
+
+we also have Lieferzeit, Zinsen, Vertragszeit, usw!
+
+---
+
+okok! Lets build the structure of the different phases, usw! C_best is based on what? What are the company policies for, usw?
+
+---
+
+but we also have to analyze the company behind it all!
+
+---
+
+o que sao as company policies? Recebemos novas toda vez?
+
+---
+
+e como sabemos quantos produtos precisamos, etc?
+
+---
+
+como está nosso github? O que já temos?
+
+---
+
+o que ja temos no github?
+
+---
+
+já que temos um local data, podemos criar um dummy e ir testando diferentes approaches, nao?
+
+---
+
+ou seja, conseguimos testar com o simulador local, correto?
+
+---
+
+vamos então! No que deveríamos começar focando?
+
+---
+
+já temos algum agente?
+
+---
+
+se precisamos de Credits tenho 70 dólares já na minha conta, podemos ligar a isso!
+
+---
+
+[Image #1] como usar isso aqui?
+
+---
+
+[Image #1] como fazemos isso?
+
+---
+
+e como sei que ele só vai consumir os 70? E não meus créditos ou cobrar extra, etc?
+
+---
+
+[Image #1] e a partir daqui?
+
+---
+
+[Image #1]
+
+---
+
+onde está esse usage limits?
+
+---
+
+e agora entao ele usará somente os 70 dólares, correto?
+
+---
+
+mas ele usaria os 70 dólares antes, correto?
+
+---
+
+perfeito! Então é só ir acompanhando! https://claude.ai/artifact/Dz619qxLsZgJNgiUe2MycU Vamos comecar entao a testar, nosso foco é entender a Análise de empresas! Como prosseguimos com isso?
+
+---
+
+DATA PACKAGE V1.0.0 · AS OF 2026-09-30
+Hollerau Procurement Dossier
+What the purchasing data tells our buyer agent before it opens a thread: who the suppliers are, how far their asks are justified, what each one responds to, and where our leverage is real.
+€34.9 M
+FY2026 spend, 447 suppliers
+46
+suppliers with full data
+19
+practice trigger documents
+5
+suppliers red in 2026Q3
+10,356
+citable IDs in facts.json
+SUMMARY
+Seven findings for the agent
+Price letters ask for more than costs moved. Weighting each part's cost drivers by its index moves since the current price took effect: Brandlhuber asks +9.5 % against +2.3 %, Lindlbauer +7.0 % against +4.0 %, Platinenwerk +8.0 % against +5.5 %. Only Nordmark (+6.5 % against +6.6 %) is in line. Market news backs the counter: industrial power is 43 % below 2022 news:20260912-30, iron castings +1.8 % year on year news:20260914-31.
+But some of these suppliers sell below their own cost. Should-cost puts Platinenwerk at −8.4 %, Nordmark at −7.6 % and Brandlhuber at −4.8 % margin on today's price. Castings and electrical are stabilise categories, where leaving a supplier below a sustainable margin costs us in C. The right landing is near cost plus that margin, not the old price.
+History says asks shrink to zero. 225 past renewals asked +1.4 % on average and settled at −1.1 %; the median settlement is 0.0 % and 82 % ended flat or lower. Raw material and castings settled about 2 to 4 points below their ask.
+Our alternatives are mostly weak. Second-source quotes sit 8 to 21 % above the incumbent. The exceptions are the DN 65 flange (+1.9 %, sup:70240) and the coupling hub (+9.6 %). A switch threat is a bluff almost everywhere else, so the agent should not lead with it.
+We pay late, and suppliers notice. Hollerau pays Saalach 19 days late on average, Wälzhammer 16, Lindlbauer 13; seven suppliers sent an overdue-invoice letter. At 8 % cost of capital, 30 days earlier payment is worth about 0.67 % of price to us, often much more to a cash-short supplier.
+Supplier personas are written in fixed phrases. Twelve traits (cash need, spare or full capacity, open book, stale costing, approval ladder above 2 %, price freeze, hedged material, and more) appear in call notes, meeting notes, quote remarks and news with one or two fixed wordings each. A regex reads them all. Holiday, ISO, contact and packaging e-mails are noise.
+Five suppliers are red. Aichbauer, Kalwisz, Tarsevi, Weißacher and Vrbenský sit below 70 points. Two of them are practice escalations (P11, P12), where the goal is quality_first: PPM commitment and chargebacks matter more than price.
+PRACTICE CASES
+The 19 trigger documents, with what moves each supplier
+Each trigger in correspondence/ ending in -P01 to -P19 opens one practice case. Ask, index move and margin are computed here; red ask means it exceeds the index-weighted cost move.
+CASE	TYPE	SUPPLIER	SCORECARD	ASK	INDEX MOVE	MARGIN NOW	WE PAY LATE	SIGNALS	ALTERNATIVES	PLAYBOOK
+P01	price increase	Gießerei Brandlhuber
+sup:70110	
+Amber (B)	+9.5 %	+2.3 %	-4.8 %	3 d	Cash needOwed for 2022Stale costing	sup:70140 (qualified)	pay faster (14-30 days) for price; it values cash over list price; acknowledge 2022, frame the deal as partnership; avoid hard threats; index data disarms it: show the real index path since its last price
+P02	price increase	Antriebstechnik Nordmark
+sup:70510	
+Green (A)	+6.5 %	+6.6 %	-7.6 %	1 d	Approval above 2 %	sup:70580 (qualified)	keep each move small (2 % or less) or give it time for its committee
+P13	price increase	Präzisionsteile Lindlbauer
+sup:70230	
+Green (A)	+7.0 %	+4.0 %	–	13 d	Cash needComplains we pay lateOpen bookStale costing	sup:70250 (qualified)	pay faster (14-30 days) for price; it values cash over list price; our late payment hurt trust: promise and keep payment terms; ask for the cost breakdown XLSX, argue line by line vs should-cost
+P17	price increase	Platinenwerk Lausitz
+sup:70550	
+Green (A)	+8.0 %	+5.5 %	-8.4 %	5 d	Approval above 2 %	none in source list	keep each move small (2 % or less) or give it time for its committee
+P03	renewal	Selvbrunn Drive
+sup:70530	
+Green (A)	–	+6.1 %	+2.3 %	2 d	Approval above 2 %Price frozen	sup:70540 (qualified)	keep each move small (2 % or less) or give it time for its committee; price will not move: trade payment days, logistics, call-off flexibility
+P04	renewal	Wälzlager-Zentrum Süd
+sup:70620	
+Green (A)	–	+0.6 %	–	3 d	Deprioritising usOpen bookPrice frozen	sup:70640 (active)	weak leverage: bundle volume, or use the alternative; ask for the cost breakdown XLSX, argue line by line vs should-cost; price will not move: trade payment days, logistics, call-off flexibility
+P14	renewal	Kabelwerk Rhönsberg
+sup:70560	
+Green (A)	–	+3.8 %	+3.7 %	2 d	Approval above 2 %Material hedged	none in source list	keep each move small (2 % or less) or give it time for its committee; market index arguments are 'not our reality' until its hedge ends
+P19	renewal	Kugellager-Vertrieb Inntal
+sup:70640	
+Green (A)	–	+0.6 %	–	3 d	Approval above 2 %Deprioritising usSpare capacity	sup:70620 (active)	keep each move small (2 % or less) or give it time for its committee; weak leverage: bundle volume, or use the alternative; offer volume / extra parts; idle capacity makes a lower price cheap for it
+P08	index clause	Edelstahl-Service Donautal
+sup:70710	
+Green (A)	–	-3.2 %	–	2 d	Material hedgedOpen book	sup:70740 (active)	market index arguments are 'not our reality' until its hedge ends; ask for the cost breakdown XLSX, argue line by line vs should-cost
+P16	index clause	Stahlhandel Rupprecht-Kessel
+sup:70720	
+Green (A)	–	+6.7 %	–	3 d	Open bookValues us as reference	none in source list	ask for the cost breakdown XLSX, argue line by line vs should-cost; it values the reference: tone and long-term framing move it
+P18	index clause	Blankstahl Werdenfels
+sup:70740	
+Green (A)	–	-3.2 %	–	3 d	Approval above 2 %Deprioritising usOpen book	sup:70710 (active)	keep each move small (2 % or less) or give it time for its committee; weak leverage: bundle volume, or use the alternative; ask for the cost breakdown XLSX, argue line by line vs should-cost
+P09	capacity	CNC-Technik Obermaier
+sup:70220	
+Amber (B)	–	+4.1 %	+3.9 %	8 d	Capacity fullCash needValues us as reference	sup:70240 (qualified)	trade a firm 12-24 month commitment for price and allocation; pay faster (14-30 days) for price; it values cash over list price; it values the reference: tone and long-term framing move it
+P10	capacity	Dichtungswerk Ravensteiner
+sup:70410	
+Green (A)	–	+0.9 %	+18.7 %	2 d	Approval above 2 %Capacity full	none in source list	keep each move small (2 % or less) or give it time for its committee; trade a firm 12-24 month commitment for price and allocation
+P11	quality	Odlewnia Kalwisz
+sup:70140	
+Red (C)	–	+2.3 %	–	10 d	Cash need	sup:70190 (qualified)	pay faster (14-30 days) for price; it values cash over list price
+P12	quality	Blechtechnik Aichbauer
+sup:70310	
+Red (C)	–	+2.7 %	–	6 d	Cash need	none in source list	pay faster (14-30 days) for price; it values cash over list price
+P07	kit	Schraubenhandel Leitner
+sup:70610	
+Green (A)	–	+1.1 %	–	2 d	Approval above 2 %Spare capacity	sup:70630 (active)
+sup:70650 (active)	keep each move small (2 % or less) or give it time for its committee; offer volume / extra parts; idle capacity makes a lower price cheap for it
+P15	kit	Elasto-Dicht Hermannsdorfer
+sup:70430	
+Green (A)	–	+2.0 %	–	2 d	Deprioritising usOpen book	sup:70410 (active)
+sup:70440 (active)	weak leverage: bundle volume, or use the alternative; ask for the cost breakdown XLSX, argue line by line vs should-cost
+P05	rfq	Zerspanung Dralveck
+sup:70210	
+Amber (B)	–	–	–	10 d	Complains we pay lateValues us as referenceSpare capacityStale costing	none in source list	our late payment hurt trust: promise and keep payment terms; it values the reference: tone and long-term framing move it; offer volume / extra parts; idle capacity makes a lower price cheap for it
+P06	rfq	Eisengießerei Velkenreith
+sup:70120	
+Amber (B)	–	–	–	5 d	Owed for 2022	none in source list	acknowledge 2022, frame the deal as partnership; avoid hard threats
+PRICE FAIRNESS
+Asks against cost movement and margin
+Asked increase vs index-weighted cost move
+Cost-driver weights (cost_drivers) times each index's move from the month before the current price to its latest value.
+Supplier margin at today's price
+(price − should-cost) / price. Own-plant estimates (±5 %) where they exist, otherwise the German base scaled by country.
+NEGOTIATION HISTORY
+What suppliers asked, what they got
+225 annual renewals, asked vs settled
+Points below the dashed line settled under the ask. A dense row sits at 0 %: price held.
+Second-source quote premium over the incumbent
+How credible our alternative is per part (rfqs purpose second-source benchmark).
+PERFORMANCE
+Delivery, quality and our own payment discipline
+Scorecard 2026Q3: on-time delivery vs PPM
+Bubble size is FY2026 spend. Target is 95 % OTD.
+How late Hollerau pays, last 12 months
+Mean days past due, invoices without cash discount.
+SUPPLIER SIGNALS
+What each supplier responds to
+Traits mined from 208 documents, quote remarks and news. Rows ordered by FY2026 spend.
+SUPPLIER	CAT.	CASH NEED	SPARE CAPACITY	CAPACITY FULL	OPEN BOOK	STALE COSTING	OWED FOR 2022	VALUES US AS REFERENCE	APPROVAL ABOVE 2 %	DEPRIORITISING US	PRICE FROZEN	MATERIAL HEDGED	COMPLAINS WE PAY LATE
+Antriebstechnik Nordmark sup:70510	electrical												
+Vesmo Elektromotory sup:70520	electrical												
+Selvbrunn Drive sup:70530	electrical												
+Gießerei Wimbacher sup:70130	castings												
+Konvertek Antriebselektronik sup:70540	electrical												
+Gießerei Brandlhuber sup:70110	castings												
+Motorenwerk Saalach sup:70580	electrical												
+Gießerei Pfaffenreuth sup:70190	castings												
+Blechtechnik Aichbauer sup:70310	sheet metal												
+Kabelwerk Rhönsberg sup:70560	electrical												
+Dichtungswerk Ravensteiner sup:70410	seals												
+Feinguss Allgäu-Reiter sup:70180	castings												
+Odlewnia Kalwisz sup:70140	castings												
+Platinenwerk Lausitz sup:70550	electrical												
+Drehzentrum Ilzauer sup:70295	machined parts												
+Tarsevi Döküm sup:70150	castings												
+Edelstahl-Service Donautal sup:70710	raw material												
+Eisengießerei Velkenreith sup:70120	castings												
+Stahlhandel Rupprecht-Kessel sup:70720	raw material												
+Blankstahl Werdenfels sup:70740	raw material												
+Gleitring-Systeme Kaltenbrunn sup:70420	seals												
+Sensorik Ammertal sup:70570	electrical												
+Metallbau Steinfelder sup:70340	sheet metal												
+Stahlbau Ganghofer-Lenz sup:70320	sheet metal												
+Präzisionsteile Lindlbauer sup:70230	machined parts												
+Lasertechnik Varnoszeg sup:70330	sheet metal												
+Zerspanung Dralveck sup:70210	machined parts												
+Kohlering-Technik Pirkheim sup:70440	seals												
+Inox Center sup:70730	raw material												
+Wälzhammer Präzision sup:70280	machined parts												
+Feinmechanik Rottaler sup:70290	machined parts												
+Oberflächentechnik Weißacher sup:70350	sheet metal												
+Wälzlager-Zentrum Süd sup:70620	C-parts												
+Slévárna Vrbenský sup:70170	castings												
+CNC-Technik Obermaier sup:70220	machined parts												
+Kantteile Strasser sup:70360	sheet metal												
+Mechanik Tauvelt sup:70260	machined parts												
+Verbindungstechnik Mairhofer sup:70650	C-parts												
+Kugellager-Vertrieb Inntal sup:70640	C-parts												
+Obrábění Kraslin sup:70270	machined parts												
+Normteile Brucker sup:70630	C-parts												
+Strojírna Hrvelec sup:70240	machined parts												
+Drehteile Fuchsreiter sup:70250	machined parts												
+Elasto-Dicht Hermannsdorfer sup:70430	seals												
+Meridune Precision sup:70160	castings												
+Schraubenhandel Leitner sup:70610	C-parts												
+Cash need
+pay faster (14-30 days) for price; it values cash over list price
+Spare capacity
+offer volume / extra parts; idle capacity makes a lower price cheap for it
+Capacity full
+trade a firm 12-24 month commitment for price and allocation
+Open book
+ask for the cost breakdown XLSX, argue line by line vs should-cost
+Stale costing
+index data disarms it: show the real index path since its last price
+Owed for 2022
+acknowledge 2022, frame the deal as partnership; avoid hard threats
+Values us as reference
+it values the reference: tone and long-term framing move it
+Approval above 2 %
+keep each move small (2 % or less) or give it time for its committee
+Deprioritising us
+weak leverage: bundle volume, or use the alternative
+Price frozen
+price will not move: trade payment days, logistics, call-off flexibility
+Material hedged
+market index arguments are 'not our reality' until its hedge ends
+Complains we pay late
+our late payment hurt trust: promise and keep payment terms
+MARKETS
+The cost drivers behind the letters
+The six series carrying most cost-driver weight. Energy peaked in 2022 and fell back; labour and steel kept rising.
+Labour cost, manufacturing DE
+idx:LCI-C · index
+Basic iron and steel DE
+idx:PPI-C241 · index 2021=100
+Electric power DE
+idx:PPI-D351 · index 2021=100
+Copper notation
+idx:CU-NOTATION · € per 100 kg
+Alloy surcharge 1.4404
+idx:AS-14404 · € per t
+Casting of iron DE
+idx:PPI-C2451 · index 2021=100
+SPEND
+Where the €35 M goes
+FY2026 spend by category
+Built by analysis/explore.py from data/package. Company data is synthetic; market series are open data (Eurostat, World Bank, ECB, SMARD).
+
+---
+
+/Users/joaofmzuffo/Documents/profiles.numbers aqui estão mais algumas!
+
+---
+
+sim! Então, como vamos testar agora isso tudo?
+
+---
+
+faça um primeiro plano e comece a rodar localmente por favor!
+
+---
+
+pode rodar bastante e vá pegando os dados e recolhendo bem (crie depois um dashboard em ingles explicando tudo!)
+
+---
+
+pode ir ampliando! Teste como quiser!
+
+---
+
+o que mais você precisa para terminar?
+
+---
+
+abra o dashboard! Como interpretar tudo?
+
+---
+
+salve todo nosso progresso aqui! tenho que reiniciar o codex para te dar acesso ao safari!
