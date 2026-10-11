@@ -347,6 +347,20 @@ class Negotiator:
                 s.est["interest_rate"] = s.prof["rate"]
         self.note(s.sid, "signals", new=new)
 
+    def bound_full_cost(self, s, terms):
+        """A supplier does not offer below its cost floor (`docs/api.md`, What counts): every sheet
+        it sends, valued to it (its clause included), bounds our full-cost estimate from above. The
+        should-cost overshot the true full cost by 1 to 2 % on P01, P02 and P03 (the relationship
+        charge of 32 practice deals), and the relationship target built on it closed above the
+        supplier's own counter (P01: 131.27 in 8 sessions, 0.909, against 130.08, 0.978)."""
+        full_cost = s.est.get("full_cost")
+        if not full_cost:
+            return
+        offered = eco.value(self.case, terms, s.est)
+        if offered < full_cost:
+            s.est["full_cost"] = offered
+            self.note(s.sid, "full_cost_bound", offered=round(offered, 2), was=round(full_cost, 2))
+
     def listen(self, s, body):
         """The live analyst on its latest e-mail: the mood goes to the writer, the tactic paces our
         next price and our evidence, the argument it recognised picks our prepared answer, its
@@ -456,6 +470,7 @@ class Negotiator:
             self.adopt(s, sheets)
             s.term_change = any(sheets[0]["terms"].get(k, v) != v for k, v in terms_before.items() if k != "unit_price")
             s.theirs.append(self.their_price(s, sheets[0]["terms"]))
+            self.bound_full_cost(s, sheets[0]["terms"])
             s.last_sheet = sheets[0]["terms"]
             s.last_reply = last
             s.asks = asks(last.get("body"))
@@ -479,6 +494,7 @@ class Negotiator:
         left = self.moves_left(s, events)
         if status in DONE or left <= 0:
             return self.finish(s, sheets, events, theirs, left)
+        cap = eco.break_even(self.case, s.terms, s.std, s.est)
         if s.ours and s.target and theirs <= s.target:
             # The supplier already offers at or below our estimated optimum. Let the close gate
             # evaluate its standing sheet instead of raising the price to our target.
@@ -487,6 +503,9 @@ class Negotiator:
         if s.ours and theirs <= s.ours[-1]:  # it came below what we offered: take it
             return self.finish(s, sheets, events, theirs, left)
         price, n_claims = self.next_price(s, theirs)
+        if cap is not None and price > cap:
+            price = max(cap, s.ours[-1]) if s.ours else cap  # never above the alternative, never back down
+            self.note(sid, "break_even_cap", cap=cap, price=price)
         claims = self.pick(s, n_claims, threads)
         sheets = [eco.at_price(s.terms, price)]
         if not s.ours and s.trades:
@@ -553,6 +572,16 @@ class Negotiator:
             if c_stand is None or c < c_stand - 1.0:
                 s.state = "mirror"
                 return self.send(s, [terms], [], events, theirs)
+        if c_stand is None and left > 0 and s.ours:
+            # its last word is a deal we would refuse (dearer than our alternative, or a must-have
+            # broken): one sheet at the most we would accept costs nothing, since a refusal here
+            # and a walk-away both leave us the alternative
+            cap = eco.break_even(case, s.terms, std, s.est)
+            last = eco.at_price(s.terms, min(theirs, cap) if cap is not None else theirs)
+            if eco.deal_cost(case, last, std, s.est) is not None and not self.same_offer(s.last_sent_terms, last):
+                s.state = "mirror"
+                self.note(s.sid, "last_sheet", price=last["unit_price"], theirs=theirs, cap=cap)
+                return self.send(s, [last], [], events, theirs)
         s.state = "done"
         return None
 
