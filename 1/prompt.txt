@@ -1,0 +1,27 @@
+now run the cases in 10 runs on the real live system and compare against the latest best runs (for that no new runs) report improvement / loss per case and means
+
+---
+
+is it done?
+
+---
+
+now?
+
+---
+
+<task-notification>
+<task-id>b342usbyj</task-id>
+<tool-use-id>toolu_01RjZGjobRtb9EF3dzRefHk4</tool-use-id>
+<output-file>/private/tmp/claude-502/-Users-louis-Documents-TUM-semester-6-Sonstiges-EHL-Final/e9c38c45-bc01-4801-ba0f-64a313f8e42d/tasks/b342usbyj.output</output-file>
+<status>completed</status>
+<summary>Background command "Play the 10 hosted practice cases once with the current team (costs 10 sessions)" completed (exit code 0)</summary>
+</task-notification>
+
+---
+
+which model is used for the agents
+
+---
+
+in env can we use gpt 6 luna
