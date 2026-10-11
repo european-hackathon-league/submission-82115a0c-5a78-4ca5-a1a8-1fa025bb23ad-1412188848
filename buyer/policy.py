@@ -22,7 +22,7 @@ import time
 from arena_kit.docs import standard_terms
 from arena_kit.play import ENDED, latest, live_threads, moves_left, standing
 
-from . import analyst, llm, writer
+from . import analyst, context, llm, writer
 from . import economics as eco
 from .claims import ClaimBank, rival_offer
 from .personas import profile, signals_in
@@ -100,6 +100,7 @@ class Side:
         self.trades = []  # terms the lead expects it to value: offered next to our opening sheet
         self.active_trades = []  # explicit supplier needs priced for the current move
         self.playbook = {}  # the demo bidding: its expected arguments, our answers, points to press
+        self.evidence = None  # rebuilt from delivered messages, not pending drafts
         self.live = ""  # the live analyst's notes on its last e-mail
         self.mood = None  # the live analyst on its last e-mail: the writer's mood
         self.tactic = None  # and our next move: steady | hold | argue
@@ -371,7 +372,9 @@ class Negotiator:
             return
         t0 = time.monotonic()
         arguments = s.playbook.get("arguments") or []
-        seen = analyst.read(self.complete, self.case, body, s.ours, s.theirs, arguments, self.writer_s / 2)
+        seen = analyst.read(
+            self.complete, self.case, body, s.ours, s.theirs, arguments, self.writer_s / 2, evidence=s.evidence
+        )
         self.writer_s -= time.monotonic() - t0
         if seen is None:
             return
@@ -450,6 +453,7 @@ class Negotiator:
         """The next message to this supplier: {"message": ...}, or None when the thread is done.
         `writer_s`: what the supplier clocks leave for the model paragraph."""
         s, events = self.sides[sid], threads[sid]
+        s.evidence = context.snapshot(self.case, events)
         self.writer_s = writer_s
         s.prev_state = s.state
         last = latest(events)
@@ -495,6 +499,10 @@ class Negotiator:
         if status in DONE or left <= 0:
             return self.finish(s, sheets, events, theirs, left)
         cap = eco.break_even(self.case, s.terms, s.std, s.est)
+        if cap is not None and (cap <= 0 or (s.ours and s.ours[-1] > cap)):
+            s.state = "done"
+            self.note(sid, "no_feasible_concession", cap=cap)
+            return None
         if s.ours and s.target and theirs <= s.target:
             # The supplier already offers at or below our estimated optimum. Let the close gate
             # evaluate its standing sheet instead of raising the price to our target.
@@ -512,6 +520,13 @@ class Negotiator:
             sheets += safe(lambda: self.trade_sheets(s, sheets[0]), [])[:2]
         elif s.ours:
             sheets += safe(lambda: self.need_trade_sheets(s, sheets[0]), [])[:2]
+        if not claims and len(sheets) == 1 and self.offer_stalled(events):
+            standing_sheets = latest(events).get("term_sheets") or []
+            if any(eco.deal_cost(self.case, sh.get("terms") or {}, s.std, s.est) is not None for sh in standing_sheets):
+                self.note(
+                    sid, "supplier_stalled", reason="two unchanged counters; no fresh claim or new feasible trade"
+                )
+                return self.finish(s, standing_sheets, events, theirs, left)
         switched_trade_keys = set()
         if self.same_offer(s.last_sent_terms, sheets[0]):
             if len(sheets) == 1:
@@ -620,6 +635,24 @@ class Negotiator:
             return set()
         periods = {month for ref in claim.get("ids", []) for month in re.findall(r"@(\d{4}-\d{2})", ref)}
         return {("forecast", month) for month in periods}
+
+    @staticmethod
+    def offer_stalled(events):
+        """Two delivered responses with unchanged complete packages, not merely unchanged price.
+
+        Any new alternative, omitted sheet or non-supplier event breaks the sequence. Offer IDs
+        can change on each reply, so only terms are compared. No text-based refusal inference.
+        """
+        replies = [e for e in events if e.get("from") != "buyer"][-3:]
+        if len(replies) < 3 or any(e.get("from") != "supplier" for e in replies):
+            return False
+        packages = []
+        for event in replies:
+            sheets = event.get("term_sheets") or []
+            if not sheets or any(not sh.get("terms", {}).get("unit_price") for sh in sheets):
+                return False
+            packages.append(sorted(json.dumps(sh["terms"], sort_keys=True) for sh in sheets))
+        return packages[0] == packages[1] == packages[2]
 
     @staticmethod
     def same_offer(previous, candidate):
@@ -766,7 +799,16 @@ class Negotiator:
         facts += writer.facts(self.case, s, claims, moved, statements, attachments, traded)
         para = llm.paragraph(
             self.complete,
-            writer.brief(self.case, s.prof, latest(events).get("body"), facts, tone, first, [s.research, s.live]),
+            writer.brief(
+                self.case,
+                s.prof,
+                latest(events).get("body"),
+                facts,
+                tone,
+                first,
+                [s.research, s.live],
+                evidence=context.snapshot(self.case, events),
+            ),
             self.writer_s,
         )
         body = writer.email(
