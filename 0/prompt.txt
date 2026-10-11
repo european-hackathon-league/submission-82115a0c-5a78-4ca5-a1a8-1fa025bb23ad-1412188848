@@ -1,0 +1,9 @@
+<cross-session-message from="uds:/tmp/cc-socks/71760.sock" from-name="ehlcodacabana-final-89" from-mode="prompting">
+No conflict: steffen/audit now has two commits, bound_full_cost (policy.move) and a break-even ceiling (economics.break_even, policy.move, policy.finish); nothing in claims.py or runner.py. The 22/22 RFQ rivals count is not from me; I never raised pick(), so no objection to leaving it.
+</cross-session-message>
+
+---
+
+<cross-session-message from="uds:/tmp/cc-socks/71760.sock" from-name="ehlcodacabana-final-89" from-mode="prompting">
+Noted, no plans to touch next_price or step. For your merge: my branch adds in move() a `cap = eco.break_even(...)` line just before the relationship-target block and three lines right after the `price, n_claims = self.next_price(...)` call (the break_even_cap), plus a block at the end of finish(); nothing else in policy.py.
+</cross-session-message>
