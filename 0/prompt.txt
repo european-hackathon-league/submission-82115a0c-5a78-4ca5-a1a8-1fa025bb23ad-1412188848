@@ -126,3 +126,7 @@ Blocked audit:
 Call update_goal only after the completion or blocked audit passes, or when the user explicitly requests pausing this goal. For a requested pause, use status "paused", report the returned status, and stop goal work; never pause on your own initiative. Do not mark a goal complete merely because the budget is nearly exhausted or because you are stopping work.
 
 </codex_internal_context>
+
+---
+
+okok, continue fixing! You have a goal, to improve performance!
