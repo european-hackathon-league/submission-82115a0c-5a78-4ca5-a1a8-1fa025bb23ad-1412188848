@@ -1,0 +1,110 @@
+/goal Ensure that our pipeline is ready for the 9am test case, and runs automatically. Run a cli command and monitor it. Goal should be that it runs without agent intervention. Once setup is done, you may sleep until time comes to check
+
+---
+
+"
+
+<pasted_content id="1530">
+Hey @here,
+
+I see the first teams are figuring out how to get ready for the final - 6 teams are online 😉 
+
+=====
+
+☀️ Good morning, negotiators! Sunday 06:00 status ☀️
+
+You didn't sleep, did you? 2,315 practice negotiations since midnight, 2,182 deals. 😅
+
+🤖 Tacto's house agent is beaten on all 10 suppliers. 10 : 0. Respect. Brandlhuber (P01) even went to a perfect 1.00 (🃏 NoIdea).
+
+🏆 Practice board
+🥇 🃏 NoIdea · 0.880 (8 supplier records!)
+🥈 TakeTheMoneyAndRun · 0.828
+🥉 sellm · 0.813
+Then Codacabana 0.812 · y/agent 0.805 · += 0.800. #2 to #6 within 0.03.
+
+But remember: practice is not the ranking. At 12:00 your agent meets 30 hidden cases with suppliers it has never met. 👀
+
+🏁 Road to the Live Final
+🧪 NEW: rehearse the final on your laptop. git pull the kit, uv sync in starter-kit/, then uv run arena-sim serve --final-rehearsal --data data/package and run arena run --set final --waves 2 against it. Two short waves with the real rules: the 403 wait, the wave start, one session per case, seconds_left, the cap.
+⏱️ The 8 minutes are yours. The kit stops countering 90 s before the cap and takes the best offer on the table: one constant, CLOSE_BEFORE_CAP_S in arena_kit/play.py. Tune it if you like, but a supplier's reply can take a minute.
+📦 08:00 Sunday release: uv run arena data again. Some hidden cases cite it.
+✈️ 09:00 Pre-flight on arena.tacto.ai: one practice case, then start your final runner for a minute. It must wait (403 until wave 1).
+🛑 11:55 Stop your practice loops. They count against your 10 open sessions.
+🔒 12:00 Code + slides freeze on ehl.gg. Runner already running, then hands off: 5 waves × 8 min.
+
+Full guide with all commands: arena.tacto.ai/faq#final · Quota is 600 a day, test away. 💪
+Image
+I will arrive at ~11:30 and set up the final (can't miss my son's football match 😏). Will keep checking here!
+</pasted_content id="1530">
+
+"
+
+---
+
+<task-notification>
+<task-id>bibh3h19h</task-id>
+<summary>Monitor event: "pre-flight status lines and errors"</summary>
+<event>==&gt; logs/preflight-practice.log &lt;==</event>
+If this event is something the user would act on now, send a PushNotification. Routine or benign output doesn't need one.
+</task-notification>
+
+---
+
+live updates, if possible
+
+---
+
+<task-notification>
+<task-id>bibh3h19h</task-id>
+<summary>Monitor event: "pre-flight status lines and errors"</summary>
+<event>09:00:04 practice start</event>
+If this event is something the user would act on now, send a PushNotification. Routine or benign output doesn't need one.
+</task-notification>
+
+---
+
+<task-notification>
+<task-id>bibh3h19h</task-id>
+<summary>Monitor event: "pre-flight status lines and errors"</summary>
+<event>==&gt; logs/preflight-practice.log &lt;==
+09:00:04 HTTP Request: GET https://arena.tacto.ai/v1/cases?set=practice "HTTP/1.1 200 OK"</event>
+If this event is something the user would act on now, send a PushNotification. Routine or benign output doesn't need one.
+</task-notification>
+
+---
+
+<task-notification>
+<task-id>bibh3h19h</task-id>
+<summary>Monitor event: "pre-flight status lines and errors"</summary>
+<event>09:00:31 case:P01 research in 26.7s: {"sup:70110": {"trades": [{"field": "payment_days", "value": 14, "why": "Brandlhuber has explicitly sought faster payment in exchange for a discount, so this may be valuable to its cash position."}], "claim_order": ["order_history", "notice", "hedged", "should_cost", "scorecard"], "tone": "warm", "notes": "Brandlhuber is an owner-led strategic supplier that values partnership and cash flow, but its cost case is weakly substantiated. Emphasize the history of s...(truncated)</event>
+If this event is something the user would act on now, send a PushNotification. Routine or benign output doesn't need one.
+</task-notification>
+
+---
+
+<task-notification>
+<task-id>bibh3h19h</task-id>
+<summary>Monitor event: "pre-flight status lines and errors"</summary>
+<event>09:00:50 practice exit 0</event>
+If this event is something the user would act on now, send a PushNotification. Routine or benign output doesn't need one.
+</task-notification>
+
+---
+
+<task-notification>
+<task-id>bzx5nec2i</task-id>
+<tool-use-id>toolu_01YCLJniQboyuxgz22Fzr6Hy</tool-use-id>
+<output-file>/private/tmp/claude-501/-Users-stef-Projects-ehlcodacabana-final/833fab75-c51c-4a43-b9e3-391523ffd23a/tasks/bzx5nec2i.output</output-file>
+<status>completed</status>
+<summary>Background command "Wait until 09:02 then show pre-flight progress" completed (exit code 0)</summary>
+</task-notification>
+
+---
+
+<task-notification>
+<task-id>bibh3h19h</task-id>
+<summary>Monitor event: "pre-flight status lines and errors"</summary>
+<event>09:02:50 final runner alive after 120s (waiting)</event>
+If this event is something the user would act on now, send a PushNotification. Routine or benign output doesn't need one.
+</task-notification>
