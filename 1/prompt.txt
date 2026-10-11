@@ -1,0 +1,25 @@
+for the submission we need to add a writeup, what are the requirements
+
+---
+
+can you write it in latex and include the pdf in the repo, both in an own folder. check if this diagram still holds, adjust it and add it as a visual via rebuilding it in latex
+
+---
+
+it should be more like a paper, and remove irrelevant info to make it max 2 pages
+
+---
+
+maybe put the image, on the bottom of the first page
+
+---
+
+improve choice of language words to make it more journal style
+
+---
+
+check if all statements are true, are you sure about: "ten messages per thread"
+
+---
+
+no code functions like: total_cost
