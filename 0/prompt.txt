@@ -1,0 +1,9 @@
+/goal improve our models general ability (no overfitting) for the 12:00 countdown. You may use practice runs as you please. You may test as much of what you do as you want. You are done when you confidently say that the model got better.
+
+---
+
+Ensure generalization, no overfitting
+
+---
+
+Any improvement? If no, then stop.
