@@ -3,7 +3,7 @@
   "checkpoint_id": "01M4M4HAKMJZ7N9VR41RZJTS3H",
   "strategy": "manual-commit",
   "branch": "joao/louis-subagent-improvements",
-  "checkpoints_count": 71,
+  "checkpoints_count": 73,
   "files_touched": [
     "AGENTS.md"
   ],
@@ -21,14 +21,21 @@
       "compact_transcript": "/1/transcript.jsonl",
       "content_hash": "/1/content_hash.txt",
       "prompt": "/1/prompt.txt"
+    },
+    {
+      "metadata": "/2/metadata.json",
+      "transcript": "/2/full.jsonl",
+      "compact_transcript": "/2/transcript.jsonl",
+      "content_hash": "/2/content_hash.txt",
+      "prompt": "/2/prompt.txt"
     }
   ],
   "token_usage": {
-    "input_tokens": 677129,
+    "input_tokens": 721592,
     "cache_creation_tokens": 0,
-    "cache_read_tokens": 37343616,
-    "output_tokens": 160595,
-    "api_call_count": 359,
+    "cache_read_tokens": 39834496,
+    "output_tokens": 168226,
+    "api_call_count": 390,
     "subagent_tokens": {
       "input_tokens": 59057,
       "cache_creation_tokens": 0,
